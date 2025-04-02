@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://br5f0j0rsn2d3"]
+
+[ext_resource type="Script" uid="uid://cu3mj3fymmjea" path="res://scripts/mic_player_audio_stream_player_2d.gd" id="1_aq7y2"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 35.0
+offset_right = 330.0
+offset_bottom = 76.0
+text = "Listening for notes... "
+
+[node name="MicPlayer_AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("1_aq7y2")
