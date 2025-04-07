@@ -1,5 +1,0 @@
-[gd_scene load_steps=0 format=3 uid="uid://bxp8ux618ahl"]
-
-[node name="Title Screen" type="Node2D"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]

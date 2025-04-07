@@ -17,12 +17,12 @@ public partial class Note : Node, IComparable<Note>
 		notes = n;
 	}
 
-    public int CompareTo(Note other)
-    {
-        for(int i = 0; i < notes.Length; i++){
+	public int CompareTo(Note other)
+	{
+		for(int i = 0; i < notes.Length; i++){
 
 		}
 		return (0);
-    }
+	}
 
 }
