@@ -20,7 +20,7 @@ theme_override_constants/margin_bottom = 160
 
 [node name="button title formatting" type="VBoxContainer" parent="CanvasLayer/screen margins"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 60
 
 [node name="title image center" type="CenterContainer" parent="CanvasLayer/screen margins/button title formatting"]
 layout_mode = 2
@@ -32,8 +32,9 @@ size_flags_vertical = 3
 texture = ExtResource("1_lapbl")
 
 [node name="buttons" type="HBoxContainer" parent="CanvasLayer/screen margins/button title formatting"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 60
 alignment = 1
 
 [node name="Game Mode" type="Button" parent="CanvasLayer/screen margins/button title formatting/buttons"]
