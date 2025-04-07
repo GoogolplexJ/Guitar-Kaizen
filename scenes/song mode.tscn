@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbacimd6a4hgg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2dmm"]
+bg_color = Color(0.959788, 0.910521, 0.931694, 1)
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0.198532, 0.187377, 0.332531, 1)
+
+[node name="SongMode" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background color" type="ColorRect" parent="CanvasLayer"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.447663, 0.465278, 0.617023, 1)
+
+[node name="sheet music position" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_bottom = 400
+
+[node name="sheet music background" type="Panel" parent="CanvasLayer/sheet music position"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2dmm")

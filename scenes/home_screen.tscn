@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1bgcmvwlo5dt"]
 
-[ext_resource type="Texture2D" uid="uid://bdrofn4unismu" path="res://icon.svg" id="1_lapbl"]
+[ext_resource type="Texture2D" uid="uid://dpvcuoumnpvcu" path="res://titlesplashsmall.png" id="1_lapbl"]
 
 [node name="Home screen" type="Node2D"]
 
@@ -14,9 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 240
-theme_override_constants/margin_top = 120
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 240
-theme_override_constants/margin_bottom = 220
+theme_override_constants/margin_bottom = 160
 
 [node name="button title formatting" type="VBoxContainer" parent="CanvasLayer/screen margins"]
 layout_mode = 2
@@ -58,4 +58,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.905495, 0.443985, 0.447909, 1)
+color = Color(1, 0.589253, 0.416341, 1)
