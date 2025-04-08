@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1bgcmvwlo5dt"]
+
+[ext_resource type="Script" uid="uid://c68pirm0l5fmm" path="res://scripts/MenuButtonScripts/home_screen.gd" id="1_xcgmu"]
+[ext_resource type="Texture2D" uid="uid://dpvcuoumnpvcu" path="res://assets/HomeScreenAssets/titleArt.png" id="2_h8wco"]
+
+[node name="Home screen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_xcgmu")
+
+[node name="topLayer" type="CanvasLayer" parent="."]
+
+[node name="screen margins" type="MarginContainer" parent="topLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 240
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 240
+theme_override_constants/margin_bottom = 160
+
+[node name="button title formatting" type="VBoxContainer" parent="topLayer/screen margins"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="title image center" type="CenterContainer" parent="topLayer/screen margins/button title formatting"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="title image placeholder" type="TextureRect" parent="topLayer/screen margins/button title formatting/title image center"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_h8wco")
+
+[node name="buttons" type="HBoxContainer" parent="topLayer/screen margins/button title formatting"]
+z_index = 1
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="GameMode" type="Button" parent="topLayer/screen margins/button title formatting/buttons"]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Performance")
+focus_neighbor_right = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../Performance")
+text = "Game Mode"
+
+[node name="Settings" type="Button" parent="topLayer/screen margins/button title formatting/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../GameMode")
+focus_neighbor_right = NodePath("../Performance")
+focus_next = NodePath("../Performance")
+focus_previous = NodePath("../GameMode")
+disabled = true
+text = "Settings"
+
+[node name="Performance" type="Button" parent="topLayer/screen margins/button title formatting/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Settings")
+focus_neighbor_right = NodePath("../GameMode")
+focus_next = NodePath("../GameMode")
+focus_previous = NodePath("../Settings")
+text = "Performance"
+
+[node name="backgroundLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="background color" type="ColorRect" parent="backgroundLayer"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(1, 0.589253, 0.416341, 1)
+
+[connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/GameMode" to="." method="_on_ModeButton_pressed"]

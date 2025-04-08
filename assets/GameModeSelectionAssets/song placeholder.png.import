@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beuyaonf47lm8"
-path="res://.godot/imported/Untitled_Artwork.png-e707c8c840e59fbf707fe53848705714.ctex"
+uid="uid://dea5upcconl7y"
+path="res://.godot/imported/song placeholder.png-0df680dafb207385280e521870e7a699.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Untitled_Artwork.png"
-dest_files=["res://.godot/imported/Untitled_Artwork.png-e707c8c840e59fbf707fe53848705714.ctex"]
+source_file="res://assets/GameModeSelectionAssets/song placeholder.png"
+dest_files=["res://.godot/imported/song placeholder.png-0df680dafb207385280e521870e7a699.ctex"]
 
 [params]
 

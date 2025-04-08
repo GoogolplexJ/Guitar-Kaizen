@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwuhq82o8ps0b"
-path="res://.godot/imported/titlesplash.png-a6c25149f0c767f51cef887764cf724b.ctex"
+uid="uid://c7prnvjxfkdtf"
+path="res://.godot/imported/challenge placeholder.png-4f4adabc3047732218e4363e273e332a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://titlesplash.png"
-dest_files=["res://.godot/imported/titlesplash.png-a6c25149f0c767f51cef887764cf724b.ctex"]
+source_file="res://assets/GameModeSelectionAssets/challenge placeholder.png"
+dest_files=["res://.godot/imported/challenge placeholder.png-4f4adabc3047732218e4363e273e332a.ctex"]
 
 [params]
 
