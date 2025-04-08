@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://bofs51466wwnm"]
+
+[ext_resource type="Texture2D" uid="uid://bdrofn4unismu" path="res://icon.svg" id="1_o1e58"]
+
+[node name="SongSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_bottom = 400
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_o1e58")
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_o1e58")
+
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_o1e58")
+
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_o1e58")
+
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_o1e58")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.564404, 0.67726, 0.973286, 1)

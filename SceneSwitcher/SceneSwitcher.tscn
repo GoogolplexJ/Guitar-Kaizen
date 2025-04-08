@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8efqx57f6p0v"]
+
+[ext_resource type="Script" uid="uid://iwcgqvog5m23" path="res://SceneSwitcher/SceneSwitcher.gd" id="1_jrlsu"]
+
+[node name="SceneSwitcher" type="Node"]
+script = ExtResource("1_jrlsu")
+Scenes = {
+"GameModeSelect": &"res://SceneSwitcher/GameScreens/GameModeSelection.tscn",
+"Home": &"res://SceneSwitcher/GameScreens/HomeScreen.tscn",
+"SceneManager": &"res://SceneSwitcher/SceneSwitcher.tscn",
+"SongMode": &"res://SceneSwitcher/GameScreens/SongMode.tscn"
+}
