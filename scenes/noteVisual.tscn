@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy3torcm6kgtr"]
+
+[ext_resource type="Script" uid="uid://bbkd28161pjk1" path="res://scripts/note_body.gd" id="1_ot6m2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pnfd2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnfd2"]
+
+[node name="noteVisual" type="Node2D"]
+
+[node name="noteVis" type="RigidBody2D" parent="."]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ot6m2")
+
+[node name="noteBody" type="Sprite2D" parent="noteVis"]
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_pnfd2")
+
+[node name="sharpFlat" type="Sprite2D" parent="noteVis"]
+scale = Vector2(20, 20)
+
+[node name="noteTail" type="Line2D" parent="noteVis"]
+
+[node name="tailFlourish" type="Sprite2D" parent="noteVis/noteTail"]
+
+[node name="noteConnector" type="Line2D" parent="noteVis"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="noteVis"]
+shape = SubResource("CircleShape2D_pnfd2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="noteVis"]
