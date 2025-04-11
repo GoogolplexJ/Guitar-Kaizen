@@ -3,9 +3,9 @@ using System;
 using System.ComponentModel;
 
 public enum Sign{
-	flat,
+	none,
 	sharp,
-	none
+	flat
 }
 
 public partial class Note : Node, IComparable<Note>
@@ -14,7 +14,7 @@ public partial class Note : Node, IComparable<Note>
 	int[] notes;
 	int flatSharp;
 
-	readonly Sign sign;
+	readonly Sign[] sign;
 	
 	public Note(int[] n, int fS){
 		notes = n;
@@ -24,10 +24,11 @@ public partial class Note : Node, IComparable<Note>
 	public Note(double l, int[] n){
 		length = l;
 		notes = n;
-		sign = Sign.none;
+        sign = new Sign[notes.Length];
+		Array.Fill<Sign>(sign, Sign.none);
 	}
 
-	public Note(double l, int[] n, Sign s){
+	public Note(double l, int[] n, Sign[] s){
 		length = l;
 		notes = n;
 		sign = s;
