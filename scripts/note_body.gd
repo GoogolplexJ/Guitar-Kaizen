@@ -2,9 +2,9 @@ extends RigidBody2D
 
 #include Note class code
 const Note := preload("res://scripts/Note.cs")
-	#set texture based on note type
-	#$Sprite2D.texture = load("path")
-enum {REST, SIXTEENTH, EIGTH, QUARTER, HALF, WHOLE}
+
+enum {REST, SIXTEENTH, EIGTH, QUARTER, HALF, WHOLE} 
+
 
 #input: note - Note object corresponding to the current note(s) in the song being read
 #result: generation of a visual representation of the note or chord in the input
@@ -33,8 +33,9 @@ func create_note_visual(note : Note):
 			add_child(restSprite)
 			restSprite.texture = bodySprite
 			#TODO: choose sprite position
+			
 			#get rid of all other visual nodes in the tree
-			node_culling(WHOLE)
+			node_culling(REST)
 			#end function without executing the rest
 			return
 			#endregion
@@ -59,7 +60,8 @@ func create_note_visual(note : Note):
 				#decide sharpFlat texture and add 2Dsprite node
 			#endregion
 			#TODO: note position: handle in a separate function
-			#y position is relative to other notes -> middle C is at y = 0: other notes are offset according to stave width
+			
+			#y position is relative to other notes -> middle B is at y = 0: other notes are offset according to stave width
 			#for chords, check if note is a chord (multiple values in note array), then for each note which is on a line, check if there are notes in the chord within 2 spaces
 				#if there is a note within 2 spaces, flip the note on the line to the other side
 				#to check whether note is on a line, divide by total octaves to figure out which note in the octave it is, then account for sharps
@@ -101,5 +103,24 @@ func node_culling(type : int, flourish := false):
 			if flourish: $noteConnector.queue_free()
 			else: $noteTail/tailFlourish.queue_free()
 		
-#func note_position(value : int):
-		
+#input: note value (0-40) including sharps; sharpFlat: integer corresponding to whether the note is flat,sharp, or neither (0,1,2)
+#output: note position assignment (1-24), combining sharps/flats with corresponding note
+func note_pos_value(value : int, sharpFlat : int) -> int:
+	var newValue := value
+	#adjust flats and sharps to their corresponding base note value
+	match sharpFlat:
+		0:
+			newValue += 1
+		1: 
+			newValue -= 1
+	#calculate new position value without sharps and flats
+	newValue = int(newValue/2) + 1
+	if value <= 9: return newValue
+	elif (value <= 20): return newValue + 1
+	elif (value <= 32): return newValue + 2
+	else: return newValue + 3
+
+#input: note position assignment (1-24)
+#output: the y value of the position the note should be in
+func body_position(posValue : int) -> int:
+	return (MusicVisualizerVariables.BOTTOM + MusicVisualizerVariables.line_width*posValue)
