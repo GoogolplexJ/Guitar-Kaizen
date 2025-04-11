@@ -1,51 +1,618 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs40ay7l6y05g"]
+[gd_scene load_steps=5 format=3 uid="uid://bymcuelo6hxy5"]
 
-[ext_resource type="Texture2D" uid="uid://cx1c57ebpvwvp" path="res://assets/SongCreationAssets/staves.png" id="1_0kn4y"]
+[ext_resource type="Texture2D" uid="uid://cx1c57ebpvwvp" path="res://assets/SongCreationAssets/Staves.png" id="1_0kn4y"]
+[ext_resource type="Script" uid="uid://doyei86i7rhwt" path="res://scripts/MenuButtonScripts/song_creation.gd" id="1_5cvco"]
 [ext_resource type="Texture2D" uid="uid://c1br1jjrhdej7" path="res://assets/SongCreationAssets/dot.png" id="1_pbte6"]
+[ext_resource type="Texture2D" uid="uid://bjik2tpkjcnpc" path="res://assets/SongCreationAssets/dotW.png" id="2_iji4v"]
 
 [node name="SongCreation" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_5cvco")
 
 [node name="Foreground" type="CanvasLayer" parent="."]
 layer = 2
+offset = Vector2(0, 100)
+transform = Transform2D(1, 0, 0, 1, 0, 100)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Foreground"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -610.0
-offset_top = -356.0
-offset_right = -98.0
-offset_bottom = 156.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.2, 0.2)
-
-[node name="Top" type="TextureButton" parent="Foreground/VBoxContainer"]
-layout_mode = 2
+[node name="17" type="TextureButton" parent="Foreground"]
+offset_left = 768.0
+offset_top = 226.0
+offset_right = 1280.0
+offset_bottom = 738.0
+scale = Vector2(0.15, 0.15)
 toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Foreground"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -510.0
-offset_top = -406.0
-offset_right = 2.0
-offset_bottom = 106.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="OptionButton" type="OptionButton" parent="Foreground/17"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
 
-[node name="Top" type="TextureButton" parent="Foreground/VBoxContainer2"]
-layout_mode = 2
+[node name="16" type="TextureButton" parent="Foreground"]
+offset_left = 662.0
+offset_top = 260.0
+offset_right = 1174.0
+offset_bottom = 772.0
+scale = Vector2(0.15, 0.15)
 toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/16"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="15" type="TextureButton" parent="Foreground"]
+offset_left = 770.0
+offset_top = 291.0
+offset_right = 1282.0
+offset_bottom = 803.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/15"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="13" type="TextureButton" parent="Foreground"]
+offset_left = 770.0
+offset_top = 351.0
+offset_right = 1282.0
+offset_bottom = 863.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/13"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="11" type="TextureButton" parent="Foreground"]
+offset_left = 771.0
+offset_top = 411.0
+offset_right = 1283.0
+offset_bottom = 923.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/11"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="9" type="TextureButton" parent="Foreground"]
+offset_left = 773.0
+offset_top = 472.0
+offset_right = 1285.0
+offset_bottom = 984.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/9"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="7" type="TextureButton" parent="Foreground"]
+offset_left = 773.0
+offset_top = 535.0
+offset_right = 1285.0
+offset_bottom = 1047.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/7"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="5" type="TextureButton" parent="Foreground"]
+offset_left = 771.0
+offset_top = 599.0
+offset_right = 1283.0
+offset_bottom = 1111.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/5"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="3" type="TextureButton" parent="Foreground"]
+offset_left = 772.0
+offset_top = 663.0
+offset_right = 1284.0
+offset_bottom = 1175.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="1" type="TextureButton" parent="Foreground"]
+offset_left = 771.0
+offset_top = 729.0
+offset_right = 1283.0
+offset_bottom = 1241.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/1"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="19" type="TextureButton" parent="Foreground"]
+offset_left = 767.0
+offset_top = 161.0
+offset_right = 1279.0
+offset_bottom = 673.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/19"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="21" type="TextureButton" parent="Foreground"]
+offset_left = 766.0
+offset_top = 94.0
+offset_right = 1278.0
+offset_bottom = 606.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/21"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="23" type="TextureButton" parent="Foreground"]
+offset_left = 765.0
+offset_top = 27.0
+offset_right = 1277.0
+offset_bottom = 539.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/23"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 155.0
+offset_right = 613.0
+offset_bottom = 186.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="14" type="TextureButton" parent="Foreground"]
+offset_left = 661.0
+offset_top = 324.0
+offset_right = 1173.0
+offset_bottom = 836.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/14"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="12" type="TextureButton" parent="Foreground"]
+offset_left = 659.0
+offset_top = 385.0
+offset_right = 1171.0
+offset_bottom = 897.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/12"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="10" type="TextureButton" parent="Foreground"]
+offset_left = 657.0
+offset_top = 447.0
+offset_right = 1169.0
+offset_bottom = 959.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/10"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="8" type="TextureButton" parent="Foreground"]
+offset_left = 658.0
+offset_top = 503.0
+offset_right = 1170.0
+offset_bottom = 1015.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/8"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="6" type="TextureButton" parent="Foreground"]
+offset_left = 657.0
+offset_top = 568.0
+offset_right = 1169.0
+offset_bottom = 1080.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/6"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="4" type="TextureButton" parent="Foreground"]
+offset_left = 657.0
+offset_top = 633.0
+offset_right = 1169.0
+offset_bottom = 1145.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/4"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="2" type="TextureButton" parent="Foreground"]
+offset_left = 656.0
+offset_top = 697.0
+offset_right = 1168.0
+offset_bottom = 1209.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/2"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="18" type="TextureButton" parent="Foreground"]
+offset_left = 661.0
+offset_top = 196.0
+offset_right = 1173.0
+offset_bottom = 708.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/18"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="20" type="TextureButton" parent="Foreground"]
+offset_left = 660.0
+offset_top = 131.0
+offset_right = 1172.0
+offset_bottom = 643.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/20"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="22" type="TextureButton" parent="Foreground"]
+offset_left = 660.0
+offset_top = 67.0
+offset_right = 1172.0
+offset_bottom = 579.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/22"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
+
+[node name="24" type="TextureButton" parent="Foreground"]
+offset_left = 658.0
+offset_right = 1170.0
+offset_bottom = 512.0
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("1_pbte6")
+texture_pressed = ExtResource("2_iji4v")
+
+[node name="OptionButton" type="OptionButton" parent="Foreground/24"]
+layout_mode = 0
+offset_left = -526.667
+offset_top = 160.0
+offset_right = -448.667
+offset_bottom = 191.0
+scale = Vector2(6, 6)
+item_count = 3
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Flat"
+popup/item_1/id = 1
+popup/item_2/text = "Sharp"
+popup/item_2/id = 2
 
 [node name="Staves" type="CanvasLayer" parent="."]
 
@@ -55,13 +622,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -689.0
-offset_top = -40.0
-offset_right = -311.0
-offset_bottom = 200.0
+offset_left = -920.0
+offset_top = -280.0
+offset_right = -80.0
+offset_bottom = 840.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.75, 0.75)
+scale = Vector2(1, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="Staves/CenterContainer"]
 layout_mode = 2
@@ -80,3 +647,52 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 color = Color(1, 0.589253, 0.416341, 1)
+
+[connection signal="toggled" from="Foreground/17" to="." method="_on__toggled" binds= [17]]
+[connection signal="item_selected" from="Foreground/17/OptionButton" to="." method="_on_option_button_item_selected" binds= [17]]
+[connection signal="toggled" from="Foreground/16" to="." method="_on__toggled" binds= [16]]
+[connection signal="item_selected" from="Foreground/16/OptionButton" to="." method="_on_option_button_item_selected" binds= [16]]
+[connection signal="toggled" from="Foreground/15" to="." method="_on__toggled" binds= [15]]
+[connection signal="item_selected" from="Foreground/15/OptionButton" to="." method="_on_option_button_item_selected" binds= [15]]
+[connection signal="toggled" from="Foreground/13" to="." method="_on__toggled" binds= [13]]
+[connection signal="item_selected" from="Foreground/13/OptionButton" to="." method="_on_option_button_item_selected" binds= [13]]
+[connection signal="toggled" from="Foreground/11" to="." method="_on__toggled" binds= [11]]
+[connection signal="item_selected" from="Foreground/11/OptionButton" to="." method="_on_option_button_item_selected" binds= [11]]
+[connection signal="toggled" from="Foreground/9" to="." method="_on__toggled" binds= [9]]
+[connection signal="item_selected" from="Foreground/9/OptionButton" to="." method="_on_option_button_item_selected" binds= [9]]
+[connection signal="toggled" from="Foreground/7" to="." method="_on__toggled" binds= [7]]
+[connection signal="item_selected" from="Foreground/7/OptionButton" to="." method="_on_option_button_item_selected" binds= [7]]
+[connection signal="toggled" from="Foreground/5" to="." method="_on__toggled" binds= [5]]
+[connection signal="item_selected" from="Foreground/5/OptionButton" to="." method="_on_option_button_item_selected" binds= [5]]
+[connection signal="toggled" from="Foreground/3" to="." method="_on__toggled" binds= [3]]
+[connection signal="item_selected" from="Foreground/3/OptionButton" to="." method="_on_option_button_item_selected" binds= [3]]
+[connection signal="toggled" from="Foreground/1" to="." method="_on__toggled" binds= [1]]
+[connection signal="item_selected" from="Foreground/1/OptionButton" to="." method="_on_option_button_item_selected" binds= [1]]
+[connection signal="toggled" from="Foreground/19" to="." method="_on__toggled" binds= [19]]
+[connection signal="item_selected" from="Foreground/19/OptionButton" to="." method="_on_option_button_item_selected" binds= [19]]
+[connection signal="toggled" from="Foreground/21" to="." method="_on__toggled" binds= [21]]
+[connection signal="item_selected" from="Foreground/21/OptionButton" to="." method="_on_option_button_item_selected" binds= [21]]
+[connection signal="toggled" from="Foreground/23" to="." method="_on__toggled" binds= [23]]
+[connection signal="item_selected" from="Foreground/23/OptionButton" to="." method="_on_option_button_item_selected" binds= [23]]
+[connection signal="toggled" from="Foreground/14" to="." method="_on__toggled" binds= [14]]
+[connection signal="item_selected" from="Foreground/14/OptionButton" to="." method="_on_option_button_item_selected" binds= [14]]
+[connection signal="toggled" from="Foreground/12" to="." method="_on__toggled" binds= [12]]
+[connection signal="item_selected" from="Foreground/12/OptionButton" to="." method="_on_option_button_item_selected" binds= [12]]
+[connection signal="toggled" from="Foreground/10" to="." method="_on__toggled" binds= [10]]
+[connection signal="item_selected" from="Foreground/10/OptionButton" to="." method="_on_option_button_item_selected" binds= [10]]
+[connection signal="toggled" from="Foreground/8" to="." method="_on__toggled" binds= [8]]
+[connection signal="item_selected" from="Foreground/8/OptionButton" to="." method="_on_option_button_item_selected" binds= [8]]
+[connection signal="toggled" from="Foreground/6" to="." method="_on__toggled" binds= [6]]
+[connection signal="item_selected" from="Foreground/6/OptionButton" to="." method="_on_option_button_item_selected" binds= [6]]
+[connection signal="toggled" from="Foreground/4" to="." method="_on__toggled" binds= [4]]
+[connection signal="item_selected" from="Foreground/4/OptionButton" to="." method="_on_option_button_item_selected" binds= [4]]
+[connection signal="toggled" from="Foreground/2" to="." method="_on__toggled" binds= [2]]
+[connection signal="item_selected" from="Foreground/2/OptionButton" to="." method="_on_option_button_item_selected" binds= [2]]
+[connection signal="toggled" from="Foreground/18" to="." method="_on__toggled" binds= [18]]
+[connection signal="item_selected" from="Foreground/18/OptionButton" to="." method="_on_option_button_item_selected" binds= [18]]
+[connection signal="toggled" from="Foreground/20" to="." method="_on__toggled" binds= [20]]
+[connection signal="item_selected" from="Foreground/20/OptionButton" to="." method="_on_option_button_item_selected" binds= [20]]
+[connection signal="toggled" from="Foreground/22" to="." method="_on__toggled" binds= [22]]
+[connection signal="item_selected" from="Foreground/22/OptionButton" to="." method="_on_option_button_item_selected" binds= [22]]
+[connection signal="toggled" from="Foreground/24" to="." method="_on__toggled" binds= [24]]
+[connection signal="item_selected" from="Foreground/24/OptionButton" to="." method="_on_option_button_item_selected" binds= [24]]
