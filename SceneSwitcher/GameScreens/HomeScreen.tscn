@@ -66,10 +66,19 @@ text = "Settings"
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Settings")
-focus_neighbor_right = NodePath("../GameMode")
-focus_next = NodePath("../GameMode")
+focus_neighbor_right = NodePath("../Creation")
+focus_next = NodePath("../Creation")
 focus_previous = NodePath("../Settings")
 text = "Performance"
+
+[node name="Creation" type="Button" parent="topLayer/screen margins/button title formatting/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Performance")
+focus_neighbor_right = NodePath("../GameMode")
+focus_next = NodePath("../GameMode")
+focus_previous = NodePath("../Performance")
+text = "Song Creation"
 
 [node name="backgroundLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -85,3 +94,4 @@ mouse_filter = 1
 color = Color(1, 0.589253, 0.416341, 1)
 
 [connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/GameMode" to="." method="_on_ModeButton_pressed"]
+[connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/Creation" to="." method="_on_Creation_pressed"]

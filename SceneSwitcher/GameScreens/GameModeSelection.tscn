@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drpacel232fq1"]
 
 [ext_resource type="Texture2D" uid="uid://dea5upcconl7y" path="res://assets/GameModeSelectionAssets/song placeholder.png" id="1_iqb32"]
-[ext_resource type="Script" uid="uid://bj1ecyll2h0ob" path="res://scripts/game_mode_selection.gd" id="1_uv2ke"]
+[ext_resource type="Script" path="res://scripts/game_mode_selection.gd" id="1_uv2ke"]
 [ext_resource type="Texture2D" uid="uid://c7prnvjxfkdtf" path="res://assets/GameModeSelectionAssets/challenge placeholder.png" id="2_uv2ke"]
 
 [node name="GameModeSelection" type="Control"]
