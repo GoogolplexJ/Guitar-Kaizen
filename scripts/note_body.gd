@@ -52,9 +52,9 @@ func create_note_visual(note : Note):
 		var i = 0 #array counter
 		for noteValue in note.notes:
 			bodyArray[i] = Sprite2D.new()
-			add_child(bodyArray[1])
+			add_child(bodyArray[i])
 			i += 1
-			bodyArray[1].texture = bodySprite
+			bodyArray[i].texture = bodySprite
 			#region sharp flat icon TODO
 				#decide sharpFlat texture and add 2Dsprite node
 			#endregion
@@ -101,5 +101,5 @@ func node_culling(type : int, flourish := false):
 			if flourish: $noteConnector.queue_free()
 			else: $noteTail/tailFlourish.queue_free()
 		
-func note_position(value : int):
+#func note_position(value : int):
 		

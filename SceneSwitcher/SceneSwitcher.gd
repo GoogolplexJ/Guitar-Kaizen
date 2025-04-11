@@ -34,7 +34,6 @@ func QuitGame() -> void:
 # Description: Return the number of scenes in the collection
 func GetSceneCount() -> int:
 	return Scenes.size()
-	
 # Description: Returns the alias of the current scene
 func GetCurrentSceneAlias() -> String:
 	return m_CurrentSceneAlias
