@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://n15egkjqx6in"]
+
+[ext_resource type="Script" uid="uid://blkgtkjj3kyud" path="res://Main.gd" id="1_aaivp"]
+
+[node name="FetcherMain" type="Node"]
+script = ExtResource("1_aaivp")
+
+[node name="NoteFetcher" type="HTTPRequest" parent="."]
+
+[node name="RequestTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NoteDisplayLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Default"
