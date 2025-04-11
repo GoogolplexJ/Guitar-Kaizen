@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dy3torcm6kgtr"]
 
-[ext_resource type="Script" uid="uid://bbkd28161pjk1" path="res://scripts/note_body.gd" id="1_ot6m2"]
+[ext_resource type="Script" uid="uid://c0vrgw3ctnu3" path="res://scripts/note_bodytail_code.gd" id="1_pnfd2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pnfd2"]
 
@@ -11,7 +11,7 @@
 [node name="noteVis" type="RigidBody2D" parent="."]
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_ot6m2")
+script = ExtResource("1_pnfd2")
 
 [node name="noteBody" type="Sprite2D" parent="noteVis"]
 scale = Vector2(20, 20)
