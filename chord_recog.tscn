@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://duxo8x3gnaic0"]
+
+[ext_resource type="Script" uid="uid://1jkyhj0d1bfn" path="res://chord_recog.gd" id="1_mp6wx"]
+
+[node name="chord_recog" type="Node2D"]
+position = Vector2(127, 15)
+script = ExtResource("1_mp6wx")
+
+[node name="chordLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
