@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbacimd6a4hgg"]
+[gd_scene load_steps=4 format=3 uid="uid://cbacimd6a4hgg"]
 
 [ext_resource type="Script" uid="uid://do6dbu3ygn31t" path="res://scripts/MenuButtonScripts/song_mode.gd" id="1_n6xel"]
 
@@ -7,6 +7,8 @@ bg_color = Color(0.963062, 0.874223, 0.840529, 1)
 border_width_top = 8
 border_width_bottom = 8
 border_color = Color(0.210921, 0.195448, 0.413594, 1)
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_n6xel"]
 
 [node name="SongMode" type="Control"]
 layout_mode = 3
@@ -36,3 +38,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.447663, 0.465278, 0.617023, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_n6xel")
+autoplay = true
+bus = &"Mic"

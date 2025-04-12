@@ -12,13 +12,13 @@ public partial class Note : Node, IComparable<Note>
 {
 	double length;
 	int[] notes;
-	int flatSharp;
+	int sharpFlat;
 
 	readonly Sign[] sign;
 	
-	public Note(int[] n, int fS){
+	public Note(int[] n, int sF){
 		notes = n;
-		flatSharp = fS;
+		sharpFlat = sF;
 	}
 
 	public Note(double l, int[] n){
