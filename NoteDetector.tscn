@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://mhx1p0a402sf"]
+
+[ext_resource type="Script" uid="uid://x6levlcavoh3" path="res://Main.gd" id="1_o400c"]
+
+[node name="NoteFetcher" type="Node"]
+script = ExtResource("1_o400c")
+
+[node name="NoteFetcher" type="HTTPRequest" parent="."]
+
+[node name="RequestTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NoteDisplayLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label" type="Label" parent="NoteDisplayLabel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 44.0
+offset_right = 114.0
+offset_bottom = 67.0
+text = "Note input display"
