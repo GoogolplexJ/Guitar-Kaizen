@@ -24,7 +24,7 @@ public partial class Note : Node, IComparable<Note>
 	public Note(double l, int[] n){
 		length = l;
 		notes = n;
-        sign = new Sign[notes.Length];
+		sign = new Sign[notes.Length];
 		Array.Fill<Sign>(sign, Sign.none);
 	}
 
