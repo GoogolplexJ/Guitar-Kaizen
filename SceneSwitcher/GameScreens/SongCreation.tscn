@@ -736,9 +736,12 @@ color = Color(1, 0.589253, 0.416341, 1)
 
 [connection signal="text_changed" from="TimeSignatures/TopSignature" to="." method="_on_top_signature_text_changed"]
 [connection signal="text_changed" from="TimeSignatures/BotSignature" to="." method="_on_bot_signature_text_changed"]
+[connection signal="pressed" from="TimeSignatures/MakeTime" to="." method="_on_make_time_pressed"]
 [connection signal="text_changed" from="BPM/BPM" to="." method="_on_bpm_text_changed"]
+[connection signal="pressed" from="BPM/MakeBPM" to="." method="_on_make_bpm_pressed"]
 [connection signal="text_changed" from="Bars/BarLength" to="." method="_on_bar_length_text_changed"]
 [connection signal="item_selected" from="Bars/BarType" to="." method="_on_bar_type_item_selected"]
+[connection signal="pressed" from="Bars/MakeBars" to="." method="_on_make_bars_pressed"]
 [connection signal="toggled" from="Notes/Note17" to="." method="_on__toggled" binds= [17]]
 [connection signal="item_selected" from="Notes/Note17/OptionButton" to="." method="_on_option_button_item_selected" binds= [17]]
 [connection signal="toggled" from="Notes/Note16" to="." method="_on__toggled" binds= [16]]

@@ -35,11 +35,6 @@ func _on__toggled(toggled_on: bool, extra_arg_0: int) -> void:
 func _on_option_button_item_selected(index: int, extra_arg_0: int) -> void:
 	itemArray[extra_arg_0] = index
 
-
-func _on_make_note_pressed() -> void:
-	_unselect_buttons()
-	_blank_variables()
-
 # unselects all buttons back to default value
 func _unselect_buttons() -> void:
 	$Notes/Note1/OptionButton.selected = -1
@@ -110,3 +105,18 @@ func _on_bot_signature_text_changed() -> void:
 	barLength = $TimeSignatures/BotSignature.text
 func _on_top_signature_text_changed() -> void:
 	barLength = $TimeSignatures/TopSignature.text
+
+func _on_make_note_pressed() -> void:
+	_unselect_buttons()
+	_blank_variables()
+
+func _on_make_bars_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_make_bpm_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_make_time_pressed() -> void:
+	pass # Replace with function body.
