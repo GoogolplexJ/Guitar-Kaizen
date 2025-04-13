@@ -106,17 +106,22 @@ func _on_bot_signature_text_changed() -> void:
 func _on_top_signature_text_changed() -> void:
 	barLength = $TimeSignatures/TopSignature.text
 
+
 func _on_make_note_pressed() -> void:
 	_unselect_buttons()
 	_blank_variables()
 
+
 func _on_make_bars_pressed() -> void:
-	pass # Replace with function body.
+	_unselect_buttons()
+	_blank_variables()
 
 
 func _on_make_bpm_pressed() -> void:
-	pass # Replace with function body.
+	_unselect_buttons()
+	_blank_variables()
 
 
 func _on_make_time_pressed() -> void:
-	pass # Replace with function body.
+	_unselect_buttons()
+	_blank_variables()
