@@ -1,62 +1,74 @@
 extends Node
 
-const STARTUP_DELAY = 1.0  # seconds
-const PRINT_DELAY = 0.5  # 500ms delay between print outputs
-const MIN_DETECTION_MAGNITUDE = 0.04  # Less strict, better sensitivity
-const VALID_NOTE_RANGE_HZ = [82, 659]  # E2 to E5
-const PERSISTENCE_THRESHOLD = 1  # Detect notes more quickly
+# Constants to control detection behavior and limits
+const STARTUP_DELAY = 1.0  # Time in seconds to wait after startup before analyzing audio
+const PRINT_DELAY = 0.5  # Interval in seconds between note print outputs
+const MIN_DETECTION_MAGNITUDE = 0.04  # Relative threshold to filter out weak frequency detections
+const VALID_NOTE_RANGE_HZ = [82, 659]  # Frequency range (Hz) between E2 and E5, typical for guitar
+const PERSISTENCE_THRESHOLD = 1  # Minimum consistent detections needed before confirming a note
 
-var last_detected_notes = []
-var detection_persistence = 0
+# State variables
+var last_detected_notes = []  # Cache of the last set of notes detected
+var detection_persistence = 0  # Tracks how many frames the same note has been detected for
 
-var spectrum_analyzer: AudioEffectSpectrumAnalyzer
-var spectrum_instance: AudioEffectSpectrumAnalyzerInstance
-var ready_for_detection = false
+# Audio processing components
+var spectrum_analyzer: AudioEffectSpectrumAnalyzer  # Spectrum analyzer effect object
+var spectrum_instance: AudioEffectSpectrumAnalyzerInstance  # Runtime instance for fetching audio frequency data
+var ready_for_detection = false  # Flag to determine if audio detection is ready
 
+# Timer used to control printing rate of detected notes
 var print_timer: Timer
 
 func _ready():
-	print("initalizing up microphone and analyzer...") #debug comment kei 
+	# Called once when the node enters the scene tree
+	print("Initializing microphone and analyzer...")
 
-	var bus_index = AudioServer.get_bus_index("Master") #gpt
-	if bus_index == -1: # bus index gives wrong 
-		print(" Audio bus 'Master' not found.")
+	# Get the index of the Master audio bus (default bus)
+	var bus_index = AudioServer.get_bus_index("Master")
+	if bus_index == -1:
+		print("Audio bus 'Master' not found.")
 		return
 
+	# Create and attach a spectrum analyzer to the Master bus
 	spectrum_analyzer = AudioEffectSpectrumAnalyzer.new()
 	AudioServer.add_bus_effect(bus_index, spectrum_analyzer)
 
+	# Create and start the microphone stream
 	var mic = AudioStreamMicrophone.new()
 	$AudioStreamPlayer.stream = mic
 	$AudioStreamPlayer.play()
 	print("Microphone stream started.")
 
+	# Wait for STARTUP_DELAY before proceeding (gives hardware time to initialize)
 	await get_tree().create_timer(STARTUP_DELAY).timeout
-	spectrum_instance = AudioServer.get_bus_effect_instance(bus_index, 0)
 
+	# Get the instance of the spectrum analyzer so we can fetch frequency data in real time
+	spectrum_instance = AudioServer.get_bus_effect_instance(bus_index, 0)
 	if spectrum_instance:
 		ready_for_detection = true
 		print("Spectrum analyzer ready.")
 	else:
-		print(" Failed to initialize spectrum analyzer.")
+		print("Failed to initialize spectrum analyzer.")
 
+	# Set up a timer to throttle how often notes are printed to the console
 	print_timer = Timer.new()
 	print_timer.wait_time = PRINT_DELAY
-	print_timer.one_shot = false
+	print_timer.one_shot = false  # Will repeat every PRINT_DELAY seconds
 	print_timer.connect("timeout", Callable(self, "_on_print_timer_timeout"))
 	add_child(print_timer)
 	print_timer.start()
 
 func _process(_delta):
+	# Runs every frame. Used here to continuously analyze audio data.
 	if not ready_for_detection:
-		return
+		return  # Exit early if the analyzer isn't set up yet
 
-	var detected_notes := []
-	var max_magnitude = 0.0
-	var average_magnitude = 0.0
-	var sample_count = 0
+	var detected_notes := []  # Temporary list for notes detected in this frame
+	var max_magnitude = 0.0  # Highest magnitude found in frequency analysis
+	var average_magnitude = 0.0  # Used to estimate overall loudness
+	var sample_count = 0  # Counter to compute average magnitude
 
-	# First pass: measure overall loudness in range
+	# First pass: Measure the loudness in a broader range to determine noise level
 	for f in range(VALID_NOTE_RANGE_HZ[0], VALID_NOTE_RANGE_HZ[1], 5):
 		var mag = spectrum_instance.get_magnitude_for_frequency_range(f - 2, f + 2).length()
 		max_magnitude = max(max_magnitude, mag)
@@ -64,38 +76,49 @@ func _process(_delta):
 		sample_count += 1
 
 	if sample_count == 0:
-		return
+		return  # Avoid division by zero
 
 	average_magnitude /= sample_count
 
-	# Loosened ambient noise check for better detection
-	if max_magnitude < 0.005: # background  nise
+	# Skip detection if the loudness is too low (likely background noise)
+	if max_magnitude < 0.005:
 		detection_persistence = 0
 		return
 
-	# Second pass: detect strong frequencies
+	# Second pass: Find strong frequency peaks within the valid note range
 	for f in range(VALID_NOTE_RANGE_HZ[0], VALID_NOTE_RANGE_HZ[1], 1):
-		var magnitude = spectrum_instance.get_magnitude_for_frequency_range(f - 2, f + 2).length() # make it outside
+		# Get the average magnitude of a small frequency window centered at f
+		var magnitude = spectrum_instance.get_magnitude_for_frequency_range(f - 2, f + 2).length()
 
-		if magnitude > MIN_DETECTION_MAGNITUDE * max_magnitude and magnitude > 0.01: # why is being 
-			var note_index = 12 * log(f / 440.0) / log(2) + 30
+		# Check if this frequency is strong enough to be considered a note
+		if magnitude > MIN_DETECTION_MAGNITUDE * max_magnitude and magnitude > 0.01:
+			# Convert frequency to an approximate note number
+			var note_index = 12 * log(f / 440.0) / log(2) + 30  # 440 Hz is A4
 			var note_number = round(note_index)
+
+			# Avoid adding duplicate note numbers
 			if note_number not in detected_notes:
 				detected_notes.append(note_number)
 
+	# If any notes were detected
 	if detected_notes.size() > 0:
+		# If the same notes are detected as the previous frame, increase persistence
 		if detected_notes == last_detected_notes:
 			detection_persistence += 1
 		else:
+			# Otherwise, reset persistence counter
 			detection_persistence = 1
 
 		last_detected_notes = detected_notes
 
+		# If persistence meets the threshold, print the detected notes
 		if detection_persistence >= PERSISTENCE_THRESHOLD:
-			print(" Detected Note Numbers: ", detected_notes)
+			print("Detected Note Numbers: ", detected_notes)
 			print_timer.start()
 	else:
+		# Reset persistence if no notes are detected
 		detection_persistence = 0
 
 func _on_print_timer_timeout():
+	# Placeholder function for timed output handling (can be used to print or update UI)
 	pass
