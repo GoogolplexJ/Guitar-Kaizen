@@ -10,12 +10,90 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5cvco")
 
-[node name="Foreground" type="CanvasLayer" parent="."]
+[node name="TimeSignatures" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TopSignature" type="TextEdit" parent="TimeSignatures"]
+offset_left = 1122.0
+offset_top = 41.0
+offset_right = 1276.0
+offset_bottom = 81.0
+scale = Vector2(2, 2)
+placeholder_text = "top signature"
+
+[node name="BotSignature" type="TextEdit" parent="TimeSignatures"]
+offset_left = 1124.0
+offset_top = 129.0
+offset_right = 1277.0
+offset_bottom = 169.0
+scale = Vector2(2, 2)
+placeholder_text = "bottom signature"
+
+[node name="MakeTime" type="Button" parent="TimeSignatures"]
+offset_left = 1591.0
+offset_top = 62.0
+offset_right = 1736.0
+offset_bottom = 127.0
+scale = Vector2(2, 2)
+text = "Make Time
+Signature"
+
+[node name="BPM" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="BPM" type="TextEdit" parent="BPM"]
+offset_left = 1129.0
+offset_top = 325.0
+offset_right = 1275.0
+offset_bottom = 366.0
+scale = Vector2(2, 2)
+placeholder_text = "Beats Per Min"
+
+[node name="MakeBPM" type="Button" parent="BPM"]
+offset_left = 1590.0
+offset_top = 299.0
+offset_right = 1735.0
+offset_bottom = 364.0
+scale = Vector2(2, 2)
+text = "Make BPM"
+
+[node name="Bars" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="BarLength" type="TextEdit" parent="Bars"]
+offset_left = 1151.0
+offset_top = 572.0
+offset_right = 1276.0
+offset_bottom = 615.0
+scale = Vector2(2, 2)
+placeholder_text = "Bar Length"
+
+[node name="BarType" type="OptionButton" parent="Bars"]
+offset_left = 1192.0
+offset_top = 671.0
+offset_right = 1272.0
+offset_bottom = 712.0
+scale = Vector2(2, 2)
+item_count = 2
+popup/item_0/text = "8th"
+popup/item_0/id = 0
+popup/item_1/text = "16th"
+popup/item_1/id = 1
+
+[node name="MakeBars" type="Button" parent="Bars"]
+offset_left = 1590.0
+offset_top = 564.0
+offset_right = 1735.0
+offset_bottom = 629.0
+scale = Vector2(2, 2)
+text = "Make Bar"
+
+[node name="Notes" type="CanvasLayer" parent="."]
 layer = 2
 offset = Vector2(0, 100)
 transform = Transform2D(1, 0, 0, 1, 0, 100)
 
-[node name="17" type="TextureButton" parent="Foreground"]
+[node name="Note17" type="TextureButton" parent="Notes"]
 offset_left = 768.0
 offset_top = 226.0
 offset_right = 1280.0
@@ -25,7 +103,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/17"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note17"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -40,7 +118,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="16" type="TextureButton" parent="Foreground"]
+[node name="Note16" type="TextureButton" parent="Notes"]
 offset_left = 662.0
 offset_top = 260.0
 offset_right = 1174.0
@@ -50,7 +128,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/16"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note16"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -65,7 +143,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="15" type="TextureButton" parent="Foreground"]
+[node name="Note15" type="TextureButton" parent="Notes"]
 offset_left = 770.0
 offset_top = 291.0
 offset_right = 1282.0
@@ -75,7 +153,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/15"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note15"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -90,7 +168,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="13" type="TextureButton" parent="Foreground"]
+[node name="Note13" type="TextureButton" parent="Notes"]
 offset_left = 770.0
 offset_top = 351.0
 offset_right = 1282.0
@@ -100,7 +178,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/13"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note13"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -115,7 +193,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="11" type="TextureButton" parent="Foreground"]
+[node name="Note11" type="TextureButton" parent="Notes"]
 offset_left = 771.0
 offset_top = 411.0
 offset_right = 1283.0
@@ -125,7 +203,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/11"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note11"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -140,7 +218,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="9" type="TextureButton" parent="Foreground"]
+[node name="Note9" type="TextureButton" parent="Notes"]
 offset_left = 773.0
 offset_top = 472.0
 offset_right = 1285.0
@@ -150,7 +228,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/9"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note9"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -165,7 +243,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="7" type="TextureButton" parent="Foreground"]
+[node name="Note7" type="TextureButton" parent="Notes"]
 offset_left = 773.0
 offset_top = 535.0
 offset_right = 1285.0
@@ -175,7 +253,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/7"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note7"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -190,7 +268,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="5" type="TextureButton" parent="Foreground"]
+[node name="Note5" type="TextureButton" parent="Notes"]
 offset_left = 771.0
 offset_top = 599.0
 offset_right = 1283.0
@@ -200,7 +278,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/5"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note5"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -215,7 +293,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="3" type="TextureButton" parent="Foreground"]
+[node name="Note3" type="TextureButton" parent="Notes"]
 offset_left = 772.0
 offset_top = 663.0
 offset_right = 1284.0
@@ -225,7 +303,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/3"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note3"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -240,7 +318,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="1" type="TextureButton" parent="Foreground"]
+[node name="Note1" type="TextureButton" parent="Notes"]
 offset_left = 771.0
 offset_top = 729.0
 offset_right = 1283.0
@@ -250,7 +328,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/1"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note1"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -265,7 +343,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="19" type="TextureButton" parent="Foreground"]
+[node name="Note19" type="TextureButton" parent="Notes"]
 offset_left = 767.0
 offset_top = 161.0
 offset_right = 1279.0
@@ -275,7 +353,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/19"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note19"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -290,7 +368,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="21" type="TextureButton" parent="Foreground"]
+[node name="Note21" type="TextureButton" parent="Notes"]
 offset_left = 766.0
 offset_top = 94.0
 offset_right = 1278.0
@@ -300,7 +378,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/21"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note21"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -315,7 +393,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="23" type="TextureButton" parent="Foreground"]
+[node name="Note23" type="TextureButton" parent="Notes"]
 offset_left = 765.0
 offset_top = 27.0
 offset_right = 1277.0
@@ -325,7 +403,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/23"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note23"]
 layout_mode = 0
 offset_left = 535.0
 offset_top = 155.0
@@ -340,7 +418,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="14" type="TextureButton" parent="Foreground"]
+[node name="Note14" type="TextureButton" parent="Notes"]
 offset_left = 661.0
 offset_top = 324.0
 offset_right = 1173.0
@@ -350,7 +428,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/14"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note14"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -365,7 +443,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="12" type="TextureButton" parent="Foreground"]
+[node name="Note12" type="TextureButton" parent="Notes"]
 offset_left = 659.0
 offset_top = 385.0
 offset_right = 1171.0
@@ -375,7 +453,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/12"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note12"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -390,7 +468,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="10" type="TextureButton" parent="Foreground"]
+[node name="Note10" type="TextureButton" parent="Notes"]
 offset_left = 657.0
 offset_top = 447.0
 offset_right = 1169.0
@@ -400,7 +478,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/10"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note10"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -415,7 +493,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="8" type="TextureButton" parent="Foreground"]
+[node name="Note8" type="TextureButton" parent="Notes"]
 offset_left = 658.0
 offset_top = 503.0
 offset_right = 1170.0
@@ -425,7 +503,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/8"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note8"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -440,7 +518,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="6" type="TextureButton" parent="Foreground"]
+[node name="Note6" type="TextureButton" parent="Notes"]
 offset_left = 657.0
 offset_top = 568.0
 offset_right = 1169.0
@@ -450,7 +528,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/6"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note6"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -465,7 +543,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="4" type="TextureButton" parent="Foreground"]
+[node name="Note4" type="TextureButton" parent="Notes"]
 offset_left = 657.0
 offset_top = 633.0
 offset_right = 1169.0
@@ -475,7 +553,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/4"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note4"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -490,7 +568,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="2" type="TextureButton" parent="Foreground"]
+[node name="Note2" type="TextureButton" parent="Notes"]
 offset_left = 656.0
 offset_top = 697.0
 offset_right = 1168.0
@@ -500,7 +578,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/2"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note2"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -515,7 +593,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="18" type="TextureButton" parent="Foreground"]
+[node name="Note18" type="TextureButton" parent="Notes"]
 offset_left = 661.0
 offset_top = 196.0
 offset_right = 1173.0
@@ -525,7 +603,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/18"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note18"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -540,7 +618,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="20" type="TextureButton" parent="Foreground"]
+[node name="Note20" type="TextureButton" parent="Notes"]
 offset_left = 660.0
 offset_top = 131.0
 offset_right = 1172.0
@@ -550,7 +628,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/20"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note20"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -565,7 +643,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="22" type="TextureButton" parent="Foreground"]
+[node name="Note22" type="TextureButton" parent="Notes"]
 offset_left = 660.0
 offset_top = 67.0
 offset_right = 1172.0
@@ -575,7 +653,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/22"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note22"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -590,7 +668,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
 
-[node name="24" type="TextureButton" parent="Foreground"]
+[node name="Note24" type="TextureButton" parent="Notes"]
 offset_left = 658.0
 offset_right = 1170.0
 offset_bottom = 512.0
@@ -599,7 +677,7 @@ toggle_mode = true
 texture_normal = ExtResource("1_pbte6")
 texture_pressed = ExtResource("2_iji4v")
 
-[node name="OptionButton" type="OptionButton" parent="Foreground/24"]
+[node name="OptionButton" type="OptionButton" parent="Notes/Note24"]
 layout_mode = 0
 offset_left = -526.667
 offset_top = 160.0
@@ -613,6 +691,14 @@ popup/item_1/text = "Flat"
 popup/item_1/id = 1
 popup/item_2/text = "Sharp"
 popup/item_2/id = 2
+
+[node name="MakeNote" type="Button" parent="Notes"]
+offset_left = 74.0
+offset_top = 755.0
+offset_right = 219.0
+offset_bottom = 820.0
+scale = Vector2(2, 2)
+text = "Make Note"
 
 [node name="Staves" type="CanvasLayer" parent="."]
 
@@ -648,51 +734,60 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(1, 0.589253, 0.416341, 1)
 
-[connection signal="toggled" from="Foreground/17" to="." method="_on__toggled" binds= [17]]
-[connection signal="item_selected" from="Foreground/17/OptionButton" to="." method="_on_option_button_item_selected" binds= [17]]
-[connection signal="toggled" from="Foreground/16" to="." method="_on__toggled" binds= [16]]
-[connection signal="item_selected" from="Foreground/16/OptionButton" to="." method="_on_option_button_item_selected" binds= [16]]
-[connection signal="toggled" from="Foreground/15" to="." method="_on__toggled" binds= [15]]
-[connection signal="item_selected" from="Foreground/15/OptionButton" to="." method="_on_option_button_item_selected" binds= [15]]
-[connection signal="toggled" from="Foreground/13" to="." method="_on__toggled" binds= [13]]
-[connection signal="item_selected" from="Foreground/13/OptionButton" to="." method="_on_option_button_item_selected" binds= [13]]
-[connection signal="toggled" from="Foreground/11" to="." method="_on__toggled" binds= [11]]
-[connection signal="item_selected" from="Foreground/11/OptionButton" to="." method="_on_option_button_item_selected" binds= [11]]
-[connection signal="toggled" from="Foreground/9" to="." method="_on__toggled" binds= [9]]
-[connection signal="item_selected" from="Foreground/9/OptionButton" to="." method="_on_option_button_item_selected" binds= [9]]
-[connection signal="toggled" from="Foreground/7" to="." method="_on__toggled" binds= [7]]
-[connection signal="item_selected" from="Foreground/7/OptionButton" to="." method="_on_option_button_item_selected" binds= [7]]
-[connection signal="toggled" from="Foreground/5" to="." method="_on__toggled" binds= [5]]
-[connection signal="item_selected" from="Foreground/5/OptionButton" to="." method="_on_option_button_item_selected" binds= [5]]
-[connection signal="toggled" from="Foreground/3" to="." method="_on__toggled" binds= [3]]
-[connection signal="item_selected" from="Foreground/3/OptionButton" to="." method="_on_option_button_item_selected" binds= [3]]
-[connection signal="toggled" from="Foreground/1" to="." method="_on__toggled" binds= [1]]
-[connection signal="item_selected" from="Foreground/1/OptionButton" to="." method="_on_option_button_item_selected" binds= [1]]
-[connection signal="toggled" from="Foreground/19" to="." method="_on__toggled" binds= [19]]
-[connection signal="item_selected" from="Foreground/19/OptionButton" to="." method="_on_option_button_item_selected" binds= [19]]
-[connection signal="toggled" from="Foreground/21" to="." method="_on__toggled" binds= [21]]
-[connection signal="item_selected" from="Foreground/21/OptionButton" to="." method="_on_option_button_item_selected" binds= [21]]
-[connection signal="toggled" from="Foreground/23" to="." method="_on__toggled" binds= [23]]
-[connection signal="item_selected" from="Foreground/23/OptionButton" to="." method="_on_option_button_item_selected" binds= [23]]
-[connection signal="toggled" from="Foreground/14" to="." method="_on__toggled" binds= [14]]
-[connection signal="item_selected" from="Foreground/14/OptionButton" to="." method="_on_option_button_item_selected" binds= [14]]
-[connection signal="toggled" from="Foreground/12" to="." method="_on__toggled" binds= [12]]
-[connection signal="item_selected" from="Foreground/12/OptionButton" to="." method="_on_option_button_item_selected" binds= [12]]
-[connection signal="toggled" from="Foreground/10" to="." method="_on__toggled" binds= [10]]
-[connection signal="item_selected" from="Foreground/10/OptionButton" to="." method="_on_option_button_item_selected" binds= [10]]
-[connection signal="toggled" from="Foreground/8" to="." method="_on__toggled" binds= [8]]
-[connection signal="item_selected" from="Foreground/8/OptionButton" to="." method="_on_option_button_item_selected" binds= [8]]
-[connection signal="toggled" from="Foreground/6" to="." method="_on__toggled" binds= [6]]
-[connection signal="item_selected" from="Foreground/6/OptionButton" to="." method="_on_option_button_item_selected" binds= [6]]
-[connection signal="toggled" from="Foreground/4" to="." method="_on__toggled" binds= [4]]
-[connection signal="item_selected" from="Foreground/4/OptionButton" to="." method="_on_option_button_item_selected" binds= [4]]
-[connection signal="toggled" from="Foreground/2" to="." method="_on__toggled" binds= [2]]
-[connection signal="item_selected" from="Foreground/2/OptionButton" to="." method="_on_option_button_item_selected" binds= [2]]
-[connection signal="toggled" from="Foreground/18" to="." method="_on__toggled" binds= [18]]
-[connection signal="item_selected" from="Foreground/18/OptionButton" to="." method="_on_option_button_item_selected" binds= [18]]
-[connection signal="toggled" from="Foreground/20" to="." method="_on__toggled" binds= [20]]
-[connection signal="item_selected" from="Foreground/20/OptionButton" to="." method="_on_option_button_item_selected" binds= [20]]
-[connection signal="toggled" from="Foreground/22" to="." method="_on__toggled" binds= [22]]
-[connection signal="item_selected" from="Foreground/22/OptionButton" to="." method="_on_option_button_item_selected" binds= [22]]
-[connection signal="toggled" from="Foreground/24" to="." method="_on__toggled" binds= [24]]
-[connection signal="item_selected" from="Foreground/24/OptionButton" to="." method="_on_option_button_item_selected" binds= [24]]
+[connection signal="text_changed" from="TimeSignatures/TopSignature" to="." method="_on_top_signature_text_changed"]
+[connection signal="text_changed" from="TimeSignatures/BotSignature" to="." method="_on_bot_signature_text_changed"]
+[connection signal="pressed" from="TimeSignatures/MakeTime" to="." method="_on_make_time_pressed"]
+[connection signal="text_changed" from="BPM/BPM" to="." method="_on_bpm_text_changed"]
+[connection signal="pressed" from="BPM/MakeBPM" to="." method="_on_make_bpm_pressed"]
+[connection signal="text_changed" from="Bars/BarLength" to="." method="_on_bar_length_text_changed"]
+[connection signal="item_selected" from="Bars/BarType" to="." method="_on_bar_type_item_selected"]
+[connection signal="pressed" from="Bars/MakeBars" to="." method="_on_make_bars_pressed"]
+[connection signal="toggled" from="Notes/Note17" to="." method="_on__toggled" binds= [17]]
+[connection signal="item_selected" from="Notes/Note17/OptionButton" to="." method="_on_option_button_item_selected" binds= [17]]
+[connection signal="toggled" from="Notes/Note16" to="." method="_on__toggled" binds= [16]]
+[connection signal="item_selected" from="Notes/Note16/OptionButton" to="." method="_on_option_button_item_selected" binds= [16]]
+[connection signal="toggled" from="Notes/Note15" to="." method="_on__toggled" binds= [15]]
+[connection signal="item_selected" from="Notes/Note15/OptionButton" to="." method="_on_option_button_item_selected" binds= [15]]
+[connection signal="toggled" from="Notes/Note13" to="." method="_on__toggled" binds= [13]]
+[connection signal="item_selected" from="Notes/Note13/OptionButton" to="." method="_on_option_button_item_selected" binds= [13]]
+[connection signal="toggled" from="Notes/Note11" to="." method="_on__toggled" binds= [11]]
+[connection signal="item_selected" from="Notes/Note11/OptionButton" to="." method="_on_option_button_item_selected" binds= [11]]
+[connection signal="toggled" from="Notes/Note9" to="." method="_on__toggled" binds= [9]]
+[connection signal="item_selected" from="Notes/Note9/OptionButton" to="." method="_on_option_button_item_selected" binds= [9]]
+[connection signal="toggled" from="Notes/Note7" to="." method="_on__toggled" binds= [7]]
+[connection signal="item_selected" from="Notes/Note7/OptionButton" to="." method="_on_option_button_item_selected" binds= [7]]
+[connection signal="toggled" from="Notes/Note5" to="." method="_on__toggled" binds= [5]]
+[connection signal="item_selected" from="Notes/Note5/OptionButton" to="." method="_on_option_button_item_selected" binds= [5]]
+[connection signal="toggled" from="Notes/Note3" to="." method="_on__toggled" binds= [3]]
+[connection signal="item_selected" from="Notes/Note3/OptionButton" to="." method="_on_option_button_item_selected" binds= [3]]
+[connection signal="toggled" from="Notes/Note1" to="." method="_on__toggled" binds= [1]]
+[connection signal="item_selected" from="Notes/Note1/OptionButton" to="." method="_on_option_button_item_selected" binds= [1]]
+[connection signal="toggled" from="Notes/Note19" to="." method="_on__toggled" binds= [19]]
+[connection signal="item_selected" from="Notes/Note19/OptionButton" to="." method="_on_option_button_item_selected" binds= [19]]
+[connection signal="toggled" from="Notes/Note21" to="." method="_on__toggled" binds= [21]]
+[connection signal="item_selected" from="Notes/Note21/OptionButton" to="." method="_on_option_button_item_selected" binds= [21]]
+[connection signal="toggled" from="Notes/Note23" to="." method="_on__toggled" binds= [23]]
+[connection signal="item_selected" from="Notes/Note23/OptionButton" to="." method="_on_option_button_item_selected" binds= [23]]
+[connection signal="toggled" from="Notes/Note14" to="." method="_on__toggled" binds= [14]]
+[connection signal="item_selected" from="Notes/Note14/OptionButton" to="." method="_on_option_button_item_selected" binds= [14]]
+[connection signal="toggled" from="Notes/Note12" to="." method="_on__toggled" binds= [12]]
+[connection signal="item_selected" from="Notes/Note12/OptionButton" to="." method="_on_option_button_item_selected" binds= [12]]
+[connection signal="toggled" from="Notes/Note10" to="." method="_on__toggled" binds= [10]]
+[connection signal="item_selected" from="Notes/Note10/OptionButton" to="." method="_on_option_button_item_selected" binds= [10]]
+[connection signal="toggled" from="Notes/Note8" to="." method="_on__toggled" binds= [8]]
+[connection signal="item_selected" from="Notes/Note8/OptionButton" to="." method="_on_option_button_item_selected" binds= [8]]
+[connection signal="toggled" from="Notes/Note6" to="." method="_on__toggled" binds= [6]]
+[connection signal="item_selected" from="Notes/Note6/OptionButton" to="." method="_on_option_button_item_selected" binds= [6]]
+[connection signal="toggled" from="Notes/Note4" to="." method="_on__toggled" binds= [4]]
+[connection signal="item_selected" from="Notes/Note4/OptionButton" to="." method="_on_option_button_item_selected" binds= [4]]
+[connection signal="toggled" from="Notes/Note2" to="." method="_on__toggled" binds= [2]]
+[connection signal="item_selected" from="Notes/Note2/OptionButton" to="." method="_on_option_button_item_selected" binds= [2]]
+[connection signal="toggled" from="Notes/Note18" to="." method="_on__toggled" binds= [18]]
+[connection signal="item_selected" from="Notes/Note18/OptionButton" to="." method="_on_option_button_item_selected" binds= [18]]
+[connection signal="toggled" from="Notes/Note20" to="." method="_on__toggled" binds= [20]]
+[connection signal="item_selected" from="Notes/Note20/OptionButton" to="." method="_on_option_button_item_selected" binds= [20]]
+[connection signal="toggled" from="Notes/Note22" to="." method="_on__toggled" binds= [22]]
+[connection signal="item_selected" from="Notes/Note22/OptionButton" to="." method="_on_option_button_item_selected" binds= [22]]
+[connection signal="toggled" from="Notes/Note24" to="." method="_on__toggled" binds= [24]]
+[connection signal="item_selected" from="Notes/Note24/OptionButton" to="." method="_on_option_button_item_selected" binds= [24]]
+[connection signal="pressed" from="Notes/MakeNote" to="." method="_on_make_note_pressed"]
