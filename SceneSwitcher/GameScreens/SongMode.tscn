@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbacimd6a4hgg"]
 
-[ext_resource type="Script" path="res://scripts/MenuButtonScripts/song_mode.gd" id="1_n6xel"]
+[ext_resource type="Script" uid="uid://do6dbu3ygn31t" path="res://scripts/MenuButtonScripts/song_mode.gd" id="1_n6xel"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6xel"]
 bg_color = Color(0.963062, 0.874223, 0.840529, 1)
@@ -18,13 +18,16 @@ script = ExtResource("1_n6xel")
 
 [node name="staffCreation" type="CanvasLayer" parent="."]
 
-[node name="staff" type="PanelContainer" parent="staffCreation"]
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_vertical = 8
+[node name="staff" type="MarginContainer" parent="staffCreation"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="staff background" type="Panel" parent="staffCreation/staff"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_n6xel")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]

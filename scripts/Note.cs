@@ -3,11 +3,12 @@ using System;
 using System.ComponentModel;
 
 // enum for signs attached to notes
-public enum Sign{
+/*
+public enum {
 	none,
 	sharp,
 	flat
-}
+}*/
 
 // Note is the backbone of the project, most everything that deals with notes goes through the Note class
 // This means it must be versitile, and able to handle notes from player input and notes from the in game song
@@ -18,7 +19,7 @@ public partial class Note : Node, IComparable<Note>
 	int[] notes;
 	int sharpFlat;
 
-	readonly Sign[] sign;
+	int[] sign;
 	
 	// constructor for player-side notes
 	public Note(int[] n, int sF){
@@ -30,12 +31,23 @@ public partial class Note : Node, IComparable<Note>
 	public Note(double l, int[] n){
 		length = l;
 		notes = n;
-		sign = new Sign[notes.Length];
-		Array.Fill<Sign>(sign, Sign.none);
+		sign = new int[notes.Length];
+		Array.Fill<int>(sign, 0);
 	}
 
 	// constructor for computer side notes, including signs
-	public Note(double l, int[] n, Sign[] s){
+	public Note(double l, int[] n, int[] s){
+		length = l;
+		notes = n;
+		sign = s;
+	}
+	
+	// blank constructor and initializer for use with GDScript
+	public Note(){
+	}
+	
+	public void Par(double l, int[] n, int[] s)
+	{
 		length = l;
 		notes = n;
 		sign = s;

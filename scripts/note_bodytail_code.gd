@@ -36,7 +36,7 @@ func handle_rests(note : Note):
 		#create a 2Dsprite node for the body
 	var restSprite = Sprite2D.new()
 	add_child(restSprite)
-	restSprite.texture = sprite
+	restSprite.texture = load(sprite)
 	#TODO: choose sprite position
 	#get rid of all other visual nodes in the tree
 	node_culling(REST)
@@ -61,11 +61,12 @@ func note_body(note : Note) -> int:
 func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	#check if the note is a whole note which doesnt have a tail
 		#if it is, remove the tail nodes and return from function
+	var noteTailNode := $noteTail
 	if (note.length == 1):
 		node_culling(WHOLE)
 		return
 	#first point of the tail vector is the position of the most extreme note body (based on which note it is)
-	$noteTail.add_point(0, note_pos_calc(extremeNote))
+	noteTailNode.add_point(0, note_pos_calc(extremeNote))
 	#check if the note is in a quarter/eigth note cluster
 		#if yes decide tail end point based off of farthest note
 	#TODO: figure out barNotePosition stuff
@@ -74,7 +75,7 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	if (barNotePosition != 0):
 		#tailEndPoint = calculated from barNotePosition
 		tailEndPos = note_pos_calc(tailEndPoint)
-		$noteTail.add_point(0, tailEndPos)
+		noteTailNode.add_point(0, tailEndPos)
 		node_culling(EIGTH)
 		return
 	else:
@@ -93,9 +94,10 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 			tailEndPoint = extremeNote - tailMidLength
 		
 		tailEndPos = note_pos_calc(tailEndPoint)
-		$noteTail.add_point(0, tailEndPos)
+		noteTailNode.add_point(0, tailEndPos)
 	
-	
+	var noteFlourishNode = $noteTail/tailFlourish
+	var flourishPath : String
 	#decide tailFlourish texture & position
 	match note.length:
 		(1/2),(1/4):
@@ -104,18 +106,15 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 			return
 		(1/8):
 		#sixteenth note, eigth note = unique tail flourish textures ONLY IF they are NOT in a cluster
-			$noteTail/tailFlourish.texture = "eigthFlourish.png"
-			$noteTail/tailFlourish.offset.y = tailEndPos
-			node_culling(EIGTH, true)
-			return
+			flourishPath = (SPRITE_PATH + "sixteenthFlourish.png")
 		(1/16):
-			$noteTail/tailFlourish.texture = "sixteenthFlourish.png"
-			$noteTail/tailFlourish.offset.y = tailEndPos
-			node_culling(SIXTEENTH, true)
-			return
+			flourishPath = (SPRITE_PATH + "sixteenthFlourish.png")
 		_:
 			node_culling(WHOLE)
-			return
+			return		
+	noteFlourishNode.texture = get_node(flourishPath)
+	noteFlourishNode.offset.y = tailEndPos
+	node_culling(SIXTEENTH, true)
 
 #create visuals for current note being inspected in Note.notes list
 #TODO: position assignment
@@ -124,7 +123,7 @@ func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
 		#for each value in the notes array, create a new 2Dsprite node and choose its position (texures are all the same)
 	var body = Sprite2D.new()
 	add_child(body)
-	body.texture = bodySprite
+	body.texture = load(bodySprite)
 	#TODO: note position: handle in a separate function
 	body.offset.y = note_pos_calc(currentNotePos)
 	#decide sharpFlat texture and add 2Dsprite node 
@@ -133,7 +132,7 @@ func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
 		var sFNode = Sprite2D.new()
 		add_child(sFNode)
 		var sFsprite = choose_sharpFlat_sprite(sharpFlat)
-		sFNode.texture = sFsprite
+		sFNode.texture = load(sFsprite)
 		#TODO: sharp flat position: offset from body position
 		sFNode.offset.y = note_pos_calc(currentNotePos)
 		sFNode.offset.x = body.offset.x + 10 #NOTE: 10 is an arbitrary offset value, refine after testing
