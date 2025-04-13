@@ -11,3 +11,7 @@ func _on_ModeButton_pressed():
 
 func _on_Creation_pressed() -> void:
 	SceneSwitcher.SwitchScene("SongCreation")
+
+
+func _on_quit_pressed() -> void:
+	SceneSwitcher.QuitGame()

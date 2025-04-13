@@ -1,8 +1,9 @@
 extends Control
 class_name SongCreation
 
-
-
+func _input(event):
+	if (event.is_action_pressed("ui_cancel")):
+		SceneSwitcher.SwitchScene("Home")
 
 func _on__toggled(toggled_on: bool, extra_arg_0: int) -> void:
 	pass # Replace with function body.

@@ -21,24 +21,25 @@ func create_note_vis(note : Note, barNotePos : int = 0):
 	
 #handle rest visual generation (no other work needed for rests)
 func handle_rests(note : Note):
+	var sprite = SPRITE_PATH
 	match note.length:
 		1:
-			bodySprite += "wholeRest.png"
+			sprite += "wholeRest.png"
 		(1/2):
-			bodySprite += "halfRest.png"
+			sprite += "halfRest.png"
 		(1/4):
-			bodySprite += "quarterRest.png"
+			sprite += "quarterRest.png"
 		(1/8):
-			bodySprite += "eigthRest.png"
+			sprite += "eigthRest.png"
 		(1/16):
-			bodySprite += "sixteenthRest.png"
+			sprite += "sixteenthRest.png"
 		#create a 2Dsprite node for the body
 	var restSprite = Sprite2D.new()
 	add_child(restSprite)
-	restSprite.texture = bodySprite
+	restSprite.texture = sprite
 	#TODO: choose sprite position
 	#get rid of all other visual nodes in the tree
-	node_culling(WHOLE)
+	node_culling(REST)
 	
 #create visuals for all note values in Note.notes list
 func note_body(note : Note) -> int:
@@ -58,19 +59,63 @@ func note_body(note : Note) -> int:
 	return extremeNote
 	
 func note_tail(note : Note, extremeNote : int, barNotePosition : int):
-	#region decide noteTail length
-		#first point of the tail vector is the position of the note body (based on which note it is)
-		#check if the note is in a quarter/eigth note cluster
-			#if yes, check if the note is the farthest from the center within its cluster
-				#if it is, decide tail length as normal
-				#if not, decide tail end point based off of farthest note
-		#notes <= 8 have same end point (predetermined); notes < 23 have same tail length, tail goes up (start point + length)
-		#notes >= 23 have same tail length, tail goes down (start point - length); notes >= 34 have same end point (predetermined)
-	#endregion
-	#region decide tailFlourish texture & position
+	#check if the note is a whole note which doesnt have a tail
+		#if it is, remove the tail nodes and return from function
+	if (note.length == 1):
+		node_culling(WHOLE)
+		return
+	#first point of the tail vector is the position of the most extreme note body (based on which note it is)
+	$noteTail.add_point(0, note_pos_calc(extremeNote))
+	#check if the note is in a quarter/eigth note cluster
+		#if yes decide tail end point based off of farthest note
+	#TODO: figure out barNotePosition stuff
+	var tailEndPoint : int
+	var tailEndPos : int
+	if (barNotePosition != 0):
+		#tailEndPoint = calculated from barNotePosition
+		tailEndPos = note_pos_calc(tailEndPoint)
+		$noteTail.add_point(0, tailEndPos)
+		node_culling(EIGTH)
+		return
+	else:
+		#store the length of the tails for notes in the middle of the staff (in # of positions)
+		var tailMidLength := 8
+		#decide note tail end position based on most extreme note (converted position value)
+		#notes <= 6 have same end point (center)
+		#notes >= 20 have same end point (center)
+		if (extremeNote <= 6 || extremeNote >= 20):
+			tailEndPoint = 0
+		#notes <= 12 have same tail length, tail goes up (start point + length)
+		elif (extremeNote <= 12):
+			tailEndPoint = extremeNote + tailMidLength
+		#notes > 12 have same tail length, tail goes down (start point - length)
+		elif (extremeNote > 12):
+			tailEndPoint = extremeNote - tailMidLength
+		
+		tailEndPos = note_pos_calc(tailEndPoint)
+		$noteTail.add_point(0, tailEndPos)
+	
+	
 	#decide tailFlourish texture & position
-		#whole note, half note = none
-		#quarter note, eigth note = unique tail flourish textures ONLY IF they are NOT in a cluster
+	match note.length:
+		(1/2),(1/4):
+		#quarter, half note = none
+			node_culling(HALF)
+			return
+		(1/8):
+		#sixteenth note, eigth note = unique tail flourish textures ONLY IF they are NOT in a cluster
+			$noteTail/tailFlourish.texture = "eigthFlourish.png"
+			$noteTail/tailFlourish.offset.y = tailEndPos
+			node_culling(EIGTH, true)
+			return
+		(1/16):
+			$noteTail/tailFlourish.texture = "sixteenthFlourish.png"
+			$noteTail/tailFlourish.offset.y = tailEndPos
+			node_culling(SIXTEENTH, true)
+			return
+		_:
+			node_culling(WHOLE)
+			return
 
 #create visuals for current note being inspected in Note.notes list
 #TODO: position assignment
@@ -81,17 +126,29 @@ func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
 	add_child(body)
 	body.texture = bodySprite
 	#TODO: note position: handle in a separate function
-	#decide sharpFlat texture and add 2Dsprite node
-	if sharpFlat != Sign.none:
+	body.offset.y = note_pos_calc(currentNotePos)
+	#decide sharpFlat texture and add 2Dsprite node 
+	#0 = no sharp/flat
+	if sharpFlat != 0:
 		var sFNode = Sprite2D.new()
 		add_child(sFNode)
 		var sFsprite = choose_sharpFlat_sprite(sharpFlat)
 		sFNode.texture = sFsprite
 		#TODO: sharp flat position: offset from body position
-			
-			#y position is relative to other notes -> middle B is at y = 0: other notes are offset according to stave width
-			#for chords, check if note is a chord (multiple values in note array), then for each note which is on a line, check if there are notes in the chord within 2 spaces
-				#if there is a note within 2 spaces, flip the note on the line to the other side
+		sFNode.offset.y = note_pos_calc(currentNotePos)
+		sFNode.offset.x = body.offset.x + 10 #NOTE: 10 is an arbitrary offset value, refine after testing
+		#y position is relative to other notes -> middle B is at y = 0: other notes are offset according to stave width
+		#for chords, check if note is a chord (multiple values in note array), then for each note which is on a line, check if there are notes in the chord within 2 spaces
+			#if there is a note within 2 spaces, flip the note on the line to the other side
+
+#return note position relative to the center of the staff (-12 to 12 -> -11 is actual lowest note since rest is at 0)
+func note_pos_calc(posValue : int) -> int:
+	#if note is a rest, it should be in the center
+	if posValue == 0:
+		return 0
+	#calculate note position relative to center note (center B = note position 12)
+	var relPos = posValue - 12
+	return MusicVisualizerVariables.line_width*relPos
 
 func choose_body_sprite(noteLength : int) -> String:
 	match noteLength:
@@ -104,9 +161,11 @@ func choose_body_sprite(noteLength : int) -> String:
 
 func choose_sharpFlat_sprite(sF : int) -> String:
 	match sF:
-		Sign.sharp:
+		#1 = sharp
+		1:
 			return SPRITE_PATH + "sharp.png"
-		Sign.flat:
+		#2 = flat (default)
+		_:
 			return SPRITE_PATH + "flat.png"
 
 #input: type - what type of note is being created; flourish - whether or not the note should have a tail flourish (eigth and sixteenth only)
@@ -114,24 +173,23 @@ func choose_sharpFlat_sprite(sF : int) -> String:
 #WARNING: make sure function is exited before reaching any of the code dealing with deleted nodes, only call once per note generation
 func node_culling(type : int, flourish := false):
 	match type:
-		REST: 
+		REST, WHOLE: 
 			$noteTail.queue_free()
-			$noteConnector.queue_free()
 			return
-		WHOLE:
-			$noteConnector.queue_free()
-			$noteTail.queue_free()
-		HALF:
-			$noteConnector.queue_free()
+		HALF, QUARTER:
 			$noteTail/tailFlourish.queue_free()
-		QUARTER, SIXTEENTH:
+			return
+		EIGTH, SIXTEENTH:
 			#if not in a note cluster, get rid of connector, else get rid of flourish
-			if flourish: $noteConnector.queue_free()
-			else: $noteTail/tailFlourish.queue_free()
+			if !flourish: $noteTail/tailFlourish.queue_free()
+			return
 
 #input: note value (0-40) including sharps; sharpFlat: integer corresponding to whether the note is flat,sharp, or neither (0,1,2)
 #output: note position assignment (1-24), combining sharps/flats with corresponding note
 func note_pos_value(value : int, sharpFlat : int) -> int:
+	#if note is a rest, return 0 (position indicating rest)
+	if value == 0:
+		return 0
 	var newValue := value
 	#adjust flats and sharps to their corresponding base note value
 	match sharpFlat:

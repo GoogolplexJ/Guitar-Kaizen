@@ -15,8 +15,6 @@ script = ExtResource("1_pnfd2")
 
 [node name="tailFlourish" type="Sprite2D" parent="noteVis/noteTail"]
 
-[node name="noteConnector" type="Line2D" parent="noteVis"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="noteVis"]
 shape = SubResource("CircleShape2D_pnfd2")
 
