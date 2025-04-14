@@ -12,8 +12,8 @@ func _ready():
 	#create a test note node, parameters: double l (length), int[] n (notes array), Sign[] s (signs array)
 	var testNote := Note.new()
 	testNote.length = 1
-	testNote.notes = [10, 20]
-	testNote.sign = [0, 1]
+	testNote.notes = [1]
+	testNote.sign = [0]
 	
 	spawn_new_note(testNote)
 

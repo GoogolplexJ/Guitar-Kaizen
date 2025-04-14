@@ -5,7 +5,7 @@ class_name NSongMode
 func _ready():
 	#adjust staff based on set size
 	staff.add_theme_constant_override("margin_bottom", MusicVisualizerVariables.BOTTOM)
-	$"staffCreation/staff/staff background".custom_minimum_size.y = MusicVisualizerVariables.WIDTH
+	staff.add_theme_constant_override("margin_top", MusicVisualizerVariables.TOP)
 
 func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
