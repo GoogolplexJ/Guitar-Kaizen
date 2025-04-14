@@ -3,7 +3,7 @@ extends Node
 #configuration for the music visuals (staff generation and note generation)
 static var BOTTOM = 250
 static var WIDTH := 700
-static var STAFF_DIV := 25
+static var STAFF_DIV := 26
 
 var TOP : int = 1080 - BOTTOM - WIDTH
 #the width of the gap between note positions
