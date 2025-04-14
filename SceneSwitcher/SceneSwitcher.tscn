@@ -10,5 +10,6 @@ Scenes = {
 "SceneManager": &"res://SceneSwitcher/SceneSwitcher.tscn",
 "SongCreation": &"res://SceneSwitcher/GameScreens/SongCreation.tscn",
 "SongMode": &"res://SceneSwitcher/GameScreens/SongMode.tscn",
+"noteDetectorTest": &"res://NoteDetector.tscn",
 "noteTest": &"res://scenes/noteTest.tscn"
 }

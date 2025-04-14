@@ -17,3 +17,5 @@ func _on_quit_pressed() -> void:
 func _input(event):
 	if (event.is_action_pressed("enter_noteVis_debug")):
 		SceneSwitcher.SwitchScene("noteTest")
+	if (event.is_action_pressed("enter_noteDetect_debug")):
+		SceneSwitcher.SwitchScene("noteDetectorTest")
