@@ -7,7 +7,7 @@ static var STAFF_DIV := 25
 
 var TOP : int = 1080 - BOTTOM - WIDTH
 #the width of the gap between note positions
-var line_width := WIDTH/STAFF_DIV
+var line_width := WIDTH/(STAFF_DIV/2)
 	#each note will be positioned at (BOTTOM + line_width(notePositionValue))
 
 #the position on the staff which notes spawn in (referenced from the top left of the screen)

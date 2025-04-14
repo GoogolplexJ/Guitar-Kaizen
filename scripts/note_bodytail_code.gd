@@ -18,7 +18,6 @@ func create_note_vis(note : Note, barNotePos : int = 0):
 		return
 	
 	var extremeNote := note_body(note)
-	#var oppositeNote := 0 #note opposite to the most extreme note
 	note_tail(note, extremeNote, barNotePos)
 	
 #handle rest visual generation (no other work needed for rests)
@@ -44,22 +43,25 @@ func note_body(note : Note) -> int:
 		var sF = note.sign[i]
 		var currentNotePos = note_pos_value(n, sF) 
 		create_n_body(currentNotePos, sF, bodySprite)
+		$noteTail.add_point(Vector2(0, tail_pos_calc(currentNotePos)))
 		#compare most extreme found note to current note
-		extremeNote = max(abs(12 - currentNotePos), extremeNote)
+		if (abs(12 - currentNotePos) > extremeNote):
+			extremeNote = currentNotePos
+		#extremeNote = max(abs(12 - currentNotePos), extremeNote)
+		#print extremenote to terminal for testing
+		print(extremeNote)
 		i += 1
 	return extremeNote
 	
 func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	#check if the note is a whole note which doesnt have a tail
 		#if it is, remove the tail nodes and return from function
-	var noteTailNode := $noteTail
 	if (note.length == 1):
 		node_culling(WHOLE)
 		return
 	#color the tail black
+	var noteTailNode := $noteTail
 	noteTailNode.set_default_color(Color(0, 0, 0, 1))
-	#first point of the tail vector is the position of the most extreme note body (based on which note it is)
-	noteTailNode.add_point(Vector2(0, note_pos_calc(extremeNote)))
 	#check if the note is in a quarter/eigth note cluster
 		#if yes decide tail end point based off of farthest note
 	#TODO: figure out barNotePosition stuff
@@ -67,14 +69,14 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	var tailEndPos : int
 	if (barNotePosition != 0):
 		#tailEndPoint = calculated from barNotePosition
-		tailEndPos = note_pos_calc(tailEndPoint)
+		tailEndPos = tail_pos_calc(tailEndPoint)
 		noteTailNode.add_point(Vector2(0, tailEndPos))
 		noteTailNode.set_closed(true)
 		node_culling(EIGTH)
 		return
 	else:
 		#store the length of the tails for notes in the middle of the staff (in # of positions)
-		var tailMidLength := 8
+		var tailMidLength := 4
 		#decide note tail end position based on most extreme note (converted position value)
 		#notes <= 6 have same end point (center)
 		#notes >= 20 have same end point (center)
@@ -87,7 +89,7 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 		elif (extremeNote > 12):
 			tailEndPoint = extremeNote - tailMidLength
 		
-		tailEndPos = note_pos_calc(tailEndPoint)
+		tailEndPos = tail_pos_calc(tailEndPoint)
 		noteTailNode.add_point(Vector2(0, tailEndPos))
 		noteTailNode.set_closed(true)
 	
@@ -118,7 +120,7 @@ func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
 		sFNode.scale = spriteScale
 		#sharp flat position: offset from body position
 		sFNode.offset.y = note_pos_calc(currentNotePos)
-		sFNode.offset.x = body.offset.x + 10 #NOTE: 10 is an arbitrary offset value, refine after testing
+		sFNode.offset.x = body.offset.x + 150 #NOTE: 10 is an arbitrary offset value, refine after testing
 		#y position is relative to other notes -> middle B is at y = 0: other notes are offset according to stave width
 		#for chords, check if note is a chord (multiple values in note array), then for each note which is on a line, check if there are notes in the chord within 2 spaces
 			#if there is a note within 2 spaces, flip the note on the line to the other side
@@ -130,7 +132,10 @@ func note_pos_calc(posValue : int) -> int:
 		return 0
 	#calculate note position relative to center note (center B = note position 12)
 	var relPos = -(posValue - 12)
-	return MusicVisualizerVariables.line_width*relPos
+	return (MusicVisualizerVariables.line_width*relPos)
+
+func tail_pos_calc(posValue : int) -> int:
+	return note_pos_calc(posValue)/2
 
 func choose_body_sprite(noteLength : float) -> String:
 	match noteLength:

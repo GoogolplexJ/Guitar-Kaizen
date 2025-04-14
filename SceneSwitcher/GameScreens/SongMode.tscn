@@ -20,21 +20,38 @@ script = ExtResource("1_n6xel")
 [node name="staffCreation" type="CanvasLayer" parent="."]
 
 [node name="staff" type="MarginContainer" parent="staffCreation"]
+y_sort_enabled = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="staff background" type="Panel" parent="staffCreation/staff"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n6xel")
-
 [node name="staff lines" type="TextureRect" parent="staffCreation/staff"]
 z_index = 1
 y_sort_enabled = true
 layout_mode = 2
 texture = ExtResource("2_sdcru")
+
+[node name="center line" type="ColorRect" parent="staffCreation/staff"]
+y_sort_enabled = true
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.823452, 0.00162412, 0.955567, 1)
+
+[node name="staff background" type="MarginContainer" parent="staffCreation"]
+y_sort_enabled = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="staff background" type="Panel" parent="staffCreation/staff background"]
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n6xel")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 0
