@@ -11,6 +11,11 @@ var python_server_url = "http://127.0.0.1:5000/notes"
 # Store the currently detected notes from Python
 var current_detected_notes: Array = []
 
+func _input(event):
+	if (event.is_action_pressed("ui_cancel")):
+		#make pause screen popup
+		SceneSwitcher.SwitchScene("Home")
+
 func _ready():
 	# Connect the request_completed signal from the HTTPRequest node
 	# to a function in this script (_on_note_fetcher_request_completed)
