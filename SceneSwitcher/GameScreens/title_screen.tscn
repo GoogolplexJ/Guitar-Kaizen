@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bb0p5fjf20wgm"]
+[gd_scene load_steps=0 format=3 uid="uid://bb0p5fjf20wgm"]
 
 [node name="Title Screen" type="Node2D"]
 
