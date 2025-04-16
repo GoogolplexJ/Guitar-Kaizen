@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://duxo8x3gnaic0"]
+[gd_scene load_steps=2 format=3 uid="uid://c5ti6n71nyy51"]
 
-[ext_resource type="Script" uid="uid://1jkyhj0d1bfn" path="res://scripts/chord_recog.gd" id="1_mp6wx"]
+
+[ext_resource type="Script" path="res://chord_recog.gd" id="1_mp6wx"]
+
 
 [node name="chord_recog" type="Node2D"]
 position = Vector2(127, 15)
