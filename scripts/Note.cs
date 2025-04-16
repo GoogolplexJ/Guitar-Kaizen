@@ -41,8 +41,11 @@ public partial class Note : Node, IComparable<Note>
 		sign = s;
 	}
 
+<<<<<<< Updated upstream
 
 	// comparison function to allow for notes to be compared for accuracy
+=======
+>>>>>>> Stashed changes
 	public int CompareTo(Note other) // 5 is perfect, 4 is good, 3 is ok, 2 is poor, 1 is bad
 	{
 		int goodness = 0;
