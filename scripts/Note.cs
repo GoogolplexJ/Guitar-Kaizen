@@ -15,9 +15,9 @@ public enum {
 // The class is a comparible to allow for the scoring and feedback that forms the rythm game
 public partial class Note : Node, IComparable<Note>
 {
-	double length;
-	int[] notes;
-	int sharpFlat;
+	double length; // for timing purposes, how long the note is playing
+	int[] notes; // arrays of notes played at the same time
+	int sharpFlat; 
 
 	int[] sign;
 	
