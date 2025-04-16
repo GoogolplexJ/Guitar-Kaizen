@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bymcuelo6hxy5"]
 
 [ext_resource type="Texture2D" uid="uid://cx1c57ebpvwvp" path="res://assets/SongCreationAssets/Staves.png" id="1_0kn4y"]
-[ext_resource type="Script" uid="uid://doyei86i7rhwt" path="res://scripts/MenuButtonScripts/song_creation.gd" id="1_5cvco"]
+[ext_resource type="Script" path="res://scripts/MenuButtonScripts/song_creation.gd" id="1_5cvco"]
 [ext_resource type="Texture2D" uid="uid://c1br1jjrhdej7" path="res://assets/SongCreationAssets/dot.png" id="1_pbte6"]
 [ext_resource type="Texture2D" uid="uid://bjik2tpkjcnpc" path="res://assets/SongCreationAssets/dotW.png" id="2_iji4v"]
 
@@ -736,9 +736,12 @@ color = Color(1, 0.589253, 0.416341, 1)
 
 [connection signal="text_changed" from="TimeSignatures/TopSignature" to="." method="_on_top_signature_text_changed"]
 [connection signal="text_changed" from="TimeSignatures/BotSignature" to="." method="_on_bot_signature_text_changed"]
+[connection signal="pressed" from="TimeSignatures/MakeTime" to="." method="_on_make_time_pressed"]
 [connection signal="text_changed" from="BPM/BPM" to="." method="_on_bpm_text_changed"]
+[connection signal="pressed" from="BPM/MakeBPM" to="." method="_on_make_bpm_pressed"]
 [connection signal="text_changed" from="Bars/BarLength" to="." method="_on_bar_length_text_changed"]
 [connection signal="item_selected" from="Bars/BarType" to="." method="_on_bar_type_item_selected"]
+[connection signal="pressed" from="Bars/MakeBars" to="." method="_on_make_bars_pressed"]
 [connection signal="toggled" from="Notes/Note17" to="." method="_on__toggled" binds= [17]]
 [connection signal="item_selected" from="Notes/Note17/OptionButton" to="." method="_on_option_button_item_selected" binds= [17]]
 [connection signal="toggled" from="Notes/Note16" to="." method="_on__toggled" binds= [16]]

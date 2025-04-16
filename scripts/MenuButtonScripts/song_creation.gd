@@ -1,6 +1,7 @@
 extends Control
 class_name SongCreation
 
+
 var toggleArray = []
 var itemArray = []
 var topText = ""
@@ -14,6 +15,10 @@ var barType = 0
 func _ready():
 	_blank_variables()
 
+func _input(event):
+	if (event.is_action_pressed("ui_cancel")):
+		SceneSwitcher.SwitchScene("Home")
+		
 # resets variables to default values
 func _blank_variables() -> void:
 	toggleArray.clear()
@@ -34,11 +39,6 @@ func _on__toggled(toggled_on: bool, extra_arg_0: int) -> void:
 	toggleArray[extra_arg_0] = toggled_on
 func _on_option_button_item_selected(index: int, extra_arg_0: int) -> void:
 	itemArray[extra_arg_0] = index
-
-
-func _on_make_note_pressed() -> void:
-	_unselect_buttons()
-	_blank_variables()
 
 # unselects all buttons back to default value
 func _unselect_buttons() -> void:
@@ -110,3 +110,23 @@ func _on_bot_signature_text_changed() -> void:
 	barLength = $TimeSignatures/BotSignature.text
 func _on_top_signature_text_changed() -> void:
 	barLength = $TimeSignatures/TopSignature.text
+
+
+func _on_make_note_pressed() -> void:
+	_unselect_buttons()
+	_blank_variables()
+
+
+func _on_make_bars_pressed() -> void:
+	_unselect_buttons()
+	_blank_variables()
+
+
+func _on_make_bpm_pressed() -> void:
+	_unselect_buttons()
+	_blank_variables()
+
+
+func _on_make_time_pressed() -> void:
+	_unselect_buttons()
+	_blank_variables()

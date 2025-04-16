@@ -4,20 +4,16 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnfd2"]
 
-[node name="noteVisual" type="Node2D"]
-
-[node name="noteVis" type="RigidBody2D" parent="."]
+[node name="noteVis" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_pnfd2")
 
-[node name="noteTail" type="Line2D" parent="noteVis"]
+[node name="noteTail" type="Line2D" parent="."]
 
-[node name="tailFlourish" type="Sprite2D" parent="noteVis/noteTail"]
+[node name="tailFlourish" type="Sprite2D" parent="noteTail"]
 
-[node name="noteConnector" type="Line2D" parent="noteVis"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="noteVis"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pnfd2")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="noteVis"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
