@@ -1,6 +1,6 @@
 extends Control
 class_name SongCreation
-
+const FileWriter := preload("res://scripts/FileWriter.cs")
 
 var toggleArray = []
 var itemArray = []
@@ -9,11 +9,15 @@ var botText = ""
 var bpm = ""
 var barLength = ""
 var barType = 0 
+var fileName = ""
+var fW := FileWriter.new()
+var initialized = false
 
 # when scene starts make sure variables are at default,
 # then begin the text file editing so that song can be created
 func _ready():
 	_blank_variables()
+	
 
 func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
@@ -32,6 +36,7 @@ func _blank_variables() -> void:
 	bpm = ""
 	barLength = ""
 	barType = 0 
+	fileName = ""
 
 # List Based Buttons, changes index in list to new value 
 # based on which note changed
@@ -130,3 +135,19 @@ func _on_make_bpm_pressed() -> void:
 func _on_make_time_pressed() -> void:
 	_unselect_buttons()
 	_blank_variables()
+
+
+func _on_overwrite_pressed() -> void:
+	var path = ""
+	_unselect_buttons()
+	_blank_variables()
+	initialized = true
+
+func _on_append_pressed() -> void:
+	fW.CreateSW(fileName, true)
+	_unselect_buttons()
+	_blank_variables()
+	initialized = true
+
+func _on_name_text_changed() -> void:
+	fileName = $Create/Name.text
