@@ -46,12 +46,6 @@ public partial class Note : Node, IComparable<Note>
 	public Note(){
 	}
 	
-	public void Par(double l, int[] n, int[] s)
-	{
-		length = l;
-		notes = n;
-		sign = s;
-	}
 
 
 
