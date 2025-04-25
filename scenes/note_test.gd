@@ -9,7 +9,8 @@ var noteSpawnY = MusicVisualizerVariables.staffMiddleY
 var noteSpawnX = 1920/2
 
 func _ready():
-	#create a test note node, parameters: double l (length), int[] n (notes array), Sign[] s (signs array)
+	#create a test note node, parameters: double length, int[] notes, int[] sign
+	#all notes in the notes array must have a corresponding sign value
 	var testNote := Note.new()
 	testNote.length = 1/4
 	testNote.notes = [3, 10]
