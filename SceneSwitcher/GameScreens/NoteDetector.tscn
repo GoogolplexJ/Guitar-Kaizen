@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://mhx1p0a402sf"]
 
-[ext_resource type="Script" uid="uid://x6levlcavoh3" path="res://Main.gd" id="1_o400c"]
+[ext_resource type="Script" uid="uid://x6levlcavoh3" path="res://scripts/Main.gd" id="1_o400c"]
 
 [node name="NoteFetcher" type="Node"]
 script = ExtResource("1_o400c")

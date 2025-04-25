@@ -12,6 +12,8 @@ static var spriteScale := Vector2(0.5, 0.5)
 #result: generation of a visual representation of the note or chord in the input
 #NOTE: simultaneous notes which are not in the same chord are unsupported, all notes in the array will be added to the same chord
 func create_note_vis(note : Note, barNotePos : int = 0):
+	print(note.length)
+	
 	#handle rests
 	if (note.notes[0] == 0):
 		handle_rests(note)
@@ -138,35 +140,38 @@ func tail_pos_calc(posValue : int) -> int:
 	return note_pos_calc(posValue)/2
 
 func choose_body_sprite(noteLength : float) -> String:
+	print(noteLength)
 	match noteLength:
-			1:
+			1.0:
 				return SPRITE_PATH + "wholeBody.png"
-			(1/2):
+			(1.0/2):
 				return SPRITE_PATH + "halfBody.png"
 			_:
 				return SPRITE_PATH + "quarterBody.png" 
 
 func choose_rest_sprite(noteLength : float) -> String:
+	print(noteLength)
 	match noteLength:
-		1:
+		1.0:
 			return SPRITE_PATH + "wholeRest.png"
-		(1/2):
+		(1.0/2):
 			return SPRITE_PATH + "halfRest.png"
-		(1/4):
+		(1.0/4):
 			return SPRITE_PATH + "quarterRest.png"
-		(1/8):
+		(1.0/8):
 			return SPRITE_PATH + "eigthRest.png"
-		(1/16):
+		(1.0/16):
 			return SPRITE_PATH + "sixteenthRest.png"
 		_:
 			return ""
 
 func choose_flourish_sprite(noteLength : float) -> String:
+	print(noteLength)
 	match noteLength:
-		1/8:
+		1.0/8:
 		#sixteenth note, eigth note = unique tail flourish textures ONLY IF they are NOT in a cluster
 			return SPRITE_PATH + "eigthFlourish.png"
-		1/16:
+		1.0/16:
 			return SPRITE_PATH + "sixteenthFlourish.png"
 		_:
 		#quarter, half note = none

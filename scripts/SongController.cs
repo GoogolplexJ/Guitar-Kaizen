@@ -6,13 +6,13 @@ using System.Dynamic;
 // Controls the song player to allow for more in depth understanding of the whole song, pre-loaded
 public partial class SongController : Node
 {
-    int numNotes;
+	int numNotes;
 
-    public SongController(){
+	public SongController(){
 
-    }
+	}
 
-    public int getNumNotes(){
-        return numNotes;
-    }
+	public int getNumNotes(){
+		return numNotes;
+	}
 }
