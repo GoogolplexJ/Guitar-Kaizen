@@ -1,11 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://drpacel232fq1"]
 
-
 [ext_resource type="Script" uid="uid://bj1ecyll2h0ob" path="res://scripts/MenuButtonScripts/game_mode_selection.gd" id="1_uv2ke"]
-
-[ext_resource type="Texture2D" uid="uid://dea5upcconl7y" path="res://assets/GameModeSelectionAssets/song placeholder.png" id="1_iqb32"]
-[ext_resource type="Script" path="res://scripts/MenuButtonScripts/game_mode_selection.gd" id="1_uv2ke"]
-
 [ext_resource type="Texture2D" uid="uid://c7prnvjxfkdtf" path="res://assets/GameModeSelectionAssets/challenge placeholder.png" id="2_uv2ke"]
 [ext_resource type="Texture2D" uid="uid://6q5hmbwqi6jd" path="res://assets/GameModeSelectionAssets/songPracticeUnselect.png" id="2_wmihj"]
 [ext_resource type="Texture2D" uid="uid://pwa3hppud8th" path="res://assets/GameModeSelectionAssets/songPracticeSelect.png" id="3_0w0a8"]

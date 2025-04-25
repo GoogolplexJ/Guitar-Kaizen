@@ -12,9 +12,9 @@ func _ready():
 	#create a test note node, parameters: double length, int[] notes, int[] sign
 	#all notes in the notes array must have a corresponding sign value
 	var testNote := Note.new()
-	testNote.length = .5
-	testNote.notes = [3, 10]
-	testNote.sign = [1, 2]
+	testNote.length = 1.0/16
+	testNote.notes = [3, 40]
+	testNote.sign = [1, 0]
 	
 	#print(testNote.length)
 	#print(testNote.notes)

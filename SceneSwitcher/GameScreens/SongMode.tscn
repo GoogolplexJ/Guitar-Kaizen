@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbacimd6a4hgg"]
+[gd_scene load_steps=7 format=3 uid="uid://cbacimd6a4hgg"]
 
 [ext_resource type="Script" uid="uid://do6dbu3ygn31t" path="res://scripts/MenuButtonScripts/song_mode.gd" id="1_n6xel"]
+[ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_li7gu"]
 [ext_resource type="Texture2D" uid="uid://6ta84xcvcj6v" path="res://assets/SongModeAssets/staff.png" id="2_sdcru"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6xel"]
@@ -9,6 +10,12 @@ border_width_top = 8
 border_width_bottom = 8
 border_color = Color(0.210921, 0.195448, 0.413594, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_li7gu"]
+font_size = 300
+font_color = Color(0.328146, 0.00133005, 0.606043, 1)
+outline_size = 30
+outline_color = Color(0.338287, 0.723125, 1, 1)
+
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_n6xel"]
 
 [node name="SongMode" type="Control"]
@@ -16,6 +23,7 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_n6xel")
+note_visual_scene = ExtResource("2_li7gu")
 
 [node name="staffCreation" type="CanvasLayer" parent="."]
 
@@ -65,7 +73,35 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.447663, 0.465278, 0.617023, 1)
 
+[node name="notes" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="noteTimer" type="Timer" parent="notes"]
+wait_time = 0.5
+one_shot = true
+
+[node name="startTimer" type="Timer" parent="notes"]
+wait_time = 3.0
+one_shot = true
+
+[node name="startLabel" type="Label" parent="notes"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_li7gu")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_n6xel")
 autoplay = true
 bus = &"Mic"
+
+[connection signal="timeout" from="notes/noteTimer" to="." method="_on_note_timer_timeout"]
+[connection signal="timeout" from="notes/startTimer" to="." method="_on_start_timer_timeout"]
