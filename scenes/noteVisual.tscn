@@ -12,7 +12,6 @@ script = ExtResource("1_pnfd2")
 [node name="noteTail" type="Line2D" parent="."]
 
 [node name="tailFlourish" type="Sprite2D" parent="noteTail"]
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pnfd2")

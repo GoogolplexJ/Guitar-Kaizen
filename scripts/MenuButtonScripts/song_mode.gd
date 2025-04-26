@@ -11,7 +11,7 @@ var noteSpawnY = MusicVisualizerVariables.staffMiddleY
 var noteSpawnX = 2000
 
 #import song data into variable song from the songSelect scene
-var song
+var song : SongPlayer
 #note visual queue and note length queue(for movement timing)
 var noteVisNodes = []
 var noteLength = []
@@ -26,9 +26,12 @@ func create_test_note() -> Note:
 	testNote.sign = [1, 2]
 	return testNote
 
-func create_test_song():
-	song = SongPlayer.new()
-	song.bpm = 100
+func create_test_song() -> SongPlayer:
+	var s := SongPlayer.new()
+	s.bpm = 100
+	s.noteList = [create_test_note()]
+	s.timeSignatureTop = 4
+	return s
 
 #return the speed which notes move in pixels/sec
 #NOTE: choose a value which gives notes adequate space and player adequate time to prepare
@@ -48,7 +51,7 @@ func _on_note_timer_timeout() -> void:
 	var nextNote = noteVisNodes.pop_back() #grab next note from the note queue
 	nextNote.linear_velocity.x = song_speed() #assign linear velocity to note based on song speed (semi arbitrary, since note timing is what actually matters)
 	var noteTime = noteLength.pop_back()
-	$notes/noteTimer.wait_time = (noteTime * 4 * 60)/song.bpm #assign note timer's next wait time based on note length and song speed
+	$notes/noteTimer.wait_time = (noteTime * song.timeSignatureTop * 60)/song.bpm #assign note timer's next wait time based on note length and song speed
 	
 func _ready():
 	#adjust staff based on set size
@@ -59,7 +62,7 @@ func _ready():
 	staffBack.add_theme_constant_override("margin_top", MusicVisualizerVariables.TOP - 20)
 	
 	#generate all note visuals before song starts
-	create_test_song()
+	song = create_test_song()
 	load_song(song)
 	#start the start timer so that there is a delay before the notes move
 	$notes/startTimer.start()
