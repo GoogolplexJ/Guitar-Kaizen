@@ -12,6 +12,10 @@ var barType = 0
 var fileName = ""
 var fW := FileWriter.new()
 var initialized = false
+var file = FileAccess.open(save_path, FileAccess.WRITE)
+var folder_path := "user://SongFiles"
+var save_name := "noNameSong.ini"
+var save_path := folder_path + save_name
 
 # when scene starts make sure variables are at default,
 # then begin the text file editing so that song can be created
@@ -138,13 +142,11 @@ func _on_make_time_pressed() -> void:
 
 
 func _on_overwrite_pressed() -> void:
-	var path = ""
 	_unselect_buttons()
 	_blank_variables()
 	initialized = true
 
 func _on_append_pressed() -> void:
-	fW.CreateSW(fileName, true)
 	_unselect_buttons()
 	_blank_variables()
 	initialized = true
