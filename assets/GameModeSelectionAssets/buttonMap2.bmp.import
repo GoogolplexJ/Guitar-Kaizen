@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://7l3q75k5uoew"
+path="res://.godot/imported/buttonMap2.bmp-02eb4bd84ea18443cf7d378b10cd3f61.res"
+
+[deps]
+
+source_file="res://assets/GameModeSelectionAssets/buttonMap2.bmp"
+dest_files=["res://.godot/imported/buttonMap2.bmp-02eb4bd84ea18443cf7d378b10cd3f61.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

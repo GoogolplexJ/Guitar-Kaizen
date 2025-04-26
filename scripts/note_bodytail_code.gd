@@ -12,6 +12,8 @@ static var spriteScale := Vector2(0.5, 0.5)
 #result: generation of a visual representation of the note or chord in the input
 #NOTE: simultaneous notes which are not in the same chord are unsupported, all notes in the array will be added to the same chord
 func create_note_vis(note : Note, barNotePos : int = 0):
+	print(note.length)
+	
 	#handle rests
 	if (note.notes[0] == 0):
 		handle_rests(note)
@@ -43,6 +45,7 @@ func note_body(note : Note) -> int:
 		var sF = note.sign[i]
 		var currentNotePos = note_pos_value(n, sF) 
 		create_n_body(currentNotePos, sF, bodySprite)
+		#add a point to the line for each note value
 		$noteTail.add_point(Vector2(0, tail_pos_calc(currentNotePos)))
 		#compare most extreme found note to current note
 		if (abs(12 - currentNotePos) > extremeNote):
@@ -96,8 +99,14 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	var noteFlourishNode = $noteTail/tailFlourish
 	#decide tailFlourish texture & position
 	var flourishPath = choose_flourish_sprite(note.length)
+	if note.length >= (1.0/4): return
 	noteFlourishNode.texture = load(flourishPath)
-	noteFlourishNode.offset.y = tailEndPos
+	#flourish goes at the top of the line
+	var maxPoint = tail_pos_calc(12)
+	for point in noteTailNode.points:
+		maxPoint = min(point.y,maxPoint)
+	noteFlourishNode.offset.y = maxPoint + 100 #offset added to account for texture height
+	noteFlourishNode.offset.x = -noteFlourishNode.texture.get_width()/2
 
 #create visuals for current note being inspected in Note.notes list
 func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
@@ -138,35 +147,38 @@ func tail_pos_calc(posValue : int) -> int:
 	return note_pos_calc(posValue)/2
 
 func choose_body_sprite(noteLength : float) -> String:
+	print(noteLength)
 	match noteLength:
-			1:
+			1.0:
 				return SPRITE_PATH + "wholeBody.png"
-			(1/2):
+			(1.0/2):
 				return SPRITE_PATH + "halfBody.png"
 			_:
 				return SPRITE_PATH + "quarterBody.png" 
 
 func choose_rest_sprite(noteLength : float) -> String:
+	print(noteLength)
 	match noteLength:
-		1:
+		1.0:
 			return SPRITE_PATH + "wholeRest.png"
-		(1/2):
+		(1.0/2):
 			return SPRITE_PATH + "halfRest.png"
-		(1/4):
+		(1.0/4):
 			return SPRITE_PATH + "quarterRest.png"
-		(1/8):
+		(1.0/8):
 			return SPRITE_PATH + "eigthRest.png"
-		(1/16):
+		(1.0/16):
 			return SPRITE_PATH + "sixteenthRest.png"
 		_:
 			return ""
 
 func choose_flourish_sprite(noteLength : float) -> String:
+	print(noteLength)
 	match noteLength:
-		1/8:
+		1.0/8:
 		#sixteenth note, eigth note = unique tail flourish textures ONLY IF they are NOT in a cluster
 			return SPRITE_PATH + "eigthFlourish.png"
-		1/16:
+		1.0/16:
 			return SPRITE_PATH + "sixteenthFlourish.png"
 		_:
 		#quarter, half note = none
