@@ -11,9 +11,9 @@ var noteSpawnX = 1920/2
 func _ready():
 	#create a test note node, parameters: double l (length), int[] n (notes array), Sign[] s (signs array)
 	var testNote := Note.new()
-	testNote.length = .5
-	testNote.notes = [3, 10]
-	testNote.sign = [1, 2]
+	testNote.length = 1.0/4
+	testNote.notes = [1, 20, 40]
+	testNote.sign = [0, 1, 2]
 	
 	#print(testNote.length)
 	#print(testNote.notes)
