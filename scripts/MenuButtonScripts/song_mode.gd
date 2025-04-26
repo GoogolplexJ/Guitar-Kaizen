@@ -2,16 +2,20 @@ extends Control
 class_name NSongMode
 @onready var staff := $"staffCreation/staff"
 @onready var staffBack := $"staffCreation/staff background"
-
 const Note := preload("res://scripts/Note.cs")
+const SongPlayer := preload("res://scripts/SongPlayer.cs")
 @export var note_visual_scene : PackedScene
 #notes spawn in the middle of the staff vertically
 var noteSpawnY = MusicVisualizerVariables.staffMiddleY
 #notes spawn off screen to the right for gameplay
 var noteSpawnX = 2000
 
-#test bpm value
-var bpm : float = 100
+#import song data into variable song from the songSelect scene
+var song
+#note visual queue and note length queue(for movement timing)
+var noteVisNodes = []
+var noteLength = []
+
 #create a note for testing
 func create_test_note() -> Note:
 	#create a test note node, parameters: double length, int[] notes, int[] sign
@@ -22,9 +26,14 @@ func create_test_note() -> Note:
 	testNote.sign = [1, 2]
 	return testNote
 
-#TODO return the speed which notes move in pixels/sec
+func create_test_song():
+	song = SongPlayer.new()
+	song.bpm = 100
+
+#return the speed which notes move in pixels/sec
+#NOTE: choose a value which gives notes adequate space and player adequate time to prepare
 func song_speed() -> float:
-	return -100
+	return -song.bpm*1.5 #adjust multiplication value if it ends up being too fast in testing
 	
 #start delay before notes move, starts the noteTimer on timeout
 func _on_start_timer_timeout() -> void:
@@ -33,10 +42,13 @@ func _on_start_timer_timeout() -> void:
 
 #TODO next note starts moving once the note timer runs out
 func _on_note_timer_timeout() -> void:
-	var nextNote = create_test_note()
-	var nextNoteVis = spawn_note(nextNote)#TODO grab next note from the note queue
-	nextNoteVis.linear_velocity.x = song_speed() #assign linear velocity to note based on song speed
-	$notes/noteTimer.wait_time = (nextNote.length * 4 * 60)/bpm #assign note timer's next wait time based on note length and song speed
+	#handle note spawning before song starts: code below is for testing
+		#var nextNote = create_test_note()
+		#var nextNoteVis = spawn_note(nextNote)
+	var nextNote = noteVisNodes.pop_back() #grab next note from the note queue
+	nextNote.linear_velocity.x = song_speed() #assign linear velocity to note based on song speed (semi arbitrary, since note timing is what actually matters)
+	var noteTime = noteLength.pop_back()
+	$notes/noteTimer.wait_time = (noteTime * 4 * 60)/song.bpm #assign note timer's next wait time based on note length and song speed
 	
 func _ready():
 	#adjust staff based on set size
@@ -47,7 +59,8 @@ func _ready():
 	staffBack.add_theme_constant_override("margin_top", MusicVisualizerVariables.TOP - 20)
 	
 	#generate all note visuals before song starts
-	
+	create_test_song()
+	load_song(song)
 	#start the start timer so that there is a delay before the notes move
 	$notes/startTimer.start()
 
@@ -60,10 +73,10 @@ func _input(event):
 		SceneSwitcher.SwitchScene("Home")
 
 #function for spawning a note into the node tree in the correct position	
-func spawn_note(note : Note) -> Node:
+func spawn_note(note : Note, barNote : int) -> Node:
 	# Create a new instance of the noteVis scene.
 	var newNote = note_visual_scene.instantiate()
-	newNote.create_note_vis(note)
+	newNote.create_note_vis(note, barNote)
 
 	# Set the note's position to the proper spot on screen (in the middle of the staff).
 	newNote.position.y = noteSpawnY
@@ -72,3 +85,16 @@ func spawn_note(note : Note) -> Node:
 	# Spawn the note by adding it to the NoteTest scene.
 	$notes.add_child(newNote)
 	return newNote
+
+func load_song(song : SongPlayer):
+	#TODO: run through all notes in the song to assign bar note positions (0 if no bar)
+	var barNote = []
+	#generate note visual nodes for each note in the list and add them to a queue array
+		#also add the note's length to a queue array (at the same position) for later use
+	var i = 0
+	for note in song.noteList:
+		noteVisNodes.push_front(spawn_note(note, barNote[i]))
+		noteLength.push_front(note.length)
+		#TODO: consider handling note bars within this function
+		i += 1
+		
