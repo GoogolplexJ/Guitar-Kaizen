@@ -14,4 +14,8 @@ public partial class SongPlayer : Node
 		controller = c;
 		noteList = new Note[c.getNumNotes()];
 	}
+	
+	//blank constructor for gdscript
+	public SongPlayer(){
+	}
 }
