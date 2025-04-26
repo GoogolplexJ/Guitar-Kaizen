@@ -45,6 +45,7 @@ func note_body(note : Note) -> int:
 		var sF = note.sign[i]
 		var currentNotePos = note_pos_value(n, sF) 
 		create_n_body(currentNotePos, sF, bodySprite)
+		#add a point to the line for each note value
 		$noteTail.add_point(Vector2(0, tail_pos_calc(currentNotePos)))
 		#compare most extreme found note to current note
 		if (abs(12 - currentNotePos) > extremeNote):
@@ -98,8 +99,14 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	var noteFlourishNode = $noteTail/tailFlourish
 	#decide tailFlourish texture & position
 	var flourishPath = choose_flourish_sprite(note.length)
+	if note.length >= (1.0/4): return
 	noteFlourishNode.texture = load(flourishPath)
-	noteFlourishNode.offset.y = tailEndPos
+	#flourish goes at the top of the line
+	var maxPoint = tail_pos_calc(12)
+	for point in noteTailNode.points:
+		maxPoint = min(point.y,maxPoint)
+	noteFlourishNode.offset.y = maxPoint + 100 #offset added to account for texture height
+	noteFlourishNode.offset.x = -noteFlourishNode.texture.get_width()/2
 
 #create visuals for current note being inspected in Note.notes list
 func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
