@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6isaybv4woso"]
+
+[ext_resource type="Script" uid="uid://c0okgm1tw77d2" path="res://scripts/MenuScripts/settings.gd" id="1_6oewp"]
+
+[sub_resource type="Gradient" id="Gradient_6oewp"]
+colors = PackedColorArray(0.71369, 0.262949, 0.501397, 1, 0.519611, 0.622497, 0.851621, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k72de"]
+gradient = SubResource("Gradient_6oewp")
+fill_from = Vector2(0, 0.948718)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6oewp"]
+font_size = 70
+font_color = Color(0.87952, 0.489646, 0.550748, 1)
+outline_size = 20
+outline_color = Color(0.999576, 0.930661, 0.887858, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6oewp")
+
+[node name="background" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 100
+
+[node name="NinePatchRect" type="NinePatchRect" parent="background/MarginContainer"]
+y_sort_enabled = true
+layout_mode = 2
+texture = SubResource("GradientTexture2D_k72de")
+patch_margin_top = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -25.5
+offset_right = 46.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="fsButton" type="Button" parent="background/MarginContainer/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "fullscreen"
+
+[node name="homeButton" type="Button" parent="background/MarginContainer/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Home"
+
+[node name="quitButton" type="Button" parent="background/MarginContainer/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="Label" type="Label" parent="background/MarginContainer/NinePatchRect"]
+layout_mode = 2
+offset_top = 40.0
+offset_right = 920.0
+offset_bottom = 136.0
+size_flags_vertical = 0
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_6oewp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="toggled" from="background/MarginContainer/NinePatchRect/VBoxContainer/fsButton" to="." method="_on_fs_button_toggled"]
+[connection signal="pressed" from="background/MarginContainer/NinePatchRect/VBoxContainer/homeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="background/MarginContainer/NinePatchRect/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]

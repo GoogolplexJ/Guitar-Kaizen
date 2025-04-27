@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1bgcmvwlo5dt"]
+[gd_scene load_steps=4 format=3 uid="uid://c1bgcmvwlo5dt"]
 
-[ext_resource type="Script" uid="uid://c68pirm0l5fmm" path="res://scripts/MenuButtonScripts/home_screen.gd" id="1_xcgmu"]
+[ext_resource type="Script" uid="uid://c68pirm0l5fmm" path="res://scripts/MenuScripts/home_screen.gd" id="1_xcgmu"]
 [ext_resource type="Texture2D" uid="uid://dpvcuoumnpvcu" path="res://assets/HomeScreenAssets/titleArt.png" id="2_h8wco"]
+[ext_resource type="PackedScene" uid="uid://b6isaybv4woso" path="res://SceneSwitcher/GameScreens/Settings.tscn" id="2_n66r2"]
 
 [node name="Home screen" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_xcgmu")
+settings_scene = ExtResource("2_n66r2")
 
 [node name="topLayer" type="CanvasLayer" parent="."]
 
@@ -59,7 +61,6 @@ focus_neighbor_left = NodePath("../GameMode")
 focus_neighbor_right = NodePath("../Performance")
 focus_next = NodePath("../Performance")
 focus_previous = NodePath("../GameMode")
-disabled = true
 text = "Settings"
 
 [node name="Performance" type="Button" parent="topLayer/screen margins/button title formatting/buttons"]
@@ -100,5 +101,6 @@ mouse_filter = 1
 color = Color(1, 0.589253, 0.416341, 1)
 
 [connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/GameMode" to="." method="_on_ModeButton_pressed"]
+[connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/Creation" to="." method="_on_Creation_pressed"]
 [connection signal="pressed" from="topLayer/screen margins/button title formatting/buttons/Quit" to="." method="_on_quit_pressed"]

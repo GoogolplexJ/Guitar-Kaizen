@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://drpacel232fq1"]
 
-[ext_resource type="Script" uid="uid://bj1ecyll2h0ob" path="res://scripts/MenuButtonScripts/game_mode_selection.gd" id="1_uv2ke"]
+[ext_resource type="Script" uid="uid://bj1ecyll2h0ob" path="res://scripts/MenuScripts/game_mode_selection.gd" id="1_uv2ke"]
 [ext_resource type="Texture2D" uid="uid://6q5hmbwqi6jd" path="res://assets/GameModeSelectionAssets/songPracticeUnselect.png" id="2_wmihj"]
 [ext_resource type="Texture2D" uid="uid://pwa3hppud8th" path="res://assets/GameModeSelectionAssets/songPracticeSelect.png" id="3_0w0a8"]
 [ext_resource type="BitMap" uid="uid://qmdqneetoujs" path="res://assets/GameModeSelectionAssets/buttonMap.bmp" id="4_0w0a8"]

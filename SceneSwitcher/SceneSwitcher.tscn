@@ -8,6 +8,7 @@ Scenes = {
 "GameModeSelect": &"res://SceneSwitcher/GameScreens/GameModeSelection.tscn",
 "Home": &"res://SceneSwitcher/GameScreens/HomeScreen.tscn",
 "SceneManager": &"res://SceneSwitcher/SceneSwitcher.tscn",
+"Settings": &"res://SceneSwitcher/GameScreens/Settings.tscn",
 "SongCreation": &"res://SceneSwitcher/GameScreens/SongCreation.tscn",
 "SongMode": &"res://SceneSwitcher/GameScreens/SongMode.tscn",
 "noteDetectorTest": &"res://NoteDetector.tscn",

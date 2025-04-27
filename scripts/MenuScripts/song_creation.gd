@@ -1,5 +1,6 @@
 extends Control
 class_name SongCreation
+const FileWriter := preload("res://scripts/FileWriter.cs")
 
 var toggleArray = []
 var itemArray = []
@@ -8,10 +9,12 @@ var botText = ""
 var bpm = ""
 var barLength = ""
 var barType = 0 
+var fileName = ""
+var fW := FileWriter.new()
 var initialized = false
 var file = FileAccess.open(save_path, FileAccess.WRITE)
-var folder_path := "user://"
-var save_name := "noNameSong.dat"
+var folder_path := "user://SongFiles"
+var save_name := "noNameSong.ini"
 var save_path := folder_path + save_name
 
 # when scene starts make sure variables are at default,
@@ -37,6 +40,7 @@ func _blank_variables() -> void:
 	bpm = ""
 	barLength = ""
 	barType = 0 
+	fileName = ""
 
 # List Based Buttons, changes index in list to new value 
 # based on which note changed
@@ -138,20 +142,14 @@ func _on_make_time_pressed() -> void:
 
 
 func _on_overwrite_pressed() -> void:
-	file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.resize(0)
-	file.store_8(1)
 	_unselect_buttons()
 	_blank_variables()
 	initialized = true
 
 func _on_append_pressed() -> void:
-	file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_8(1)
 	_unselect_buttons()
 	_blank_variables()
 	initialized = true
 
 func _on_name_text_changed() -> void:
-	save_name = $Create/Name.text + ".dat"
-	save_path = folder_path + save_name
+	fileName = $Create/Name.text

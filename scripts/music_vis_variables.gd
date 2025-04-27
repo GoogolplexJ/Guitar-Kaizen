@@ -12,3 +12,6 @@ var line_width := WIDTH/(STAFF_DIV/2)
 
 #the position on the staff which notes spawn in (referenced from the top left of the screen)
 var staffMiddleY = TOP + WIDTH/2
+
+#point on screen that denotes where notes are supposed to be played
+var LIMIT_LINE = 100
