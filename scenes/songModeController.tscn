@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgc0msuclybxt"]
+
+[ext_resource type="Script" uid="uid://d3bmhhkp85fb4" path="res://scripts/song_mode_controller.gd" id="1_j4ib7"]
+[ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_1in8k"]
+
+[node name="SongModeController" type="Node2D"]
+script = ExtResource("1_j4ib7")
+note_visual_scene = ExtResource("2_1in8k")

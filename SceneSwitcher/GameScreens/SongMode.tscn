@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbacimd6a4hgg"]
+[gd_scene load_steps=10 format=3 uid="uid://cbacimd6a4hgg"]
 
 [ext_resource type="Script" path="res://scripts/MenuScripts/song_mode.gd" id="1_n6xel"]
 [ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_li7gu"]
 [ext_resource type="Texture2D" uid="uid://6ta84xcvcj6v" path="res://assets/SongModeAssets/staff.png" id="2_sdcru"]
+[ext_resource type="PackedScene" uid="uid://cgc0msuclybxt" path="res://scenes/songModeController.tscn" id="3_4hnoo"]
+[ext_resource type="PackedScene" uid="uid://cg2eqiq2uva0u" path="res://scenes/songTest.tscn" id="4_fmest"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6xel"]
 bg_color = Color(0.963062, 0.874223, 0.840529, 1)
@@ -27,6 +29,8 @@ anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_n6xel")
 note_visual_scene = ExtResource("2_li7gu")
+song_mode_controller_scene = ExtResource("3_4hnoo")
+test_song = ExtResource("4_fmest")
 
 [node name="staffCreation" type="CanvasLayer" parent="."]
 
@@ -101,11 +105,26 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_li7gu")
 
 [node name="lineCollision" type="Area2D" parent="notes"]
+top_level = true
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="notes/lineCollision"]
 shape = SubResource("RectangleShape2D_li7gu")
 debug_color = Color(0.461587, 0.445532, 1, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="notes/lineCollision"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -400.0
+offset_right = 20.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.359074, 0.329805, 0.70878, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_n6xel")
