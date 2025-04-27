@@ -48,6 +48,11 @@ enter_noteDetect_debug={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="endLine"
+2d_physics/layer_2="notes"
+
 [physics]
 
 3d/default_linear_damp=0.0

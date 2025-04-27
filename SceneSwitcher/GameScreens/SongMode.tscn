@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbacimd6a4hgg"]
+[gd_scene load_steps=8 format=3 uid="uid://cbacimd6a4hgg"]
 
 [ext_resource type="Script" uid="uid://do6dbu3ygn31t" path="res://scripts/MenuButtonScripts/song_mode.gd" id="1_n6xel"]
 [ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_li7gu"]
@@ -15,6 +15,9 @@ font_size = 300
 font_color = Color(0.328146, 0.00133005, 0.606043, 1)
 outline_size = 30
 outline_color = Color(0.338287, 0.723125, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_li7gu"]
+size = Vector2(40, 800)
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_n6xel"]
 
@@ -78,7 +81,6 @@ layer = 2
 
 [node name="noteTimer" type="Timer" parent="notes"]
 wait_time = 0.5
-one_shot = true
 
 [node name="startTimer" type="Timer" parent="notes"]
 wait_time = 3.0
@@ -98,6 +100,13 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_li7gu")
 
+[node name="lineCollision" type="Area2D" parent="notes"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="notes/lineCollision"]
+shape = SubResource("RectangleShape2D_li7gu")
+debug_color = Color(0.461587, 0.445532, 1, 0.42)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_n6xel")
 autoplay = true
@@ -105,3 +114,4 @@ bus = &"Mic"
 
 [connection signal="timeout" from="notes/noteTimer" to="." method="_on_note_timer_timeout"]
 [connection signal="timeout" from="notes/startTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="body_entered" from="notes/lineCollision" to="." method="_on_line_collision_body_entered"]

@@ -39,7 +39,7 @@ func note_body(note : Note) -> int:
 	var bodySprite := choose_body_sprite(note.length)
 	#generate the body for each note value in the list
 	#pull the position value of the most extreme note (highest or lowest -> farthest from the middle)
-	var extremeNote := 0
+	var extremeNote := 12
 	var i = 0
 	for n in note.notes:
 		var sF = note.sign[i]
@@ -48,7 +48,7 @@ func note_body(note : Note) -> int:
 		#add a point to the line for each note value
 		$noteTail.add_point(Vector2(0, tail_pos_calc(currentNotePos)))
 		#compare most extreme found note to current note
-		if (abs(12 - currentNotePos) > extremeNote):
+		if (abs(12 - currentNotePos) > abs(12- extremeNote)):
 			extremeNote = currentNotePos
 		#extremeNote = max(abs(12 - currentNotePos), extremeNote)
 		#print extremenote to terminal for testing
@@ -82,7 +82,7 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 		var tailMidLength := 4
 		#decide note tail end position based on most extreme note (converted position value)
 		#notes <= 6 have same end point (center)
-		#notes >= 20 have same end point (center)
+		#notes >= 30 have same end point (center)
 		if (extremeNote <= 6 || extremeNote >= 20):
 			tailEndPoint = 0
 		#notes <= 12 have same tail length, tail goes up (start point + length)
@@ -105,7 +105,7 @@ func note_tail(note : Note, extremeNote : int, barNotePosition : int):
 	var maxPoint = tail_pos_calc(12)
 	for point in noteTailNode.points:
 		maxPoint = min(point.y,maxPoint)
-	noteFlourishNode.offset.y = maxPoint + 100 #offset added to account for texture height
+	noteFlourishNode.offset.y = maxPoint + 80 #offset added to account for texture height
 	noteFlourishNode.offset.x = -noteFlourishNode.texture.get_width()/2
 
 #create visuals for current note being inspected in Note.notes list
@@ -129,7 +129,7 @@ func create_n_body(currentNotePos : int, sharpFlat : int, bodySprite : String):
 		sFNode.scale = spriteScale
 		#sharp flat position: offset from body position
 		sFNode.offset.y = note_pos_calc(currentNotePos)
-		sFNode.offset.x = body.offset.x + 150 #NOTE: 10 is an arbitrary offset value, refine after testing
+		sFNode.offset.x = body.offset.x + 120 #NOTE: 10 is an arbitrary offset value, refine after testing
 		#y position is relative to other notes -> middle B is at y = 0: other notes are offset according to stave width
 		#for chords, check if note is a chord (multiple values in note array), then for each note which is on a line, check if there are notes in the chord within 2 spaces
 			#if there is a note within 2 spaces, flip the note on the line to the other side
