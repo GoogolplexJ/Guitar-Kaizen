@@ -107,6 +107,7 @@ label_settings = SubResource("LabelSettings_li7gu")
 [node name="lineCollision" type="Area2D" parent="notes"]
 top_level = true
 collision_mask = 2
+priority = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="notes/lineCollision"]
 shape = SubResource("RectangleShape2D_li7gu")

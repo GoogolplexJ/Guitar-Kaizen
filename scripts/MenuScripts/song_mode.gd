@@ -34,6 +34,7 @@ func _on_note_timer_timeout() -> void:
 	
 #TODO: note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
+	print("notepassed")
 	$notes/lineCollision/ColorRect.color(Color(0, 1, 1, 1))
 	
 func _ready():
