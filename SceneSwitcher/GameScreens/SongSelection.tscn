@@ -50,19 +50,19 @@ layout_mode = 2
 texture_normal = ExtResource("1_o1e58")
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
-offset_left = 1091.0
-offset_top = 269.0
-offset_right = 1249.0
-offset_bottom = 336.0
+offset_left = 574.0
+offset_top = 901.0
+offset_right = 732.0
+offset_bottom = 968.0
 scale = Vector2(2, 2)
 placeholder_text = "song name here
 don't include .dat"
 
 [node name="PlayButton" type="Button" parent="CanvasLayer"]
-offset_left = 1137.0
-offset_top = 454.0
-offset_right = 1248.0
-offset_bottom = 529.0
+offset_left = 990.0
+offset_top = 896.0
+offset_right = 1101.0
+offset_bottom = 971.0
 scale = Vector2(2, 2)
 text = "Play"
 
