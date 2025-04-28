@@ -23,6 +23,7 @@ func _ready():
 		dir.make_dir("SongFiles")
 	
 
+
 func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
 		SceneSwitcher.SwitchScene("Home")

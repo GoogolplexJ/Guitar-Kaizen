@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bofs51466wwnm"]
+[gd_scene load_steps=3 format=3 uid="uid://bofs51466wwnm"]
 
+[ext_resource type="Script" uid="uid://b2nw5tsathk55" path="res://scripts/MenuScripts/song_selection.gd" id="1_j3ywq"]
 [ext_resource type="Texture2D" uid="uid://bdrofn4unismu" path="res://icon.svg" id="1_o1e58"]
 
 [node name="SongSelection" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_j3ywq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -47,6 +49,23 @@ texture_normal = ExtResource("1_o1e58")
 layout_mode = 2
 texture_normal = ExtResource("1_o1e58")
 
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
+offset_left = 1091.0
+offset_top = 269.0
+offset_right = 1249.0
+offset_bottom = 336.0
+scale = Vector2(2, 2)
+placeholder_text = "song name here
+don't include .dat"
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+offset_left = 1137.0
+offset_top = 454.0
+offset_right = 1248.0
+offset_bottom = 529.0
+scale = Vector2(2, 2)
+text = "Play"
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 0
 
@@ -57,3 +76,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.564404, 0.67726, 0.973286, 1)
+
+[connection signal="text_changed" from="CanvasLayer/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]

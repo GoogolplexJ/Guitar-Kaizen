@@ -5,7 +5,7 @@ func _ready():
 	$"CanvasLayer/song mode".grab_focus()
 
 func _on_SongMode_pressed():
-	SceneSwitcher.SwitchScene("SongMode")
+	SceneSwitcher.SwitchScene("SongSelection")
 
 func _input(event):
 	if (event.is_action_pressed("ui_cancel")):

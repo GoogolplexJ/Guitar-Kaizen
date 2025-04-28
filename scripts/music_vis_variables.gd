@@ -15,3 +15,5 @@ var staffMiddleY = TOP + WIDTH/2
 
 #point on screen that denotes where notes are supposed to be played
 var LIMIT_LINE = 100
+
+var song_to_load = "noNameSong"
