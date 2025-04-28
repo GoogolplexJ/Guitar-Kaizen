@@ -9,6 +9,7 @@ const SongPlayer := preload("res://scripts/SongPlayer.cs")
 @export var note_visual_scene : PackedScene
 @export var song_mode_controller_scene : PackedScene
 @export var test_song : PackedScene
+var songName := ""
 
 var song : SongPlayer
 var songModeControl
@@ -66,3 +67,6 @@ func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
 		#make pause screen popup
 		SceneSwitcher.SwitchScene("Home")
+
+func _set_song(sN : String) -> void:
+	songName = sN

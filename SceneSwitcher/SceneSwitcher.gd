@@ -23,6 +23,7 @@ func RemoveScene(sceneAlias : String) -> void:
 func SwitchScene(sceneAlias : String) -> void:
 	get_tree().change_scene_to_file(Scenes[sceneAlias])
 
+
 # Description: Restart the current scene
 func RestartScene() -> void:
 	get_tree().reload_current_scene()

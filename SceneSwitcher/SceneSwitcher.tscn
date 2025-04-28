@@ -11,6 +11,7 @@ Scenes = {
 "Settings": &"res://SceneSwitcher/GameScreens/Settings.tscn",
 "SongCreation": &"res://SceneSwitcher/GameScreens/SongCreation.tscn",
 "SongMode": &"res://SceneSwitcher/GameScreens/SongMode.tscn",
+"SongSelection": &"res://SceneSwitcher/GameScreens/SongSelection.tscn",
 "noteDetectorTest": &"res://NoteDetector.tscn",
 "noteTest": &"res://scenes/noteTest.tscn"
 }
