@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2o8um5qjijh4"]
 
-[ext_resource type="Script" uid="uid://ueh1oecgld6y" path="res://scenes/note_test.gd" id="1_ra5cn"]
+[ext_resource type="Script" uid="uid://ueh1oecgld6y" path="res://scripts/note_test.gd" id="1_ra5cn"]
 [ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_2pilg"]
 [ext_resource type="PackedScene" uid="uid://cbacimd6a4hgg" path="res://SceneSwitcher/GameScreens/SongMode.tscn" id="3_k5rou"]
 
