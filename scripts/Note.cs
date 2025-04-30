@@ -42,12 +42,27 @@ public partial class Note : Node, IComparable<Note>
 		sign = s;
 	}
 	
-	// blank constructor and initializer for use with GDScript
-	public Note(){
+	// Blank constructor for use with GDScript (optional)
+	public Note() {}
+
+	// Getter for the notes array
+	public int[] GetNotes()
+	{
+		return notes;
+	}
+
+	// Getter for the sign array (sharp/flat signs)
+	public int[] GetSign()
+	{
+		return sign;
+	}
+
+	// Getter for the note length (duration)
+	public double GetLength()
+	{
+		return length;
 	}
 	
-
-
 
 	// comparison function to allow for notes to be compared for accuracy
 	public int CompareTo(Note other) // 5 is perfect, 4 is good, 3 is ok, 2 is poor, 1 is bad
