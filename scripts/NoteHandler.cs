@@ -1,37 +1,35 @@
-using System.Collections.Generic;  // Ensure the required namespace for Stack is included
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
-public partial class NoteHandler : Node  // Correctly place the 'public' modifier before 'class'
+public partial class NoteHandler : Node
 {
-	private Stack<int[]> detectedNotesStack = new Stack<int[]>();  // Stack to store detected notes
+	private Stack<int[]> detectedNotesStack = new();  // A stack to hold the detected notes
+	private Stopwatch noteTimer = new();  // Stopwatch to track how long a note is held
 
-	// Called from the chord_recog GDScript when notes are detected
+	public override void _Ready()
+	{
+		noteTimer.Start();  // Start the stopwatch when the node is ready
+	}
+
+	// This method receives the detected notes and calculates how long each note was held
 	public void ReceiveDetectedNotes(int[] detectedNotes)
 	{
-		GD.Print("Received detected notes: " + string.Join(",", detectedNotes));  // Debug output
+		GD.Print("Received detected notes: " + string.Join(",", detectedNotes));
 
 		if (detectedNotes != null && detectedNotes.Length > 0)
 		{
-			detectedNotesStack.Push(detectedNotes);  // Push detected notes onto the stack
-			CreateAndSendNote();  // Create the Note object and send it for comparison
+			double noteLength = noteTimer.Elapsed.TotalSeconds;  // Get the length of the note based on the stopwatch
+			noteTimer.Restart();  // Restart the timer to track the next note
+			CreateAndSendNote(detectedNotes, noteLength);  // Create the note object and send it for comparison
 		}
 	}
 
-	// Creates the Note object and sends it to NoteComparison
-	private void CreateAndSendNote()
+	// This method creates a Note object and passes it to NoteComparison for comparison
+	private void CreateAndSendNote(int[] notes, double length)
 	{
-		if (detectedNotesStack.Count == 0)
-		{
-			return;  // Return early if no notes are in the stack
-		}
-
-		int[] notes = detectedNotesStack.Pop();  // Pop the latest detected notes
-		GD.Print("Creating Note with notes: " + string.Join(",", notes));  // Debug output
-
-		Note newNote = new Note(notes, 0);  // Create a new Note object with the detected notes (sharp/flat is set to 0 here)
-
-		// Send the created Note object to the NoteComparison class
-		NoteComparison.AcceptNote(newNote);
+		Note newNote = new Note(length, notes);  // Create a new note object
+		NoteComparison.AddInputNote(newNote);  // Add the note to the comparison list
 	}
 }
