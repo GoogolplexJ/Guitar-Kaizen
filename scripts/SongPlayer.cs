@@ -18,4 +18,18 @@ public partial class SongPlayer : Node
 	//blank constructor for gdscript
 	public SongPlayer(){
 	}
+	
+	  public void LoadAndStartSong()
+	{
+		foreach (var note in noteList)
+		{
+			NoteComparison.AddIdealNote(note);  // Add each ideal note to the comparison stack
+		}
+	}
+
+	// This method is called when the song ends, and it reports the final grades
+	public void EndSong()
+	{
+		NoteComparison.ReportFinalGrades();  // Report the final pitch and timing grades
+	}
 }
