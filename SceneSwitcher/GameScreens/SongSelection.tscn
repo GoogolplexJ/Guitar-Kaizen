@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bofs51466wwnm"]
+[gd_scene load_steps=4 format=3 uid="uid://bofs51466wwnm"]
 
 [ext_resource type="Script" uid="uid://b2nw5tsathk55" path="res://scripts/MenuScripts/song_selection.gd" id="1_j3ywq"]
+[ext_resource type="Script" uid="uid://udldla3tj2nm" path="res://SceneSwitcher/GameScreens/full_menu.gd" id="2_gyr1k"]
 [ext_resource type="PackedScene" uid="uid://ctgxe4ismloig" path="res://scenes/songSelectionBox.tscn" id="2_j3ywq"]
 
 [node name="SongSelection" type="Control"]
@@ -28,6 +29,7 @@ theme_override_constants/margin_bottom = 400
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("2_gyr1k")
 
 [node name="clipControl" type="Control" parent="CanvasLayer/MarginContainer/fullMenu"]
 clip_contents = true
