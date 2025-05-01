@@ -127,7 +127,8 @@ func _on_top_signature_text_changed() -> void:
 
 # file writing section
 # negatives are fake and actually wrap around to 255
-# so Note: 255, BPM: 254, TimeSignature: 253, Bars: 252
+# so Note: 255, BPM: 254, TimeSignature: 253, Bars: 252,
+# little n note: 251, end of Note: 250
 
 # -1 indicates Note
 func _on_make_note_pressed() -> void:
@@ -135,9 +136,10 @@ func _on_make_note_pressed() -> void:
 	file.store_8(noteLength)
 	for n in 24:
 		if(toggleArray[n]):
-			file.store_8(-1)
+			file.store_8(-5)
 			file.store_8(note_format_change(n, itemArray[n]))
 			file.store_8(itemArray[n])
+	file.store_8(-6)
 	_unselect_buttons()
 	_blank_variables()
 
@@ -167,7 +169,7 @@ func _on_make_bars_pressed() -> void:
 # -2 indicates BPM
 func _on_make_bpm_pressed() -> void:
 	file.store_8(-2)
-	file.store_8(int(bpm))
+	file.store_16(int(bpm))
 	_unselect_buttons()
 	_blank_variables()
 

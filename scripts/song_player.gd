@@ -31,13 +31,29 @@ func build_song(songName : String) -> void:
 	pass
 
 func build_note() -> void:
-	pass
+	allList.append("N")
+	var note := Note.new()
+	var notes = []
+	var signs = []
+	var length = file.get_8()
+	while file.get_8() == 251:
+		notes.append(file.get_8())
+		signs.append(file.get_8())
+	note.length = length
+	note.notes = notes
+	note.sign = signs
+	allList.append(note)
+	noteList.append(note)
 
 func build_BPM() -> void:
-	pass
+	allList.append("B")
+	allList.append(file.get_16())
 
 func build_time_signature() -> void:
-	pass
+	allList.append("T")
+	allList.append(file.get_8())
+	allList.append(file.get_8())
 
 func build_bar() -> void:
-	pass
+	allList.append("I")
+	allList.append(file.get_8())
