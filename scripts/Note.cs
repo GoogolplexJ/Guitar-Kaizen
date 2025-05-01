@@ -43,7 +43,8 @@ public partial class Note : Node, IComparable<Note>
 	public int GetSharpFlat() { return sharpFlat; }
 	public void SetSharpFlat(int value) { sharpFlat = value; }
 
-	// compare this note to another to check how many pitch values match
+	// CompareTo method compares notes based on pitch
+	//written by: Alicia
 	public int CompareTo(Note other)
 	{
 		int matchedNotes = 0;
@@ -55,7 +56,7 @@ public partial class Note : Node, IComparable<Note>
 				if (notes[i] == other.notes[j])
 				{
 					matchedNotes++;
-					break; // only count each once
+					break; // don't double-count
 				}
 			}
 		}
@@ -63,12 +64,13 @@ public partial class Note : Node, IComparable<Note>
 		if (matchedNotes == notes.Length && notes.Length == other.notes.Length)
 			return 5; // perfect match
 		else if (matchedNotes >= notes.Length * 0.75)
-			return 4; // good match
+			return 4; // good
 		else if (matchedNotes >= notes.Length * 0.5)
-			return 3; // okay
+			return 3; // ok
 		else if (matchedNotes >= notes.Length * 0.25)
-			return 2; // weak
+			return 2; // poor
 		else
 			return 1; // bad
 	}
+
 }
