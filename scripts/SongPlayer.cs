@@ -19,17 +19,21 @@ public partial class SongPlayer : Node
 	public SongPlayer(){
 	}
 	
-	  public void LoadAndStartSong()
+		 // starts the song and sends ideal notes
+	public void LoadAndStartSong()
 	{
-		foreach (var note in noteList)
+		NoteComparison.StartSongTimer();
+
+		for (int i = 0; i < noteList.Length; i++)
 		{
-			NoteComparison.AddIdealNote(note);  // Add each ideal note to the comparison stack
+			NoteComparison.AddIdealNote(noteList[i]);
 		}
 	}
 
-	// This method is called when the song ends, and it reports the final grades
+	// stop song and report scores
 	public void EndSong()
 	{
-		NoteComparison.ReportFinalGrades();  // Report the final pitch and timing grades
+		NoteComparison.StopSongTimer();
+		NoteComparison.ReportFinalGrades();
 	}
 }

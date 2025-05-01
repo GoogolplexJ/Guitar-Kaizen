@@ -5,31 +5,36 @@ using System.Diagnostics;
 
 public partial class NoteHandler : Node
 {
-	private Stack<int[]> detectedNotesStack = new();  // A stack to hold the detected notes
-	private Stopwatch noteTimer = new();  // Stopwatch to track how long a note is held
+	private Stopwatch noteTimer = new Stopwatch(); // keeps track of time since song started
+	private bool firstNoteHeard = false; // to avoid overwriting first detection time
 
 	public override void _Ready()
 	{
-		noteTimer.Start();  // Start the stopwatch when the node is ready
+		noteTimer.Start(); // start timer when scene is ready
 	}
 
-	// This method receives the detected notes and calculates how long each note was held
 	public void ReceiveDetectedNotes(int[] detectedNotes)
 	{
 		GD.Print("Received detected notes: " + string.Join(",", detectedNotes));
 
 		if (detectedNotes != null && detectedNotes.Length > 0)
 		{
-			double noteLength = noteTimer.Elapsed.TotalSeconds;  // Get the length of the note based on the stopwatch
-			noteTimer.Restart();  // Restart the timer to track the next note
-			CreateAndSendNote(detectedNotes, noteLength);  // Create the note object and send it for comparison
+			// only set time once after signal
+			if (!firstNoteHeard)
+			{
+				double detectedTime = noteTimer.Elapsed.TotalSeconds;
+				NoteComparison.SetFirstNoteHeardTime(detectedTime);
+				firstNoteHeard = true;
+			}
+
+			// send the detected note to be compared
+			Note newNote = new Note(0, detectedNotes);
+			NoteComparison.AddInputNote(newNote);
 		}
 	}
 
-	// This method creates a Note object and passes it to NoteComparison for comparison
-	private void CreateAndSendNote(int[] notes, double length)
+	public void ResetNoteDetection()
 	{
-		Note newNote = new Note(length, notes);  // Create a new note object
-		NoteComparison.AddInputNote(newNote);  // Add the note to the comparison list
+		firstNoteHeard = false; // reset so next note gets timestamped
 	}
 }
