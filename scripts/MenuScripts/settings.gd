@@ -1,3 +1,7 @@
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 extends Control
 
 func _input(event: InputEvent) -> void:

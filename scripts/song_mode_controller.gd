@@ -1,7 +1,11 @@
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 extends Node2D
 
 const Note := preload("res://scripts/Note.cs")
-const SongPlayer := preload("res://scripts/SongPlayer.cs")
+const SongPlayer := preload("res://scripts/song_player.gd")
 @export var note_visual_scene : PackedScene
 
 #notes spawn in the middle of the staff vertically

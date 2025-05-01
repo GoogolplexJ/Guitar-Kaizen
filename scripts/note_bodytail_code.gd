@@ -1,3 +1,7 @@
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 extends RigidBody2D
 #include note class in code
 const Note := preload("res://scripts/Note.cs")
