@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctgxe4ismloig"]
+
+[ext_resource type="Script" uid="uid://c5ca5vjun10ex" path="res://scenes/song_selection_box.gd" id="1_3gig2"]
+[ext_resource type="Texture2D" uid="uid://bdrofn4unismu" path="res://icon.svg" id="2_db08e"]
+[ext_resource type="Texture2D" uid="uid://pjbvwddi2bse" path="res://assets/SongSelectionAssets/levelLock.png" id="3_53cky"]
+
+[node name="SongSelectionBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3gig2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(380, 380)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="cover" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_db08e")
+
+[node name="disabled" type="ColorRect" parent="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0.764706)
+layout_mode = 2
+color = Color(0.0509631, 0.0467059, 0.146767, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/disabled"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="lock" type="TextureRect" parent="PanelContainer/disabled/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_53cky")

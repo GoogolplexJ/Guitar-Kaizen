@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bofs51466wwnm"]
+[gd_scene load_steps=3 format=3 uid="uid://bofs51466wwnm"]
 
 [ext_resource type="Script" uid="uid://b2nw5tsathk55" path="res://scripts/MenuScripts/song_selection.gd" id="1_j3ywq"]
+[ext_resource type="PackedScene" uid="uid://ctgxe4ismloig" path="res://scenes/songSelectionBox.tscn" id="2_j3ywq"]
 
 [node name="SongSelection" type="Control"]
 layout_mode = 3
@@ -23,10 +24,21 @@ grow_vertical = 2
 theme_override_constants/margin_top = 300
 theme_override_constants/margin_bottom = 400
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="fullMenu" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="clipControl" type="Control" parent="CanvasLayer/MarginContainer/fullMenu"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="songOptions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/fullMenu/clipControl"]
+layout_mode = 0
+
+[node name="demoSong" parent="CanvasLayer/MarginContainer/fullMenu/clipControl/songOptions" instance=ExtResource("2_j3ywq")]
+layout_mode = 2
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
 offset_left = 574.0

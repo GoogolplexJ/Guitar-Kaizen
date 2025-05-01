@@ -1,3 +1,5 @@
+#modified from https://www.nightquestgames.com/changing-scenes-in-godot-4-is-easy/
+
 extends Node
 class_name NSceneSwitch
 
