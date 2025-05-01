@@ -1,3 +1,5 @@
+//written by: Alicia
+//
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,8 @@ public partial class NoteComparison : Node
 			Note idealNote = idealNotesStack.Pop();  // Get the next ideal note
 
 			int pitchScore = inputNote.CompareTo(idealNote);  // Get the pitch score from the comparison
+			//when the signal is being sent (From Songmode) online_collisionbodyentered and when the note is actually playes
+			//NoteHandler noteLength variable
 			double timingDiff = System.Math.Abs(inputNote.GetLength() - idealNote.GetLength());  // Calculate the timing difference
 			int timingScore = JudgeTiming(timingDiff);  // Judge the timing score based on the difference
 

@@ -49,33 +49,33 @@ public partial class Note : Node, IComparable<Note>
 	public void SetSharpFlat(int value) { sharpFlat = value; }
 
 	// CompareTo method compares notes based on pitch
+	//written by: Alicia
 	public int CompareTo(Note other)
 	{
-		int goodness = 0;
-		int howIsPitch = 0;
-		
-		// Compare each note's pitch
+		int matchedNotes = 0;
+
 		for (int i = 0; i < notes.Length; i++)
 		{
 			for (int j = 0; j < other.notes.Length; j++)
 			{
-				if (notes[i] == other.notes[j])  // If the notes match in pitch
+				if (notes[i] == other.notes[j])
 				{
-					howIsPitch++;
+					matchedNotes++;
+					break; // don't double-count
 				}
 			}
 		}
 
-		// If all notes match in pitch, we give it the highest score (5)
-		if (howIsPitch == notes.Length)
-		{
-			goodness = 5;
-		}
+		if (matchedNotes == notes.Length && notes.Length == other.notes.Length)
+			return 5; // perfect match
+		else if (matchedNotes >= notes.Length * 0.75)
+			return 4; // good
+		else if (matchedNotes >= notes.Length * 0.5)
+			return 3; // ok
+		else if (matchedNotes >= notes.Length * 0.25)
+			return 2; // poor
 		else
-		{
-			goodness = 1;  // If not all notes match, score it poorly (1)
-		}
-
-		return goodness;
+			return 1; // bad
 	}
+
 }
