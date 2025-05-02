@@ -41,9 +41,11 @@ size_flags_horizontal = 3
 layout_mode = 0
 
 [node name="demoSong" parent="CanvasLayer/MarginContainer/fullMenu/clipControl/songOptions" instance=ExtResource("2_j3ywq")]
+visible = false
 layout_mode = 2
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
+visible = false
 offset_left = 574.0
 offset_top = 901.0
 offset_right = 732.0
@@ -53,6 +55,7 @@ placeholder_text = "song name here
 don't include .dat"
 
 [node name="PlayButton" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 990.0
 offset_top = 896.0
 offset_right = 1101.0
