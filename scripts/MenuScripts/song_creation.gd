@@ -10,8 +10,8 @@ var barLength = ""
 var barType = 0 
 var noteLength = 2
 var folder_path := "user://SongFiles/"
-var save_name := "noNameSong.dat"
-var save_path := folder_path + save_name
+var save_name := "noNameSong"
+var save_path := folder_path + save_name + ".dat"
 var file = FileAccess.open(save_path, FileAccess.WRITE)
 
 # when scene starts make sure variables are at default,
@@ -41,7 +41,6 @@ func _blank_variables() -> void:
 	bpm = ""
 	barLength = ""
 	barType = 0 
-	noteLength = 2
 
 # List Based Buttons, changes index in list to new value 
 # based on which note changed
@@ -120,9 +119,9 @@ func _on_bar_type_item_selected(index: int) -> void:
 func _on_bpm_text_changed() -> void:
 	bpm = $BPM/BPM.text
 func _on_bot_signature_text_changed() -> void:
-	barLength = $TimeSignatures/BotSignature.text
+	botText = $TimeSignatures/BotSignature.text
 func _on_top_signature_text_changed() -> void:
-	barLength = $TimeSignatures/TopSignature.text
+	topText = $TimeSignatures/TopSignature.text
 
 
 # file writing section
@@ -195,4 +194,4 @@ func _on_append_pressed() -> void:
 
 func _on_name_text_changed() -> void:
 	save_name = $Create/Name.text
-	save_path = folder_path + save_name
+	save_path = folder_path + save_name + ".dat"

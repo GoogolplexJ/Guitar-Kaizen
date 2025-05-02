@@ -8,13 +8,13 @@ var allList = []
 var noteList = []
 var currentTime
 var folder_path := "user://SongFiles/"
-var save_name := "noNameSong.dat"
-var save_path := folder_path + save_name
+var save_name := "noNameSong"
+var save_path := folder_path + save_name + ".dat"
 var file = FileAccess.open(save_path, FileAccess.READ)
 
 func build_song(songName : String) -> void:
-	save_name = "songName"
-	save_path = folder_path + save_name + ".dat"
+	save_name = songName
+	save_path = folder_path + save_name
 	file = FileAccess.open(save_path, FileAccess.READ)
 	var temp = 0
 	while file.get_position() < file.get_length():
@@ -28,7 +28,6 @@ func build_song(songName : String) -> void:
 				build_time_signature()
 			252: #Bar
 				build_bar()
-	pass
 
 func build_note() -> void:
 	allList.append("N")
@@ -39,7 +38,19 @@ func build_note() -> void:
 	while file.get_8() == 251:
 		notes.append(file.get_8())
 		signs.append(file.get_8())
-	note.length = length
+	var leng = 0.0
+	match length:
+		0:
+			leng = 1.0 / 16.0
+		1:
+			leng = 1.0 / 8.0
+		2:
+			leng = 1.0 / 4.0
+		3:
+			leng = 1.0 / 2.0
+		4:
+			leng = 1.0
+	note.length = leng
 	note.notes = notes
 	note.sign = signs
 	allList.append(note)

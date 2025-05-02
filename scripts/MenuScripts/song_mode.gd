@@ -39,7 +39,7 @@ func _on_note_timer_timeout() -> void:
 	
 #TODO: note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
-	print("notepassed")
+	#print("notepassed")
 	$notes/lineCollision/ColorRect.color(Color(0, 1, 1, 1))
 	
 	
@@ -58,8 +58,9 @@ func _ready():
 	$notes.add_child(songModeControl)
 	#generate all note visuals before song starts
 	#NOTE: after new songs have been implemented, change to loading real song rather than test
-	var test = test_song.instantiate()
-	song = test.create_test_song()
+	#var test = test_song.instantiate()
+	song = SongPlayer.new()
+	song.build_song(MusicVisualizerVariables.song_to_load)
 	songModeControl.song = song
 	songModeControl.load_song()
 	#start the start timer so that there is a delay before the notes move

@@ -29,10 +29,10 @@ var song : SongPlayer
 #return the speed which notes move in pixels/sec
 #NOTE: choose a value which gives notes adequate space and player adequate time to prepare
 func song_speed() -> float:
-	return -song.bpm*3.5 #adjust multiplication value if it ends up being too fast in testing
+	return -BPMs[0]*3.5 #adjust multiplication value if it ends up being too fast in testing
 	
 func note_timing_calc(noteTime : float) -> float:
-	return (noteTime * song.timeSignatureTop * 60)/song.bpm 
+	return (noteTime * song.timeSignatureBottom * 60)/BPMs[0]
 	#assign note timer's next wait time based on note length and song speed
 	
 #function for spawning a note into the node tree in the correct position	
@@ -53,7 +53,7 @@ func spawn_note(note : Note, barNote : int) -> Node:
 func load_song():
 	#TODO: run through all notes in the song to assign bar note positions (0 if no bar)
 	barNote = []
-	for i in song.allList.length:
+	for i in song.allList.size():
 		match song.allList[i]:
 			"N":
 				i+=1
@@ -76,9 +76,10 @@ func load_note(note : Note) -> void:
 	noteLength.push_front(note.length)
 
 func load_BPM(bpm : int) -> void:
-	pass
+	BPMs.push_front(bpm)
 func load_time_signature(timeTop : int, timeBottom: int) -> void:
-	pass
+	song.timeSignatureTop = timeTop
+	song.timeSignatureBottom = timeBottom
 
 
 # loads notes with the barNote list set to the furthest value from the center
@@ -96,8 +97,8 @@ func find_min_max(list : Array[Note]) -> int:
 	var max = 20
 	var min = 21
 	for note in list:
-		if(note.notes[note.notes.length - 1] > max):
-			max = note.notes[note.notes.length - 1]
+		if(note.notes[note.notes.size() - 1] > max):
+			max = note.notes[note.notes.size() - 1]
 		if(note.notes[0] < min):
 			min = note.notes[0]
 	max = max - 20

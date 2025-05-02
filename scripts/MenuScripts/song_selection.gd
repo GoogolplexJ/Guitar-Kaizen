@@ -16,5 +16,5 @@ func _on_text_edit_text_changed() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	MusicVisualizerVariables.song_to_load = file_name
+	MusicVisualizerVariables.song_to_load = file_name + ".dat"
 	SceneSwitcher.SwitchScene("SongMode")
