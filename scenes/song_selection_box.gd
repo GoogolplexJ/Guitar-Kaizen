@@ -14,8 +14,6 @@ extends Control
 @onready var lock = $PanelContainer/disabled
 @onready var cover = $PanelContainer/cover
 
-var title
-
 func set_locked(value):
 	locked = value
 	if not is_inside_tree():
@@ -30,11 +28,8 @@ func set_cover(value : Texture):
 	cover.texture_normal = song_cover
 
 func set_title(value):
-	title = value
-	$Label.text = title
+	song_title = value
+	$Label.text = value.rstrip(".dat")
 
 func get_button() -> Node:
 	return $PanelContainer/cover
-
-func _on_cover_pressed(extra_arg_0: String) -> void:
-	pass # Replace with function body.
