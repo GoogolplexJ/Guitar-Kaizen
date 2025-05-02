@@ -18,4 +18,22 @@ public partial class SongPlayer : Node
 	//blank constructor for gdscript
 	public SongPlayer(){
 	}
+	
+		 // starts the song and sends ideal notes
+	public void LoadAndStartSong()
+	{
+		NoteComparison.StartSongTimer();
+
+		for (int i = 0; i < noteList.Length; i++)
+		{
+			NoteComparison.AddIdealNote(noteList[i]);
+		}
+	}
+
+	// stop song and report scores
+	public void EndSong()
+	{
+		NoteComparison.StopSongTimer();
+		NoteComparison.ReportFinalGrades();
+	}
 }
