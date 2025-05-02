@@ -42,6 +42,7 @@ func _on_note_timer_timeout() -> void:
 #TODO: note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
 	#print("notepassed")
+	compare.StaticSayHello()
 	compare.AddIdealNote(song.noteList[0])
 	$notes/lineCollision/ColorRect.color = Color(0, 1, 1, 1)
 
@@ -67,6 +68,7 @@ func _ready():
 	#generate all note visuals before song starts
 	#NOTE: after new songs have been implemented, change to loading real song rather than test
 	#var test = test_song.instantiate()
+	compare = load("res://scripts/NoteComparison.cs") as Script
 	song = SongPlayer.new()
 	song.build_song(MusicVisualizerVariables.song_to_load)
 	songModeControl.song = song

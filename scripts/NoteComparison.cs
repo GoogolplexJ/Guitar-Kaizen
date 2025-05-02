@@ -22,6 +22,9 @@ public partial class NoteComparison : Node
 		TryCompareNotes(); // check if we have a note to compare to
 	}
 
+	public static void StaticSayHello() => GD.Print("Hello from C#!");
+	public static void StaticWeird(Note note) => idealNotesStack.Push(note);
+
 	// game added a note to expect
 	public static void AddIdealNote(Note note)
 	{
@@ -62,7 +65,7 @@ public partial class NoteComparison : Node
 		while (idealNotesStack.Count > 0)
 		{
 			Note idealNote = idealNotesStack.Pop();
-			Note inputNote = inputNotesStack.Pop();
+			Note inputNote;
 			if(inputNotesStack.Count > 0){
 				inputNote = inputNotesStack.Pop();
 			}
