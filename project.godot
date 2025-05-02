@@ -23,6 +23,7 @@ driver/enable_input=true
 
 SceneSwitcher="*res://SceneSwitcher/SceneSwitcher.tscn"
 MusicVisualizerVariables="*res://scripts/music_vis_variables.gd"
+NoteHandler="*res://scripts/NoteHandler.cs"
 
 [display]
 

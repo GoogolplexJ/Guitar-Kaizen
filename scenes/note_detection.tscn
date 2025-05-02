@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyylh1hafuexu"]
+
+[ext_resource type="Script" path="res://scripts/NoteDetection.gd" id="1_fsotx"]
+[ext_resource type="Script" uid="uid://nlfpj7rab5fv" path="res://scripts/NoteHandler.cs" id="2_e84xy"]
+
+[node name="NoteDetection" type="Node2D"]
+script = ExtResource("1_fsotx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="NoteHandler" type="Node" parent="."]
+script = ExtResource("2_e84xy")

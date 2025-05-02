@@ -19,6 +19,8 @@ var ready_for_detection = false  # Flag to determine if audio detection is ready
 # Timer used to control printing rate of detected notes
 var print_timer: Timer
 
+var note_handler : NoteHandler  # Reference to NoteHandler
+
 func _ready():
 	# Called once when the node enters the scene tree
 	print("Initializing microphone and analyzer...")
@@ -29,7 +31,7 @@ func _ready():
 		print("Audio bus 'Master' not found.")
 		return
 
-	# Create and attach a spectrum analyzer to the Master bus
+	# Create and attach a spectrum analyzer to the Master bus, Im thinking we make another bus.
 	spectrum_analyzer = AudioEffectSpectrumAnalyzer.new()
 	AudioServer.add_bus_effect(bus_index, spectrum_analyzer)
 
@@ -39,7 +41,7 @@ func _ready():
 	$AudioStreamPlayer.play()
 	print("Microphone stream started.")
 
-	# Wait for STARTUP_DELAY before proceeding (gives hardware time to initialize)
+	
 	await get_tree().create_timer(STARTUP_DELAY).timeout
 
 	# Get the instance of the spectrum analyzer so we can fetch frequency data in real time
@@ -57,6 +59,9 @@ func _ready():
 	print_timer.connect("timeout", Callable(self, "_on_print_timer_timeout"))
 	add_child(print_timer)
 	print_timer.start()
+
+	# Initialize NoteHandler
+	note_handler = $NoteHandler  # Ensure NoteHandler is a child node of th
 
 func _process(_delta):
 	# Runs every frame. Used here to continuously analyze audio data.
@@ -100,6 +105,9 @@ func _process(_delta):
 			if note_number not in detected_notes:
 				detected_notes.append(note_number)
 
+	# Debugging output: Check what was detected
+	print("Detected notes: " + str(detected_notes))
+
 	# If any notes were detected
 	if detected_notes.size() > 0:
 		# If the same notes are detected as the previous frame, increase persistence
@@ -111,14 +119,14 @@ func _process(_delta):
 
 		last_detected_notes = detected_notes
 
-		# If persistence meets the threshold, print the detected notes
+		# If persistence meets the threshold, pass the detected notes to the NoteHandler
 		if detection_persistence >= PERSISTENCE_THRESHOLD:
-			print("Detected Note Numbers: ", detected_notes)
+			print("Passing notes to NoteHandler")  # Debug output
+			note_handler.ReceiveDetectedNotes(detected_notes)  # Pass detected notes to NoteHandler
 			print_timer.start()
 	else:
 		# Reset persistence if no notes are detected
 		detection_persistence = 0
 
 func _on_print_timer_timeout():
-	# Placeholder function for timed output handling (can be used to print or update UI)
 	pass
