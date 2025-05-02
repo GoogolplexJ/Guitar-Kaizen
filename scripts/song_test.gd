@@ -1,7 +1,11 @@
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 extends Node2D
 
 const Note := preload("res://scripts/Note.cs")
-const SongPlayer := preload("res://scripts/SongPlayer.cs")
+const SongPlayer := preload("res://scripts/song_player.gd")
 
 #testing code
 #create a note object for testing

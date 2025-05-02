@@ -1,3 +1,7 @@
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 extends Control
 class_name NSongMode
 @onready var staff := $"staffCreation/staff"
@@ -5,7 +9,7 @@ class_name NSongMode
 @onready var noteTimer := $notes/noteTimer
 @onready var colLine := $notes/lineCollision
 const Note := preload("res://scripts/Note.cs")
-const SongPlayer := preload("res://scripts/SongPlayer.cs")
+const SongPlayer := preload("res://scripts/song_player.gd")
 @export var note_visual_scene : PackedScene
 @export var song_mode_controller_scene : PackedScene
 @export var test_song : PackedScene
@@ -37,6 +41,7 @@ func _on_note_timer_timeout() -> void:
 func _on_line_collision_body_entered(body: Node2D) -> void:
 	print("notepassed")
 	$notes/lineCollision/ColorRect.color(Color(0, 1, 1, 1))
+	
 	
 func _ready():
 	#adjust staff based on set size
