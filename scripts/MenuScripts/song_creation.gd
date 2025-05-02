@@ -195,4 +195,4 @@ func _on_append_pressed() -> void:
 
 func _on_name_text_changed() -> void:
 	save_name = $Create/Name.text
-	save_path = folder_path + save_name
+	save_path = folder_path + save_name + ".dat"

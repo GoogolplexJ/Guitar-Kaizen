@@ -30,6 +30,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_gyr1k")
+selection_box = ExtResource("2_j3ywq")
 
 [node name="clipControl" type="Control" parent="CanvasLayer/MarginContainer/fullMenu"]
 clip_contents = true
