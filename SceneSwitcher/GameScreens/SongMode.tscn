@@ -134,3 +134,5 @@ bus = &"Mic"
 
 [connection signal="timeout" from="notes/noteTimer" to="." method="_on_note_timer_timeout"]
 [connection signal="timeout" from="notes/startTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="body_entered" from="notes/lineCollision" to="." method="_on_line_collision_body_entered"]
+[connection signal="body_exited" from="notes/lineCollision" to="." method="_on_line_collision_body_exited"]
