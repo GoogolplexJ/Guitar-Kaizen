@@ -1,21 +1,24 @@
 using Godot;
 using System;
 
+// Note is the backbone of the project, most everything that deals with notes goes through the Note class
+// This means it must be versitile, and able to handle notes from player input and notes from the in game song
+// The class is a comparible to allow for the scoring and feedback that forms the rythm game
 public partial class Note : Node, IComparable<Note>
 {
-	private double length;
-	private int[] notes;      // this holds the pitch values
-	private int sharpFlat;    // for future use maybe
-	private int[] sign;       // for future use maybe
+	double length; // for timing purposes, how long the note is playing
+	int[] notes; // arrays of notes played at the same time
+	int sharpFlat; 
+	int[] sign;
 
-	// constructor when we know the notes and sharp/flat info
+	// constructor for player-side notes
 	public Note(int[] n, int sF)
 	{
 		notes = n;
 		sharpFlat = sF;
 	}
 
-	// constructor when we know the length and notes
+	// constructor for computer side notes, defaulted to all signs as none
 	public Note(double l, int[] n)
 	{
 		length = l;
@@ -24,7 +27,7 @@ public partial class Note : Node, IComparable<Note>
 		Array.Fill(sign, 0);
 	}
 
-	// constructor when we also know the sign values
+	// constructor for computer side notes, including signs
 	public Note(double l, int[] n, int[] s)
 	{
 		length = l;
@@ -32,7 +35,9 @@ public partial class Note : Node, IComparable<Note>
 		sign = s;
 	}
 
-	public Note() {}
+	// blank constructor and initializer for use with GDScript
+	public Note(){
+	}
 
 	public int[] GetNotes() { return notes; }
 	public void SetNotes(int[] value) { notes = value; }
