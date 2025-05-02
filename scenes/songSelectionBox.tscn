@@ -15,18 +15,22 @@ script = ExtResource("1_3gig2")
 song_cover = ExtResource("2_db08e")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 12
 anchor_top = 1.0
-anchor_bottom = 1.15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "DEMO"
 label_settings = SubResource("LabelSettings_3gig2")
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(380, 380)
