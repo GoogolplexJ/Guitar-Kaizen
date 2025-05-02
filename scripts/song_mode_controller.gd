@@ -1,7 +1,7 @@
 extends Node2D
 
 const Note := preload("res://scripts/Note.cs")
-const SongPlayer := preload("res://scripts/SongPlayer.cs")
+const SongPlayer := preload("res://scripts/song_player.gd")
 @export var note_visual_scene : PackedScene
 
 #notes spawn in the middle of the staff vertically
@@ -13,7 +13,14 @@ var noteSpawnX = 2000
 var noteVisNodes = []
 var noteLength = []
 
+# BPM's and how many notes are part of the bpm
+var BPMs = []
+var BPMNotes = []
+
+var barNote : Array[int]
+
 var song : SongPlayer
+
 
 #return the speed which notes move in pixels/sec
 #NOTE: choose a value which gives notes adequate space and player adequate time to prepare
@@ -38,8 +45,66 @@ func spawn_note(note : Note, barNote : int) -> Node:
 	add_child(newNote)
 	return newNote
 
-#TODO: change barInfo functions when song reading is implemented
+
 func load_song():
+	#TODO: run through all notes in the song to assign bar note positions (0 if no bar)
+	barNote = []
+	for i in song.allList.length:
+		match song.allList[i]:
+			"N":
+				i+=1
+				barNote.push_front(0)
+				load_note(song.allList[i])
+			"B":
+				i+=1
+				load_BPM(song.allList[i])
+			"T":
+				i+=2
+				load_time_signature(song.allList[i-1], song.allList[i])
+			"I":
+				i+=1
+				load_Bar(song.allList[i], i)
+				i += song.allList[i]
+	noteLength.push_front(1)
+
+func load_note(note : Note) -> void:
+	noteVisNodes.push_front(spawn_note(note, barNote.pop_back()))
+	noteLength.push_front(note.length)
+
+func load_BPM(bpm : int) -> void:
+	pass
+func load_time_signature(timeTop : int, timeBottom: int) -> void:
+	pass
+
+
+# loads notes with the barNote list set to the furthest value from the center
+func load_Bar(barLength : int, index : int) -> void:
+	var list = []
+	for i in barLength:
+		list.append(song.allList[index + i*2])
+	var minMax = find_min_max(list)
+	for i in list:
+		barNote.push_front(minMax)
+		load_note(list[i])
+
+# finds the note furthest from the center
+func find_min_max(list : Array[Note]) -> int:
+	var max = 20
+	var min = 21
+	for note in list:
+		if(note.notes[note.notes.length - 1] > max):
+			max = note.notes[note.notes.length - 1]
+		if(note.notes[0] < min):
+			min = note.notes[0]
+	max = max - 20
+	min = 20 - min
+	if(min >= max):
+		return min
+	else:
+		return max
+
+#TODO: change barInfo functions when song reading is implemented
+func oldload_song():
 	#TODO: run through all notes in the song to assign bar note positions (0 if no bar)
 	var barNote : Array[int]
 	#generate note visual nodes for each note in the list and add them to a queue array
