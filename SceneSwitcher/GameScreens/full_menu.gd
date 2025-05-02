@@ -38,3 +38,4 @@ func generate_song_options(path):
 func _on_pressed(box):
 	print("button pressed:" + box.title)
 	MusicVisualizerVariables.song_to_load = box.title
+	SceneSwitcher.SwitchScene("SongMode")
