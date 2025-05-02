@@ -16,6 +16,7 @@ const NoteComparison := preload("res://scripts/NoteComparison.cs")
 @export var test_song : PackedScene
 var songName := ""
 
+var compare = load("res://scripts/NoteComparison.cs") as Script
 var song : SongPlayer
 var songModeControl
 #start delay before notes move, starts the noteTimer on timeout
@@ -41,12 +42,12 @@ func _on_note_timer_timeout() -> void:
 #TODO: note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
 	#print("notepassed")
-	NoteComparison.AddIdealNote(song.noteList[0])
+	compare.AddIdealNote(song.noteList[0])
 	$notes/lineCollision/ColorRect.color = Color(0, 1, 1, 1)
 
 func _on_line_collision_body_exited(body: Node2D) -> void:
 	#print("notepassed")
-	NoteComparison.AddIdealNote(song.noteList.pop_front())
+	compare.AddIdealNote(song.noteList.pop_front())
 	$notes/lineCollision/ColorRect.color = Color(.35, .32, .7, 1)
 	
 	
