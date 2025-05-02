@@ -28,7 +28,7 @@ public partial class NoteHandler : Node
 			}
 
 			// send the detected note to be compared
-			Note newNote = new Note(0, detectedNotes);
+			Note newNote = new Note(detectedNotes, 0);
 			NoteComparison.AddInputNote(newNote);
 		}
 	}

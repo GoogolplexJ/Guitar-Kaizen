@@ -59,10 +59,16 @@ public partial class NoteComparison : Node
 	// check if we can compare notes and score them
 	private static void TryCompareNotes()
 	{
-		while (inputNotesStack.Count > 0 && idealNotesStack.Count > 0)
+		while (idealNotesStack.Count > 0)
 		{
-			Note inputNote = inputNotesStack.Pop();
 			Note idealNote = idealNotesStack.Pop();
+			Note inputNote = inputNotesStack.Pop();
+			if(inputNotesStack.Count > 0){
+				inputNote = inputNotesStack.Pop();
+			}
+			else{
+				inputNote = new Note([0], 0);
+			}
 
 			int pitchScore = inputNote.CompareTo(idealNote);
 			int timingScore = 1; // default if no signal timing

@@ -10,6 +10,7 @@ class_name NSongMode
 @onready var colLine := $notes/lineCollision
 const Note := preload("res://scripts/Note.cs")
 const SongPlayer := preload("res://scripts/song_player.gd")
+const NoteComparison := preload("res://scripts/NoteComparison.cs")
 @export var note_visual_scene : PackedScene
 @export var song_mode_controller_scene : PackedScene
 @export var test_song : PackedScene
@@ -40,7 +41,13 @@ func _on_note_timer_timeout() -> void:
 #TODO: note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
 	#print("notepassed")
-	$notes/lineCollision/ColorRect.color(Color(0, 1, 1, 1))
+	NoteComparison.AddIdealNote(song.noteList[0])
+	$notes/lineCollision/ColorRect.color = Color(0, 1, 1, 1)
+
+func _on_line_collision_body_exited(body: Node2D) -> void:
+	#print("notepassed")
+	NoteComparison.AddIdealNote(song.noteList.pop_front())
+	$notes/lineCollision/ColorRect.color = Color(.35, .32, .7, 1)
 	
 	
 	
