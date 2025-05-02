@@ -50,7 +50,6 @@ func _on_line_collision_body_exited(body: Node2D) -> void:
 	$notes/lineCollision/ColorRect.color = Color(.35, .32, .7, 1)
 	
 	
-	
 func _ready():
 	#adjust staff based on set size
 	staff.add_theme_constant_override("margin_bottom", MusicVisualizerVariables.BOTTOM)
