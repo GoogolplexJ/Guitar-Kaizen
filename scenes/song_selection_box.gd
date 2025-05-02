@@ -31,6 +31,7 @@ func set_cover(value : Texture):
 
 func set_title(value):
 	title = value
+	$Label.text = title
 
 func get_button() -> Node:
 	return $PanelContainer/cover
