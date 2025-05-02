@@ -29,8 +29,11 @@ func generate_song_options(path):
 					#TODO: lock/unlock based off of level/difficulty
 					newBox.set_locked(false)
 					#TODO: assign cover as well
-					newBox.gui_input.connect(Callable(self, "_on_gui_input"))
+					newBox.get_button().pressed.connect(_on_pressed.bind(newBox))
 					$clipControl/songOptions.add_child(newBox)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
+		
+func _on_pressed(box):
+	pass
