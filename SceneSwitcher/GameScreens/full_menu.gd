@@ -36,4 +36,5 @@ func generate_song_options(path):
 		print("An error occurred when trying to access the path.")
 		
 func _on_pressed(box):
-	pass
+	print("button pressed:" + box.title)
+	MusicVisualizerVariables.song_to_load = box.title
