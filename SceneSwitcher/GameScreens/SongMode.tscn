@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbacimd6a4hgg"]
+[gd_scene load_steps=13 format=3 uid="uid://cbacimd6a4hgg"]
 
 [ext_resource type="Script" path="res://scripts/MenuScripts/song_mode.gd" id="1_n6xel"]
 [ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_li7gu"]
@@ -22,6 +22,21 @@ outline_color = Color(0.338287, 0.723125, 1, 1)
 size = Vector2(40, 800)
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_n6xel"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmest"]
+font_size = 100
+font_color = Color(0.763415, 0.816538, 0.987644, 1)
+outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ux03"]
+font_size = 100
+font_color = Color(0.763415, 0.816538, 0.987644, 1)
+outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmeu6"]
+font_size = 100
+font_color = Color(0.763415, 0.816538, 0.987644, 1)
+outline_size = 20
 
 [node name="SongMode" type="Control"]
 layout_mode = 3
@@ -131,6 +146,47 @@ color = Color(0.359074, 0.329805, 0.70878, 1)
 stream = SubResource("AudioStreamMicrophone_n6xel")
 autoplay = true
 bus = &"Mic"
+
+[node name="feedback" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="feedback"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 800
+
+[node name="HBoxContainer" type="HBoxContainer" parent="feedback/MarginContainer"]
+layout_mode = 2
+
+[node name="timing" type="Label" parent="feedback/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "TIMING"
+label_settings = SubResource("LabelSettings_fmest")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="perfect" type="Label" parent="feedback/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "PERFECT!"
+label_settings = SubResource("LabelSettings_5ux03")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pitch" type="Label" parent="feedback/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "PITCH"
+label_settings = SubResource("LabelSettings_qmeu6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="notes/noteTimer" to="." method="_on_note_timer_timeout"]
 [connection signal="timeout" from="notes/startTimer" to="." method="_on_start_timer_timeout"]
