@@ -31,7 +31,7 @@ outline_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ux03"]
 font_size = 100
-font_color = Color(0.763415, 0.816538, 0.987644, 1)
+font_color = Color(0.927654, 0.214398, 0.437606, 1)
 outline_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_qmeu6"]
@@ -167,6 +167,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "TIMING"
 label_settings = SubResource("LabelSettings_fmest")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="missed" type="Label" parent="feedback/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "MISSED"
+label_settings = SubResource("LabelSettings_5ux03")
 horizontal_alignment = 1
 vertical_alignment = 1
 
