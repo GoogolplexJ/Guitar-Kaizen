@@ -31,14 +31,14 @@ func _input(event):
 #TODO: box in the middle should also be selected
 func _on_left_button_pressed() -> void:
 	scroll_left()
-	menuControl.label_update(boxList[currentBox])
+	menuControl.middle_mode(boxList[currentBox])
 func scroll_left() -> void:
 	if currentBox > 0:
 		songOptions.position.x += boxWidth
 		currentBox -= 1
 func _on_right_button_pressed() -> void:
 	scroll_right()
-	menuControl.label_update(boxList[currentBox])
+	menuControl.middle_mode(boxList[currentBox])
 func scroll_right() -> void:
 	if currentBox < numBoxes -1:
 		songOptions.position.x -= boxWidth

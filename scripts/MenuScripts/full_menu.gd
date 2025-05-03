@@ -54,23 +54,20 @@ func _on_pressed(box):
 	#if button has already been selected once before, call second press function to go into the song
 	if current_selection != box:
 		first_press(box)
-		label_update(box)
+		middle_mode(box)
 	else:
 		second_press(box)
 	
-#select song to be played:
+#select song to be centered:
 func first_press(box):
-	#send a signal to the songSelection controller to update songTitle label
+	# send a signal to songSelection to scroll until it hits the position
 	pos_selected.emit(box.get_pos())
-	#move the selected song to the middle of the screen (and probably change its appearance)
-		#get current global position of the selection box
-		#change position of songOptions so that selection box is in the middle of the screen
-			#songOptions = -currentPos + width*2
-	#var currentPos = box.global_position.x
-	#$songOptions.position.x = -currentPos + boxWidth*2
-func label_update(box):
+
+#change the label to match box and allow box to enter second press
+func middle_mode(box):
+	#send a signal to the songSelection controller to update songTitle label
 	box_selected.emit(box.song_title.rstrip(".dat"))
-	current_selection = box
+	current_selection = box 
 
 #enter song mode with selected song
 func second_press(box):
