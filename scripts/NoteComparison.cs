@@ -3,7 +3,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 public partial class NoteComparison : Node
 {
@@ -11,19 +10,12 @@ public partial class NoteComparison : Node
 	private static Stack<Note> idealNotesStack = new Stack<Note>();
 	private static List<Grade> gradeList = new List<Grade>();
 
-	private static Stopwatch songTimer = new Stopwatch(); // using C#s Stopwatch rather than Godots built in Timer
-	private static double signalReceivedTime = -1.0;
-	private static double firstNoteHeardTime = -1.0;
 
 	// someone played a note
 	public static void AddInputNote(Note note)
 	{
 		inputNotesStack.Push(note);
-		TryCompareNotes(); // check if we have a note to compare to
 	}
-
-	public static void StaticSayHello() => GD.Print("Hello from C#!");
-	public static void StaticWeird(Note note) => idealNotesStack.Push(note);
 
 	// game added a note to expect
 	public static void AddIdealNote(Note note)
@@ -32,32 +24,7 @@ public partial class NoteComparison : Node
 		TryCompareNotes(); // check if we can compare
 	}
 
-	// start timing when song starts
-	public static void StartSongTimer()
-	{
-		songTimer.Restart();
-	}
 
-	public static void StopSongTimer()
-	{
-		songTimer.Stop();
-	}
-
-	// this is the time when the game says the note should be played
-	public static void CollisionSignalReceived()
-	{
-		signalReceivedTime = songTimer.Elapsed.TotalSeconds;
-		firstNoteHeardTime = -1.0; // reset
-	}
-
-	// store when the user actually played the note
-	public static void SetFirstNoteHeardTime(double time)
-	{
-		if (firstNoteHeardTime < 0)
-		{
-			firstNoteHeardTime = time;
-		}
-	}
 
 	// check if we can compare notes and score them
 	private static void TryCompareNotes()
@@ -73,20 +40,19 @@ public partial class NoteComparison : Node
 				inputNote = new Note([0], 0);
 			}
 
-			int pitchScore = inputNote.CompareTo(idealNote);
+			int pitchScore = idealNote.CompareTo(inputNote);
 			int timingScore = 1; // default if no signal timing
 
 			// if we know both signal and first note time, calculate timing score
-			if (signalReceivedTime >= 0 && firstNoteHeardTime >= 0)
-			{
-				double gap = Math.Abs(firstNoteHeardTime - signalReceivedTime);
-				// arbiutray values in seconds set
-				if (gap < 0.1) timingScore = 5;
-				else if (gap < 0.25) timingScore = 4;
-				else if (gap < 0.5) timingScore = 3;
-				else if (gap < 1.0) timingScore = 2;
-				else timingScore = 1;
-			}
+			double gap = Math.Abs((idealNote.timePlayed - inputNote.timePlayed) / 1000.0);
+			// arbiutray values in seconds set
+			if (gap < 0.1) timingScore = 5;
+			else if (gap < 0.25) timingScore = 4;
+			else if (gap < 0.5) timingScore = 3;
+			else if (gap < 1.0) timingScore = 2;
+			else timingScore = 1;
+			if(gap < 0) timingScore = -1;
+
 
 			GD.Print("Pitch Score: " + pitchScore + "/5, Timing Score: " + timingScore + "/5");
 			gradeList.Add(new Grade(pitchScore, timingScore));
@@ -98,7 +64,7 @@ public partial class NoteComparison : Node
 	{
 		if (gradeList.Count == 0)
 		{
-			GD.Print("No grades to report."); // Debugg statemnet
+			GD.Print("No grades to report."); // Debug statemnet
 			return;
 		}
 

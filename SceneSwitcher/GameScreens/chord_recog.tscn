@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://c5ti6n71nyy51"]
-
-[node name="chord_recog" type="Node2D"]
-
-[node name="chordLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

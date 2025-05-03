@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbacimd6a4hgg"]
+[gd_scene load_steps=14 format=3 uid="uid://cbacimd6a4hgg"]
 
 [ext_resource type="Script" path="res://scripts/MenuScripts/song_mode.gd" id="1_n6xel"]
 [ext_resource type="PackedScene" uid="uid://dy3torcm6kgtr" path="res://scenes/noteVisual.tscn" id="2_li7gu"]
 [ext_resource type="Texture2D" uid="uid://6ta84xcvcj6v" path="res://assets/SongModeAssets/staff.png" id="2_sdcru"]
 [ext_resource type="PackedScene" uid="uid://cgc0msuclybxt" path="res://scenes/songModeController.tscn" id="3_4hnoo"]
 [ext_resource type="PackedScene" uid="uid://cg2eqiq2uva0u" path="res://scenes/songTest.tscn" id="4_fmest"]
+[ext_resource type="PackedScene" uid="uid://cyylh1hafuexu" path="res://scenes/note_detection.tscn" id="6_5ux03"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6xel"]
 bg_color = Color(0.963062, 0.874223, 0.840529, 1)
@@ -187,6 +188,8 @@ text = "PITCH"
 label_settings = SubResource("LabelSettings_qmeu6")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="NoteDetection" parent="." instance=ExtResource("6_5ux03")]
 
 [connection signal="timeout" from="notes/noteTimer" to="." method="_on_note_timer_timeout"]
 [connection signal="timeout" from="notes/startTimer" to="." method="_on_start_timer_timeout"]

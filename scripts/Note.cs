@@ -6,16 +6,17 @@ using System;
 // The class is a comparible to allow for the scoring and feedback that forms the rythm game
 public partial class Note : Node, IComparable<Note>
 {
-	double length; // for timing purposes, how long the note is playing
-	int[] notes; // arrays of notes played at the same time
-	int sharpFlat; 
-	int[] sign;
+	public double length; // for timing purposes, how long the note is playing
+	public int[] notes; // arrays of notes played at the same time
+	public int sharpFlat; 
+	public int[] sign;
+	public int timePlayed;
 
 	// constructor for player-side notes
-	public Note(int[] n, int sF)
+	public Note(int[] n, int tP)
 	{
 		notes = n;
-		sharpFlat = sF;
+		timePlayed = tP;
 	}
 
 	// constructor for computer side notes, defaulted to all signs as none
@@ -39,6 +40,7 @@ public partial class Note : Node, IComparable<Note>
 	public Note(){
 	}
 
+	//written by: Alicia
 	public int[] GetNotes() { return notes; }
 	public void SetNotes(int[] value) { notes = value; }
 	public int[] GetSign() { return sign; }
@@ -48,8 +50,9 @@ public partial class Note : Node, IComparable<Note>
 	public int GetSharpFlat() { return sharpFlat; }
 	public void SetSharpFlat(int value) { sharpFlat = value; }
 
+
 	// CompareTo method compares notes based on pitch
-	//written by: Alicia
+	// written by: Jared
 	public int CompareTo(Note other)
 	{
 		int matchedNotes = 0;
@@ -66,7 +69,7 @@ public partial class Note : Node, IComparable<Note>
 			}
 		}
 
-		if (matchedNotes == notes.Length && notes.Length == other.notes.Length)
+		if (matchedNotes >= notes.Length)
 			return 5; // perfect match
 		else if (matchedNotes >= notes.Length * 0.75)
 			return 4; // good

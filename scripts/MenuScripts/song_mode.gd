@@ -42,12 +42,13 @@ func _on_note_timer_timeout() -> void:
 #TODO: note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
 	#print("notepassed")
-	compare.StaticSayHello()
+	song.noteList[0].timePlayed = Time.get_ticks_msec()
 	compare.AddIdealNote(song.noteList[0])
 	$notes/lineCollision/ColorRect.color = Color(0, 1, 1, 1)
 
 func _on_line_collision_body_exited(body: Node2D) -> void:
 	#print("notepassed")
+	song.noteList[0].timePlayed = Time.get_ticks_msec()
 	compare.AddIdealNote(song.noteList.pop_front())
 	$notes/lineCollision/ColorRect.color = Color(.35, .32, .7, 1)
 	

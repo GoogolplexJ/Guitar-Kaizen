@@ -26,20 +26,10 @@ func _ready():
 	print("Initializing microphone and analyzer...")
 
 	# Get the index of the Master audio bus (default bus)
-	var bus_index = AudioServer.get_bus_index("Master")
+	var bus_index = AudioServer.get_bus_index("Mic")
 	if bus_index == -1:
-		print("Audio bus 'Master' not found.")
+		print("Audio bus 'Mic' not found.")
 		return
-
-	# Create and attach a spectrum analyzer to the Master bus, Im thinking we make another bus.
-	spectrum_analyzer = AudioEffectSpectrumAnalyzer.new()
-	AudioServer.add_bus_effect(bus_index, spectrum_analyzer)
-
-	# Create and start the microphone stream
-	var mic = AudioStreamMicrophone.new()
-	$AudioStreamPlayer.stream = mic
-	$AudioStreamPlayer.play()
-	print("Microphone stream started.")
 
 	
 	await get_tree().create_timer(STARTUP_DELAY).timeout
@@ -64,10 +54,11 @@ func _ready():
 	note_handler = $NoteHandler  # Ensure NoteHandler is a child node of th
 
 func _process(_delta):
+	
 	# Runs every frame. Used here to continuously analyze audio data.
 	if not ready_for_detection:
 		return  # Exit early if the analyzer isn't set up yet
-
+	
 	var detected_notes := []  # Temporary list for notes detected in this frame
 	var max_magnitude = 0.0  # Highest magnitude found in frequency analysis
 	var average_magnitude = 0.0  # Used to estimate overall loudness
@@ -106,7 +97,7 @@ func _process(_delta):
 				detected_notes.append(note_number)
 
 	# Debugging output: Check what was detected
-	print("Detected notes: " + str(detected_notes))
+	#print("Detected notes: " + str(detected_notes))
 
 	# If any notes were detected
 	if detected_notes.size() > 0:
@@ -121,8 +112,8 @@ func _process(_delta):
 
 		# If persistence meets the threshold, pass the detected notes to the NoteHandler
 		if detection_persistence >= PERSISTENCE_THRESHOLD:
-			print("Passing notes to NoteHandler")  # Debug output
-			note_handler.ReceiveDetectedNotes(detected_notes)  # Pass detected notes to NoteHandler
+			#print("Passing notes to NoteHandler")  # Debug output
+			note_handler.ReceiveDetectedNotes(detected_notes, Time.get_ticks_msec())  # Pass detected notes to NoteHandler
 			print_timer.start()
 	else:
 		# Reset persistence if no notes are detected
