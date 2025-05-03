@@ -1,5 +1,5 @@
 extends Control
 
 func update_title(value):
-	print("titleUpdate")
+	#print("titleUpdate")
 	$songTitle.text = value

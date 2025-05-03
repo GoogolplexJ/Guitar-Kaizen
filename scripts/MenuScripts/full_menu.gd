@@ -7,6 +7,7 @@ var songPath = "user://SongFiles/"
 
 signal box_selected(value)
 var current_selection = null
+var boxWidth = 380
 
 func _ready() -> void:
 	generate_song_options(songPath)
@@ -50,11 +51,16 @@ func _on_pressed(box):
 		second_press(box)
 	
 #select song to be played:
-	#send a signal to the songSelection controller to update songTitle label
-	#move the selected song to the middle of the screen (and probably change its appearance)
 func first_press(box):
+	#send a signal to the songSelection controller to update songTitle label
 	box_selected.emit(box.song_title.rstrip(".dat"))
 	current_selection = box
+	#move the selected song to the middle of the screen (and probably change its appearance)
+		#get current global position of the selection box
+		#change position of songOptions so that selection box is in the middle of the screen
+			#songOptions = -currentPos + width*2
+	var currentPos = box.global_position.x
+	$songOptions.position.x = -currentPos + boxWidth*2
 
 #enter song mode with selected song
 func second_press(box):
