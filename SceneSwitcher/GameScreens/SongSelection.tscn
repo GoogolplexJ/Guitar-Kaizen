@@ -58,6 +58,7 @@ custom_minimum_size = Vector2(200, 0)
 anchors_preset = -1
 anchor_top = 0.25
 anchor_bottom = 0.65
+offset_right = 200.0
 grow_vertical = 2
 texture_hover = ExtResource("4_6kgji")
 ignore_texture_size = true
@@ -121,6 +122,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="box_selected" from="CanvasLayer/MarginContainer/clipControl" to="CanvasLayer/selectionDisp" method="update_title"]
+[connection signal="pos_selected" from="CanvasLayer/MarginContainer/clipControl" to="." method="_scroll_to_box"]
 [connection signal="pressed" from="CanvasLayer/leftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/rightButton" to="." method="_on_right_button_pressed"]
 [connection signal="text_changed" from="CanvasLayer/TextEdit" to="." method="_on_text_edit_text_changed"]

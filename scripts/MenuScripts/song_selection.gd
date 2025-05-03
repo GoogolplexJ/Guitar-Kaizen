@@ -10,7 +10,7 @@ extends Control
 var boxWidth = 380
 var numBoxes := 0
 var boxList : Array[Node]
-var currentBox := 1
+var currentBox := 0
 
 var file_name := "noNameSong"
 
@@ -30,19 +30,27 @@ func _input(event):
 #when arrow buttons (leftButton and rightButton) are pressed, move the songOptions box so that the next song is in the middle
 #TODO: box in the middle should also be selected
 func _on_left_button_pressed() -> void:
-	if currentBox < numBoxes -1:
-		#songOptions.position.x += boxWidth
-		currentBox += 1
-		update_box()
-	
-func _on_right_button_pressed() -> void:
+	scroll_left()
+	menuControl.label_update(boxList[currentBox])
+func scroll_left() -> void:
 	if currentBox > 0:
-		#songOptions.position.x -= boxWidth
+		songOptions.position.x += boxWidth
 		currentBox -= 1
-		update_box()
+func _on_right_button_pressed() -> void:
+	scroll_right()
+	menuControl.label_update(boxList[currentBox])
+func scroll_right() -> void:
+	if currentBox < numBoxes -1:
+		songOptions.position.x -= boxWidth
+		currentBox += 1
 
-func update_box():
-	menuControl.first_press(boxList[currentBox - 1])
+func _scroll_to_box(value) -> void:
+	while currentBox != value:
+		if(currentBox > value):
+			scroll_left()
+		else:
+			scroll_right()
+
 
 #signal methods for testing buttons
 func _on_text_edit_text_changed() -> void:

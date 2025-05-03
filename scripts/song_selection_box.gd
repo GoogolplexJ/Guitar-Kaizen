@@ -9,6 +9,7 @@ extends Control
 	set = set_cover
 @export var song_title = "hot Cross Buns": #placeholder
 	set = set_title
+var pos = 0
 #maybe add songPlayer object associated with song
 
 @onready var lock = $PanelContainer/disabled
@@ -33,3 +34,8 @@ func set_title(value):
 
 func get_button() -> Node:
 	return $PanelContainer/cover
+
+func set_pos(value):
+	pos = value
+func get_pos() -> int:
+	return pos
