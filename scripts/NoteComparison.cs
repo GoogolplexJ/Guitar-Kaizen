@@ -1,4 +1,4 @@
-//written by: Alicia
+//written by: Jared, Alicia
 //
 using Godot;
 using System;

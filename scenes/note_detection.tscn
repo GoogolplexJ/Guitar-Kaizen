@@ -9,4 +9,5 @@ script = ExtResource("1_fsotx")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_e84xy")
+autoplay = true
 bus = &"Mic"
