@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://6ta84xcvcj6v" path="res://assets/SongModeAssets/staff.png" id="2_sdcru"]
 [ext_resource type="PackedScene" uid="uid://cgc0msuclybxt" path="res://scenes/songModeController.tscn" id="3_4hnoo"]
 [ext_resource type="PackedScene" uid="uid://cg2eqiq2uva0u" path="res://scenes/songTest.tscn" id="4_fmest"]
-[ext_resource type="PackedScene" uid="uid://cyylh1hafuexu" path="res://scenes/note_detection.tscn" id="6_5ux03"]
+[ext_resource type="Script" uid="uid://2ajaeni6c36p" path="res://scripts/NoteComparison.cs" id="7_qmeu6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6xel"]
 bg_color = Color(0.963062, 0.874223, 0.840529, 1)
@@ -201,7 +201,8 @@ label_settings = SubResource("LabelSettings_qmeu6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NoteDetection" parent="." instance=ExtResource("6_5ux03")]
+[node name="NoteComparison" type="Node2D" parent="."]
+script = ExtResource("7_qmeu6")
 
 [connection signal="timeout" from="notes/noteTimer" to="." method="_on_note_timer_timeout"]
 [connection signal="timeout" from="notes/startTimer" to="." method="_on_start_timer_timeout"]

@@ -20,7 +20,7 @@ const NoteComparison := preload("res://scripts/NoteComparison.cs")
 @export var test_song : PackedScene
 var songName := ""
 
-var compare = load("res://scripts/NoteComparison.cs") as Script
+var compare : NoteComparison
 var song : SongPlayer
 var songModeControl
 #start delay before notes move, starts the noteTimer on timeout
@@ -48,20 +48,28 @@ func _on_line_collision_body_entered(body: Node2D) -> void:
 	#print("notepassed")
 	song.noteList[0].timePlayed = Time.get_ticks_msec()
 	#compare played note(s) to ideal note(s)
-	compare.AddIdealNote(song.noteList[0])
+	compare.AddIdealNote(song.noteList.pop_front())
 	$notes/lineCollision/ColorRect.color = Color(0, 1, 1, 1)
 	#TODO: collect timing and pitch score
 	#NOTE: feedback currently randomized for testing
-	display_feedback(randi() % 4 + 1, randi() % 4 + 1)
+	#display_feedback(randi() % 4 + 1, randi() % 4 + 1)
 
 func _on_line_collision_body_exited(body: Node2D) -> void:
 	#print("notepassed")
-	song.noteList[0].timePlayed = Time.get_ticks_msec()
-	compare.AddIdealNote(song.noteList.pop_front())
+	#song.noteList[0].timePlayed = Time.get_ticks_msec()
+	#compare.AddIdealNote(song.noteList.pop_front())
 	$notes/lineCollision/ColorRect.color = Color(.35, .32, .7, 1)
+	pass
 	
 	
 func _ready():
+	compare = NoteComparison.new() # creates a note comparison instance
+	compare.SetFeedback.connect(_display_feedback) # connects the note comparison signal to call _on_set_feedback
+	initialize_analizer()
+	initialize_visuals()
+
+# starts visuals and the timer before notes begin
+func initialize_visuals():
 	#adjust staff based on set size
 	staff.add_theme_constant_override("margin_bottom", MusicVisualizerVariables.BOTTOM)
 	staff.add_theme_constant_override("margin_top", MusicVisualizerVariables.TOP)
@@ -75,9 +83,7 @@ func _ready():
 	songModeControl = song_mode_controller_scene.instantiate()
 	$notes.add_child(songModeControl)
 	#generate all note visuals before song starts
-	#NOTE: after new songs have been implemented, change to loading real song rather than test
 	#var test = test_song.instantiate()
-	compare = load("res://scripts/NoteComparison.cs") as Script
 	song = SongPlayer.new()
 	song.build_song(MusicVisualizerVariables.song_to_load)
 	songModeControl.song = song
@@ -85,8 +91,6 @@ func _ready():
 	#start the start timer so that there is a delay before the notes move
 	$notes/startTimer.start()
 
-func _process(delta) -> void:
-	$notes/startLabel.set_text(str(int($notes/startTimer.get_time_left()+1)))
 
 func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
@@ -97,7 +101,7 @@ func _set_song(sN : String) -> void:
 	songName = sN
 
 #control rudamentary real time feedback labels
-func display_feedback(timing : int, pitch : int):
+func _display_feedback(timing : int, pitch : int):
 	#turn off all labels that may have been on
 	timingLabel.visible = false
 	missedLabel.visible = false
@@ -122,3 +126,64 @@ func display_feedback(timing : int, pitch : int):
 			_: pitchLabel.text = "OFF NOTE"
 		pitchLabel.visible = true
 		timingLabel.visible = true
+
+
+
+# Constants to control detection behavior and limits
+const MIN_DETECTION_MAGNITUDE = 0.04  # Relative threshold to filter out weak frequency detections
+const VALID_NOTE_RANGE_HZ = [82, 659]  # Frequency range (Hz) between E2 and E5, typical for guitar
+
+# Audio processing components
+var spectrum_instance: AudioEffectSpectrumAnalyzerInstance  # Runtime instance for fetching audio frequency data
+var ready_for_detection = false  # Flag to determine if audio detection is ready
+
+# creates instances to be ready for audio processing
+func initialize_analizer():
+	#print("Initializing microphone and analyzer...")
+
+	# Get the index of the Master audio bus (default bus)
+	var bus_index = AudioServer.get_bus_index("Mic")
+	if bus_index == -1:
+		print("Audio bus 'Mic' not found.")
+		return
+
+	# Get the instance of the spectrum analyzer so we can fetch frequency data in real time
+	spectrum_instance = AudioServer.get_bus_effect_instance(bus_index, 0)
+	if spectrum_instance:
+		ready_for_detection = true
+	#	print("Spectrum analyzer ready.")
+	else:
+		print("Failed to initialize spectrum analyzer.")
+
+
+func _process(_delta):
+	
+	$notes/startLabel.set_text(str(int($notes/startTimer.get_time_left()+1)))
+	# Runs every frame. Used here to continuously analyze audio data.
+	if not ready_for_detection:
+		return  # Exit early if the analyzer isn't set up yet
+	
+	var detected_notes := []  # Temporary list for notes detected in this frame
+
+	# Find strong frequency peaks within the valid note range
+	for f in range(VALID_NOTE_RANGE_HZ[0], VALID_NOTE_RANGE_HZ[1], 5):
+		# Get the average magnitude of a small frequency window centered at f
+		var magnitude = spectrum_instance.get_magnitude_for_frequency_range(f - 2, f + 2).length()
+
+		# Check if this frequency is strong enough to be considered a note
+		if magnitude > MIN_DETECTION_MAGNITUDE:
+			# Convert frequency to an approximate note number
+			var note_index = 12 * log(f / 440.0) / log(2) + 30  # 440 Hz is A4
+			var note_number = round(note_index)
+
+			# Avoid adding duplicate note numbers
+			if note_number not in detected_notes:
+				detected_notes.append(note_number)
+
+	# Debugging output: Check what was detected
+	#print("Detected notes: " + str(detected_notes))
+
+	# If any notes were detected
+	if detected_notes.size() > 0:
+		#print("Passing notes to NoteHandler")  # Debug output
+		compare.PushDetectedNote(detected_notes, Time.get_ticks_msec())  # Pass detected notes to NoteHandler
