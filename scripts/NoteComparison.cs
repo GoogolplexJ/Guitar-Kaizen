@@ -6,30 +6,34 @@ using System.Collections.Generic;
 
 public partial class NoteComparison : Node
 {
-	private static Stack<Note> inputNotesStack = new Stack<Note>();
-	private static Stack<Note> idealNotesStack = new Stack<Note>();
-	private static List<Grade> gradeList = new List<Grade>();
+	private Stack<Note> inputNotesStack = new Stack<Note>();
+	private Stack<Note> idealNotesStack = new Stack<Note>();
+	private List<Grade> gradeList = new List<Grade>();
+	[Signal]
+	public delegate void SetFeedbackEventHandler(int timing, int pitch);
 
 
+	public NoteComparison(){
+	}
 
 	// game added a note to expect
-	public static void AddIdealNote(Note note)
+	public void AddIdealNote(Note note)
 	{
 		idealNotesStack.Push(note);
 		TryCompareNotes(); // check if we can compare
 	}
 
 	// played note is added to stack
-	public static void PushDetectedNote(int[] detectedNotes, int timePlayed)
+	public void PushDetectedNote(int[] detectedNotes, int timePlayed)
 	{
-		GD.Print("Received detected notes: " + string.Join(",", detectedNotes));
+		//GD.Print("Received detected notes: " + string.Join(",", detectedNotes));
 		// send the detected note to be compared
 		Note newNote = new Note(detectedNotes, timePlayed);
 		inputNotesStack.Push(newNote);
 	}
 
 	// check if we can compare notes and score them
-	private static void TryCompareNotes()
+	private void TryCompareNotes()
 	{
 		while (idealNotesStack.Count > 0)
 		{
@@ -58,11 +62,12 @@ public partial class NoteComparison : Node
 
 			GD.Print("Pitch Score: " + pitchScore + "/5, Timing Score: " + timingScore + "/5");
 			gradeList.Add(new Grade(pitchScore, timingScore));
+			EmitSignal(SignalName.SetFeedback, timingScore, pitchScore);
 		}
 	}
 
 	// show final results
-	public static void ReportFinalGrades()
+	public void ReportFinalGrades()
 	{
 		if (gradeList.Count == 0)
 		{
