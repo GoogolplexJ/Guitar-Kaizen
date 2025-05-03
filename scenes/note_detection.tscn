@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyylh1hafuexu"]
+[gd_scene load_steps=3 format=3 uid="uid://cyylh1hafuexu"]
 
 [ext_resource type="Script" uid="uid://wqkauf6n1fuf" path="res://scripts/NoteDetection.gd" id="1_fsotx"]
-[ext_resource type="Script" uid="uid://dep6sl3jelphd" path="res://scripts/NoteHandler.cs" id="2_e84xy"]
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_e84xy"]
 
@@ -11,6 +10,3 @@ script = ExtResource("1_fsotx")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_e84xy")
 bus = &"Mic"
-
-[node name="NoteHandler" type="Node" parent="."]
-script = ExtResource("2_e84xy")

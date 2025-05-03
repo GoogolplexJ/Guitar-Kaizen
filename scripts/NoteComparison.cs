@@ -11,11 +11,6 @@ public partial class NoteComparison : Node
 	private static List<Grade> gradeList = new List<Grade>();
 
 
-	// someone played a note
-	public static void AddInputNote(Note note)
-	{
-		inputNotesStack.Push(note);
-	}
 
 	// game added a note to expect
 	public static void AddIdealNote(Note note)
@@ -24,7 +19,14 @@ public partial class NoteComparison : Node
 		TryCompareNotes(); // check if we can compare
 	}
 
-
+	// played note is added to stack
+	public static void PushDetectedNote(int[] detectedNotes, int timePlayed)
+	{
+		GD.Print("Received detected notes: " + string.Join(",", detectedNotes));
+		// send the detected note to be compared
+		Note newNote = new Note(detectedNotes, timePlayed);
+		inputNotesStack.Push(newNote);
+	}
 
 	// check if we can compare notes and score them
 	private static void TryCompareNotes()
