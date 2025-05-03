@@ -8,6 +8,10 @@ class_name NSongMode
 @onready var staffBack := $"staffCreation/staff background"
 @onready var noteTimer := $notes/noteTimer
 @onready var colLine := $notes/lineCollision
+@onready var timingLabel := $feedback/MarginContainer/HBoxContainer/timing
+@onready var missedLabel := $feedback/MarginContainer/HBoxContainer/missed
+@onready var perfectLabel := $feedback/MarginContainer/HBoxContainer/perfect
+@onready var pitchLabel := $feedback/MarginContainer/HBoxContainer/pitch
 const Note := preload("res://scripts/Note.cs")
 const SongPlayer := preload("res://scripts/song_player.gd")
 const NoteComparison := preload("res://scripts/NoteComparison.cs")
@@ -39,12 +43,16 @@ func _on_note_timer_timeout() -> void:
 	#set timer for next note
 	noteTimer.wait_time = songModeControl.note_timing_calc(songModeControl.noteLength.pop_back())
 	
-#TODO: note collision detection with the end line
+#note collision detection with the end line
 func _on_line_collision_body_entered(body: Node2D) -> void:
 	#print("notepassed")
 	song.noteList[0].timePlayed = Time.get_ticks_msec()
+	#compare played note(s) to ideal note(s)
 	compare.AddIdealNote(song.noteList[0])
 	$notes/lineCollision/ColorRect.color = Color(0, 1, 1, 1)
+	#TODO: collect timing and pitch score
+	#NOTE: feedback currently randomized for testing
+	display_feedback(randi() % 4 + 1, randi() % 4 + 1)
 
 func _on_line_collision_body_exited(body: Node2D) -> void:
 	#print("notepassed")
@@ -87,3 +95,30 @@ func _input(event):
 
 func _set_song(sN : String) -> void:
 	songName = sN
+
+#control rudamentary real time feedback labels
+func display_feedback(timing : int, pitch : int):
+	#turn off all labels that may have been on
+	timingLabel.visible = false
+	missedLabel.visible = false
+	perfectLabel.visible = false
+	pitchLabel.visible = false
+	#if timing is 1, note was missed
+	if timing == 1:
+		missedLabel.visible = true
+		return
+	elif (timing == 5)&&(pitch == 5):
+		perfectLabel.visible = true
+		return
+	else:
+		match timing:
+			2: timingLabel.text = "TOO SLOW"
+			3: timingLabel.text = "ALMOST"
+			4: timingLabel.text = "GOOD TIMING!"
+			5: timingLabel.text = "PERFECT TIMING!"
+		match pitch:
+			5: pitchLabel.text = "PERFECT NOTE!"
+			4: pitchLabel.text = "GOOD NOTE!"
+			_: pitchLabel.text = "OFF NOTE"
+		pitchLabel.visible = true
+		timingLabel.visible = true
