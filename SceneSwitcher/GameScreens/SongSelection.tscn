@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bofs51466wwnm"]
+[gd_scene load_steps=7 format=3 uid="uid://bofs51466wwnm"]
 
 [ext_resource type="Script" uid="uid://b2nw5tsathk55" path="res://scripts/MenuScripts/song_selection.gd" id="1_j3ywq"]
-[ext_resource type="Script" uid="uid://udldla3tj2nm" path="res://SceneSwitcher/GameScreens/full_menu.gd" id="2_gyr1k"]
+[ext_resource type="Script" uid="uid://udldla3tj2nm" path="res://scripts/MenuScripts/full_menu.gd" id="2_gyr1k"]
 [ext_resource type="PackedScene" uid="uid://ctgxe4ismloig" path="res://scenes/songSelectionBox.tscn" id="2_j3ywq"]
+[ext_resource type="Texture2D" uid="uid://bs4cu58blj6nb" path="res://assets/SongSelectionAssets/placeholdArrow.png" id="4_6kgji"]
+[ext_resource type="Script" uid="uid://c2u46s1rt7fvb" path="res://scripts/MenuScripts/selection_disp.gd" id="5_3kqbi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gyr1k"]
+font_size = 60
+font_color = Color(0.27993, 0.484712, 0.766781, 1)
+outline_size = 12
 
 [node name="SongSelection" type="Control"]
 layout_mode = 3
@@ -12,6 +19,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j3ywq")
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.564404, 0.67726, 0.973286, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -25,24 +43,42 @@ grow_vertical = 2
 theme_override_constants/margin_top = 300
 theme_override_constants/margin_bottom = 400
 
-[node name="fullMenu" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("2_gyr1k")
-selection_box = ExtResource("2_j3ywq")
-
-[node name="clipControl" type="Control" parent="CanvasLayer/MarginContainer/fullMenu"]
+[node name="clipControl" type="Control" parent="CanvasLayer/MarginContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_gyr1k")
+selection_box = ExtResource("2_j3ywq")
 
-[node name="songOptions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/fullMenu/clipControl"]
+[node name="songOptions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/clipControl"]
 layout_mode = 0
 
-[node name="demoSong" parent="CanvasLayer/MarginContainer/fullMenu/clipControl/songOptions" instance=ExtResource("2_j3ywq")]
+[node name="demoSong" parent="CanvasLayer/MarginContainer/clipControl/songOptions" instance=ExtResource("2_j3ywq")]
 visible = false
 layout_mode = 2
+
+[node name="leftButton" type="TextureButton" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = -1
+anchor_top = 0.25
+anchor_bottom = 0.65
+grow_vertical = 2
+texture_hover = ExtResource("4_6kgji")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="rightButton" type="TextureButton" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = -1
+anchor_left = 0.881
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.65
+grow_vertical = 2
+texture_hover = ExtResource("4_6kgji")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
 visible = false
@@ -63,16 +99,33 @@ offset_bottom = 971.0
 scale = Vector2(2, 2)
 text = "Play"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 0
+[node name="selectionDisp" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_3kqbi")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="songTitle" type="Label" parent="CanvasLayer/selectionDisp"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = 850.0
+offset_top = 699.0
+offset_right = 1030.0
+offset_bottom = 780.0
 grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.564404, 0.67726, 0.973286, 1)
+grow_vertical = 0
+text = "DEMO"
+label_settings = SubResource("LabelSettings_gyr1k")
+horizontal_alignment = 1
+vertical_alignment = 1
 
+[connection signal="box_selected" from="CanvasLayer/MarginContainer/clipControl" to="CanvasLayer/selectionDisp" method="update_title"]
+[connection signal="pressed" from="CanvasLayer/leftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/rightButton" to="." method="_on_right_button_pressed"]
 [connection signal="text_changed" from="CanvasLayer/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]

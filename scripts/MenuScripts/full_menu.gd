@@ -1,11 +1,12 @@
  
 #code handling song choice options
-extends HBoxContainer
+extends Control
 
 @export var selection_box : PackedScene
 var songPath = "user://SongFiles/"
 
-#var boxList = []
+signal box_selected(value)
+var current_selection = null
 
 func _ready() -> void:
 	generate_song_options(songPath)
@@ -24,18 +25,39 @@ func generate_song_options(path):
 			else:
 				print("Found file: " + file_name)
 				if file_name != "noNameSong.dat":
+					#create new box instance from file
 					var newBox = selection_box.instantiate()
+					#set parameters of box based off of file
 					newBox.set_title(file_name)
 					#TODO: lock/unlock based off of level/difficulty
 					newBox.set_locked(false)
 					#TODO: assign cover as well
+					#if there is not a current selection defined already, add one
+					if !current_selection:
+						first_press(newBox)
+					#connect box to button signal
 					newBox.get_button().pressed.connect(_on_pressed.bind(newBox))
-					$clipControl/songOptions.add_child(newBox)
+					$songOptions.add_child(newBox)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
 		
 func _on_pressed(box):
+	#if button has already been selected once before, call second press function to go into the song
+	if current_selection != box:
+		first_press(box)
+	else:
+		second_press(box)
+	
+#select song to be played:
+	#send a signal to the songSelection controller to update songTitle label
+	#move the selected song to the middle of the screen (and probably change its appearance)
+func first_press(box):
+	box_selected.emit(box.song_title.rstrip(".dat"))
+	current_selection = box
+
+#enter song mode with selected song
+func second_press(box):
 	print("button pressed:" + box.song_title)
 	MusicVisualizerVariables.song_to_load = box.song_title
 	SceneSwitcher.SwitchScene("SongMode")
