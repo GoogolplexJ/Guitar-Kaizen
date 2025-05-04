@@ -1,3 +1,7 @@
+// Written by: Kei Khalid
+// Tested by: Kei Khalid
+// Debugged by: Kei Khalid
+
 public class Grade
 {
 	private int pitchScore;  // score for how correct the note pitch was

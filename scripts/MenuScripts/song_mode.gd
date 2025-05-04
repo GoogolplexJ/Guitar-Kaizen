@@ -1,6 +1,7 @@
-#written by: Gabrielle Geppert
-#tested by: Gabrielle Geppert
-#debugged by: Gabrielle Geppert
+#written by: Gabrielle Geppert, Kei Khalid
+#tested by: Gabrielle Geppert, Kei Khalid
+#debugged by: Gabrielle Geppert, Kei Khalid
+# Kei worked on the note detection aspect from this file
 
 extends Control
 class_name NSongMode
@@ -128,6 +129,10 @@ func _display_feedback(timing : int, pitch : int):
 		timingLabel.visible = true
 
 
+
+# Written by: Kei Khalid
+# Tested by: Kei Khalid
+# Debugged by: Kei Khalid
 
 # Constants to control detection behavior and limits
 const MIN_DETECTION_MAGNITUDE = 0.04  # Relative threshold to filter out weak frequency detections

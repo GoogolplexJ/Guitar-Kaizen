@@ -1,5 +1,5 @@
-//written by: Jared, Alicia
-//
+//written by: Kei Khalid, Jared, Alicia
+// Kei wrote the PushDetectedNote, TryCompareNotes, and ReportFinalGrades functions
 using Godot;
 using System;
 using System.Collections.Generic;
