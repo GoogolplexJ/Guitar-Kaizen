@@ -1,6 +1,6 @@
 #written by: Gabrielle Geppert
-#tested by: Gabrielle Geppert
-#debugged by: Gabrielle Geppert
+#tested by: Jared Selke
+#debugged by: Jared Selke
 
 extends Control
 @onready var songOptions := $CanvasLayer/MarginContainer/clipControl/songOptions
@@ -22,13 +22,13 @@ func _ready() -> void:
 	#connect selection signal from clipControl (menu) to selectionDisp
 	#menuControl.box_selected.connect(selectionDisplay.update_title)
 
-
+#esc button handling
 func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
 		SceneSwitcher.SwitchScene("Home")
 
 #when arrow buttons (leftButton and rightButton) are pressed, move the songOptions box so that the next song is in the middle
-#TODO: box in the middle should also be selected
+#box in the middle should also be selected
 func _on_left_button_pressed() -> void:
 	scroll_left()
 	menuControl.middle_mode(boxList[currentBox])
@@ -44,6 +44,7 @@ func scroll_right() -> void:
 		songOptions.position.x -= boxWidth
 		currentBox += 1
 
+#while current box is not the selected box, scroll right or left to get there
 func _scroll_to_box(value) -> void:
 	while currentBox != value:
 		if(currentBox > value):

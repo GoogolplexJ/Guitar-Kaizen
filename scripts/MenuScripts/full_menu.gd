@@ -1,4 +1,7 @@
- 
+#written by: Gabrielle Geppert
+#tested by: Jared Selke, Gabrielle Geppert
+#debugged by: Jared Selke, Gabrielle Geppert
+
 #code handling song choice options
 extends Control
 

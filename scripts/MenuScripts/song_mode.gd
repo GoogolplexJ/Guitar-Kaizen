@@ -1,7 +1,7 @@
-#written by: Gabrielle Geppert, Kei Khalid
-#tested by: Gabrielle Geppert, Kei Khalid
-#debugged by: Gabrielle Geppert, Kei Khalid
-# Kei worked on the note detection aspect from this file
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+#Kei Khalid worked on the note detection aspect from this file (visible at the bottom)
 
 extends Control
 class_name NSongMode
@@ -129,10 +129,9 @@ func _display_feedback(timing : int, pitch : int):
 		timingLabel.visible = true
 
 
-
 # Written by: Kei Khalid
-# Tested by: Kei Khalid
-# Debugged by: Kei Khalid
+# Tested by: Jared Selke, Kei Khalid
+# Debugged by: Jared Selke
 
 # Constants to control detection behavior and limits
 const MIN_DETECTION_MAGNITUDE = 0.04  # Relative threshold to filter out weak frequency detections
@@ -162,7 +161,7 @@ func initialize_analizer():
 
 
 func _process(_delta):
-	
+	#timer controlling start delay for the song
 	$notes/startLabel.set_text(str(int($notes/startTimer.get_time_left()+1)))
 	# Runs every frame. Used here to continuously analyze audio data.
 	if not ready_for_detection:

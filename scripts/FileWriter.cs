@@ -1,3 +1,7 @@
+// written by: Jared Selke
+// tested by: Jared Selke
+// debugged by: Jared Selke
+
 using Godot;
 using System;
 using System.IO;

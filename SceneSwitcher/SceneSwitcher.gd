@@ -1,3 +1,7 @@
+#written by: Gabrielle Geppet
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 #modified from https://www.nightquestgames.com/changing-scenes-in-godot-4-is-easy/
 
 extends Node

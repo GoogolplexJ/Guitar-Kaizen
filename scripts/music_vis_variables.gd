@@ -1,4 +1,10 @@
+#written by: Gabrielle Geppert
+#tested by: Gabrielle Geppert
+#debugged by: Gabrielle Geppert
+
 extends Node
+#stores global variables for note visuals and staff visuals
+#also stores name of song file to be loaded
 
 #configuration for the music visuals (staff generation and note generation)
 static var BOTTOM = 250

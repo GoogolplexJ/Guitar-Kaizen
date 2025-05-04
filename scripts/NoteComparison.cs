@@ -1,6 +1,9 @@
 //written by: Kei Khalid, Jared, Alicia
-// Alicia and Kei wrote TryCompareNotes
-// Kei wrote the PushDetectedNote, and ReportFinalGrades functions
+//Alicia and Kei wrote TryCompareNotes
+//Kei wrote the PushDetectedNote, and ReportFinalGrades functions
+//tested by: Jared Selke
+//debugged by: Jared Selke
+
 using Godot;
 using System;
 using System.Collections.Generic;

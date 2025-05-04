@@ -1,3 +1,7 @@
+#written by: Jared Selke
+#tested by: Jared Selke
+#debugged by: Jared Selke
+
 extends Control
 class_name SongCreation
 

@@ -1,3 +1,7 @@
+#written by: Jared Selke
+#tested by: Jared Selke
+#debugged by: Jared Selke
+
 extends Node
 const Note := preload("res://scripts/Note.cs")
 

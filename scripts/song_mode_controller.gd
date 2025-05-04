@@ -1,6 +1,6 @@
-#written by: Gabrielle Geppert
-#tested by: Gabrielle Geppert
-#debugged by: Gabrielle Geppert
+#written by: Gabrielle Geppert, Jared Selke
+#tested by: Gabrielle Geppert, Jared Selke
+#debugged by: Gabrielle Geppert, Jared Selke
 
 extends Node2D
 

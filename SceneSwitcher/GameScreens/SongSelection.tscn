@@ -1,10 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bofs51466wwnm"]
+[gd_scene load_steps=9 format=3 uid="uid://bofs51466wwnm"]
 
 [ext_resource type="Script" uid="uid://b2nw5tsathk55" path="res://scripts/MenuScripts/song_selection.gd" id="1_j3ywq"]
 [ext_resource type="Script" uid="uid://udldla3tj2nm" path="res://scripts/MenuScripts/full_menu.gd" id="2_gyr1k"]
 [ext_resource type="PackedScene" uid="uid://ctgxe4ismloig" path="res://scenes/songSelectionBox.tscn" id="2_j3ywq"]
 [ext_resource type="Texture2D" uid="uid://bs4cu58blj6nb" path="res://assets/SongSelectionAssets/placeholdArrow.png" id="4_6kgji"]
 [ext_resource type="Script" uid="uid://c2u46s1rt7fvb" path="res://scripts/MenuScripts/selection_disp.gd" id="5_3kqbi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kqbi"]
+bg_color = Color(0.965156, 0.924631, 0.912836, 1)
+draw_center = false
+border_width_left = 14
+border_width_top = 10
+border_width_right = 14
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_6tvq4"]
+Panel/styles/panel = SubResource("StyleBoxFlat_3kqbi")
 
 [sub_resource type="LabelSettings" id="LabelSettings_gyr1k"]
 font_size = 60
@@ -52,6 +64,13 @@ selection_box = ExtResource("2_j3ywq")
 
 [node name="songOptions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/clipControl"]
 layout_mode = 0
+
+[node name="border" type="Panel" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme = SubResource("Theme_6tvq4")
 
 [node name="leftButton" type="TextureButton" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 0)
