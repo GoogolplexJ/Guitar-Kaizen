@@ -54,6 +54,7 @@ public partial class Note : Node, IComparable<Note>
 
 	// CompareTo method compares notes based on pitch
 	// written by: Jared
+	// tested by: Alicia
 	public int CompareTo(Note other)
 	{
 		int matchedNotes = 0;

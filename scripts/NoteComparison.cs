@@ -1,5 +1,6 @@
 //written by: Kei Khalid, Jared, Alicia
-// Kei wrote the PushDetectedNote, TryCompareNotes, and ReportFinalGrades functions
+// Alicia and Kei wrote TryCompareNotes
+// Kei wrote the PushDetectedNote, and ReportFinalGrades functions
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,7 @@ public partial class NoteComparison : Node
 	private List<Grade> gradeList = new List<Grade>();
 	[Signal]
 	public delegate void SetFeedbackEventHandler(int timing, int pitch);
-
-
+	
 	public NoteComparison(){
 	}
 
@@ -58,7 +58,6 @@ public partial class NoteComparison : Node
 			else if (gap < 1.0) timingScore = 2;
 			else timingScore = 1;
 			if(gap < 0) timingScore = -1;
-
 
 			GD.Print("Pitch Score: " + pitchScore + "/5, Timing Score: " + timingScore + "/5");
 			gradeList.Add(new Grade(pitchScore, timingScore));
