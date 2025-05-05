@@ -36,7 +36,7 @@ func _input(event):
 func _blank_variables() -> void:
 	toggleArray.clear()
 	itemArray.clear()
-	toggleArray.resize(24)
+	toggleArray.resize(25)
 	toggleArray.fill(false)
 	itemArray.resize(24)
 	itemArray.fill(0)
@@ -150,10 +150,14 @@ func note_format_change(value : int, sharpFlat : int) -> int:
 	if value == 0:
 		return 0
 	var newValue := value
-	if not (value <= 9): newValue -= 1
-	if not (value <= 20): newValue -= 1
-	if not (value <= 32): newValue -= 1
-	newValue = (newValue - 1) * 2
+	if value <= 2: newValue = value
+	elif (value <= 5): newValue = newValue * 2 - 2
+	elif (value <= 8): newValue = newValue * 2 - 3
+	elif (value <= 12): newValue = newValue * 2 - 4
+	elif (value <= 15): newValue = newValue * 2 - 5
+	elif (value <= 19): newValue = newValue * 2 - 6
+	elif (value <= 22): newValue = newValue * 2 - 7
+	elif (value <= 24): newValue = newValue * 2 - 8
 	#adjust flats and sharps to their corresponding base note value
 	match sharpFlat:
 		1:
